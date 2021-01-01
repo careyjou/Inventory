@@ -82,7 +82,6 @@
 		D5EBA6F424690009008020F9 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5EBA6F324690009008020F9 /* Colors.xcassets */; };
 		D5EBA6F8246906A8008020F9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5EBA6F7246906A8008020F9 /* CloudKit.framework */; };
 		D5EBA6FA24691013008020F9 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EBA6F924691013008020F9 /* AddItemView.swift */; };
-		D5F0237924F3581800FAA209 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F0237824F3581800FAA209 /* DetailView.swift */; };
 		D5F9D14524C4E22F00677EFD /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F9D14424C4E22F00677EFD /* AboutView.swift */; };
 /* End PBXBuildFile section */
 
@@ -209,7 +208,6 @@
 		D5EBA6F52469069F008020F9 /* Inventory.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Inventory.entitlements; sourceTree = "<group>"; };
 		D5EBA6F7246906A8008020F9 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		D5EBA6F924691013008020F9 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
-		D5F0237824F3581800FAA209 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		D5F9D14424C4E22F00677EFD /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -252,7 +250,6 @@
 		D509E9D524FB6B1A002E6286 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				D5F0237824F3581800FAA209 /* DetailView.swift */,
 				D59A389F245E7FB400306CF3 /* ItemDetail.swift */,
 				D5504DC924C51D87007BF1A5 /* ItemInstanceDetail.swift */,
 				D58D13872471BB5700521F3E /* SpaceDetail.swift */,
@@ -628,7 +625,6 @@
 				D58D13862471B7F400521F3E /* NavigationViewMode.swift in Sources */,
 				D575C358247B06D8003BAC16 /* ViewController.swift in Sources */,
 				D5EBA6F22468ED29008020F9 /* TextView.swift in Sources */,
-				D5F0237924F3581800FAA209 /* DetailView.swift in Sources */,
 				D5D86CA924A3C5F00068A833 /* ItemList.swift in Sources */,
 				D5E7DAA924849E590079A5ED /* Stack.swift in Sources */,
 				D5E7446924A67DA0004803EE /* SuggestedSpaces.swift in Sources */,
@@ -764,9 +760,11 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "Inventory/CaptureAR/SceneDepthPointCloud-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -819,9 +817,11 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "Inventory/CaptureAR/SceneDepthPointCloud-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

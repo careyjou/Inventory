@@ -9,8 +9,7 @@
 import SwiftUI
 import SceneKit
 
-struct ItemDetail: DetailView {
-    typealias V = AnyView
+struct ItemDetail: View {
     
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var controller: InventoryController
@@ -28,9 +27,9 @@ struct ItemDetail: DetailView {
     
 
     
-    func options() -> V {
+    func options() -> some View {
         
-        return AnyView(
+        return
             VStack(alignment: .leading){
                     
             HStack{
@@ -47,14 +46,14 @@ struct ItemDetail: DetailView {
             }
             .frame(maxWidth: 700)
             .padding(.horizontal)
-            })
+            }
         
         
     }
     
-    func content() -> V {
+    func content() -> some View {
         
-        return AnyView(VStack{
+        return VStack{
                     
                     HStack{
                         Text("Quantity")
@@ -79,13 +78,13 @@ struct ItemDetail: DetailView {
                 self.itemInstancesGrid(item: item)
                 
                 }
-               .padding(.top))
+               .padding(.top)
 
             }
     
-    func overlay() -> V {
+    func overlay() -> some View {
         
-        return AnyView(VStack {
+        return VStack {
             Spacer()
             HStack(){
                 Menu{
@@ -105,7 +104,7 @@ struct ItemDetail: DetailView {
 
                 Spacer()
                 if (item.hasPosition()) {
-                Button(action: {self.startFind()})
+                    Button(action: {self.controller.showFind()})
                 {
                     Image(systemName: "magnifyingglass")
                 }.buttonStyle(CircleButton())
@@ -113,36 +112,39 @@ struct ItemDetail: DetailView {
                 
             }
             }
-        })
+        }
 
     }
     
-    
-    
-    @ViewBuilder func itemView(item: Item?) -> some View {
-        
-        if (item == nil) {
-        }
-        else {
-            self.combined()
-        }
-    }
     
 
     
     var body: some View {
+        
         return self.combined()
     }
     
+    @ViewBuilder func combined() -> some View {
+        ZStack{
+            ScrollView(.vertical) {
+                VStack {
+                    self.options().frame(maxWidth: 700).padding(.top, 10)
+                    self.content().frame(maxWidth: 700)
+                    HStack{
+                        Spacer()
+                    }
+                }
+            }
+            self.overlay()
+        }
+        .navigationBarTitle(Text(self.name()))
+            
+        
+    }
     
 
         
     
-    
-    private func startFind() {
-        controller.arViewMode = .findItem
-        withAnimation{controller.isShowingAR = true}
-    }
     
     private func itemInstancesGrid(item: Item) -> some View {
         let instances: [ItemInstance] = item.getInstances()

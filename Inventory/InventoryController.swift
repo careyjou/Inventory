@@ -17,10 +17,10 @@ import ARKit
 #endif
 
 class InventoryController: ObservableObject {
-    @Published public var isShowingAR: Bool = false
     @Published public var isShowingAddItemView: Bool = false
     @Published public var isShowingAddSpaceView: Bool = false
     @Published public var arHasSpace: Bool = false
+    @Published public var arViewMode: ARViewMode = .none
     
     
     public var spaceToAdd: String? = nil
@@ -29,7 +29,7 @@ class InventoryController: ObservableObject {
     public var itemPosition: simd_float3?
     
     
-    public var arViewMode: ARViewMode = .general
+
     public var selectedItem: Item? = nil
     public var spaceFile: URL?
     public var pointCloud: [PointCloudVertex]?
@@ -77,36 +77,38 @@ class InventoryController: ObservableObject {
         }
     }
     
+    /// <#Description#>
+    public func AROff() {
+        withAnimation {self.arViewMode = .none}
+    }
+    
     public func showGeneralView() {
-        self.arViewMode = .general
-        self.AROn()
+        withAnimation{self.arViewMode = .general}
     }
     
     /// <#Description#>
     public func showAddItemView() {
         
-        self.arViewMode = .addItem
-        self.AROn()
+        withAnimation{self.arViewMode = .addItem}
         
         
     }
     
     public func showMapSpaceView() {
-        self.arViewMode = .mapSpace
-        self.AROn()
+        withAnimation{self.arViewMode = .mapSpace}
     }
     
+    public func showReposition() {
+        withAnimation{self.arViewMode = .repositionInstance}
+    }
+    
+    public func showFind() {
+        withAnimation{self.arViewMode = .findItem}
+    }
 
     
-    /// <#Description#>
-    private func AROn() {
-        withAnimation {self.isShowingAR = true}
-    }
     
-    /// <#Description#>
-    public func AROff() {
-        withAnimation {self.isShowingAR = false}
-    }
+   
 
     private func setPointCloud() {
         let coordinator = self.arCaptureCoordinator

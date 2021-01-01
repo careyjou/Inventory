@@ -8,8 +8,7 @@
 
 import SwiftUI
 
-struct ItemInstanceDetail: DetailView {
-    typealias V = AnyView
+struct ItemInstanceDetail: View {
     
     @ObservedObject var instance : ItemInstance
     @Environment(\.presentationMode) var presentationMode
@@ -24,10 +23,9 @@ struct ItemInstanceDetail: DetailView {
     }
     
     
-    func options() -> V {
+    func options() -> some View {
         
-        return AnyView(
-            VStack(alignment: .leading){
+        return VStack(alignment: .leading){
                 
                 if !instance.getParents().isEmpty || (instance.getSpace() != nil) {
                     HStack{
@@ -81,13 +79,13 @@ struct ItemInstanceDetail: DetailView {
                 }
                 .frame(maxWidth: 700)
                 .padding(.horizontal)
-            })
+            }
         }
         
         
     
     
-    func content() -> V {
+    func content() -> some View {
         
         let shortFormatter: DateFormatter = DateFormatter()
         shortFormatter.dateStyle = .short
@@ -96,7 +94,7 @@ struct ItemInstanceDetail: DetailView {
         formatter.dateStyle = .short
         formatter.timeStyle = .short
         
-        return AnyView(
+        return
             VStack {
                 
                 
@@ -180,22 +178,22 @@ struct ItemInstanceDetail: DetailView {
                 
                 
             }
-            .padding(.top))
+            .padding(.top)
         
     
     }
     
     
-    func overlay() -> V {
+    func overlay() -> some View {
        
         
-        return AnyView(
+        return
             VStack {
                 Spacer()
                 HStack(){
                     
                     Menu{
-                        Button(action: {self.startReposition()}) {
+                        Button(action: {self.controller.showReposition()}) {
                             Label("Reposition in AR", systemImage: "arkit")
                         }
                         Button(action: {}) {
@@ -211,35 +209,43 @@ struct ItemInstanceDetail: DetailView {
                     }
                     Spacer()
                     if (instance.getSpace() != nil) {
-                        Button(action: {self.startFind()})
+                        Button(action: {self.controller.showFind()})
                         {
                             Image(systemName: "magnifyingglass")
                         }.buttonStyle(CircleButton())
                         
                     }
                 }
-            })
+            }
 
     }
     
     
     var body: some View {
-        self.combined()
+        
+        return self.combined()
+    }
+    
+    @ViewBuilder func combined() -> some View {
+        ZStack{
+            ScrollView(.vertical) {
+                VStack {
+                    self.options().frame(maxWidth: 700).padding(.top, 10)
+                    self.content().frame(maxWidth: 700)
+                    HStack{
+                        Spacer()
+                    }
+                }
+            }
+            self.overlay()
+        }
+        .navigationBarTitle(Text(self.name()))
+            
+        
     }
     
     
     
-    
-    
-    private func startReposition() {
-        self.controller.arViewMode = .repositionInstance
-        withAnimation{self.controller.isShowingAR = true}
-    }
-    
-    private func startFind() {
-        self.controller.arViewMode = .findItem
-        withAnimation{self.controller.isShowingAR = true}
-    }
     
     
     

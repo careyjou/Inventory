@@ -8,17 +8,19 @@
 
 import Foundation
 
-enum ARViewMode {
+enum ARViewMode: Equatable {
+    case none
     case general
     case addItem
     case addInstance
     case repositionInstance
     case findItem
     case mapSpace
-    case enhanceSpace
    
     public func buttonText() -> String {
         switch self {
+        case .none:
+            return ""
         case .general:
             return ""
         case .addItem:
@@ -31,8 +33,6 @@ enum ARViewMode {
             return ""
         case .mapSpace:
             return "Add Space"
-        case .enhanceSpace:
-            return "Enhance Space"
         }
     }
     

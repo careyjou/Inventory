@@ -35,14 +35,14 @@ struct ContentView: View {
                 .sheet(isPresented: $controller.isShowingAddSpaceView) {
                         AddSpaceView()
                     }
-                .disabled(controller.isShowingAR)
+                .disabled(self.controller.arViewMode != .none)
             
                 
                 
         
             
             #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
-            if (controller.isShowingAR) {
+            if (controller.arViewMode != .none) {
                 ZStack{
                     self.arViewOverlay()
                     VStack{

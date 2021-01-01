@@ -39,7 +39,9 @@ struct SpaceView: View {
                     #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
                     if ARWorldTrackingConfiguration.supportsFrameSemantics(.sceneDepth) {
                     Button(action: {
-                            controller.showMapSpaceView()}) {
+                            controller.showMapSpaceView()
+                        
+                    }) {
                         Image(systemName: "plus")
                     }
                     .buttonStyle(CircleButton())

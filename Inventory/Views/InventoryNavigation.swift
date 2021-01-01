@@ -10,11 +10,9 @@ import SwiftUI
 import ARKit
 
 struct InventoryNavigation: View {
-    #if os(iOS)
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @FetchRequest(entity: ItemInstance.entity(), sortDescriptors: []) var itemInstances: FetchedResults<ItemInstance>
     @FetchRequest(entity: Space.entity(), sortDescriptors: []) var spaces: FetchedResults<Space>
-    #endif
     @EnvironmentObject var controller: InventoryController
     @State private var itemSearch = ""
     @Environment(\.colorScheme) var colorScheme
@@ -139,9 +137,7 @@ struct InventoryNavigation: View {
                 }
                 .buttonStyle(ScalingOpacityButton()))
             
-            if (horizontalSizeClass != .compact) {
                 ItemView()
-            }
             }
     }
         

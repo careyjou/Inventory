@@ -8,8 +8,7 @@
 
 import SwiftUI
 
-struct SpaceDetail: DetailView {
-    typealias V = AnyView
+struct SpaceDetail: View {
     
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var space: Space
@@ -27,9 +26,9 @@ struct SpaceDetail: DetailView {
     
     
     
-    func options() -> V {
+    func options() -> some View {
         
-        return AnyView(
+        return
             VStack(alignment: .leading){
             
             HStack{
@@ -49,21 +48,18 @@ struct SpaceDetail: DetailView {
                 .font(Font.system(.subheadline).bold())
                 .buttonStyle(RoundedButton(textColor: .primary, cornerRadius: 10))
                 .padding(.trailing, 10)
-                .sheet(isPresented: $isShowingEditView) {
-                    SpaceEditView(space: space)
-                }
                 Spacer()
                 
             }
             .frame(maxWidth: 700)
             .padding(.horizontal)
-            })
+            }
         
     }
     
-    func content() -> V {
+    func content() -> some View {
         
-        return AnyView(
+        return
             VStack(alignment: .leading){
                 
                 
@@ -84,14 +80,14 @@ struct SpaceDetail: DetailView {
                 HStack {
                     Spacer()
                 }
-            })
+            }
         
     }
         
     
     
-    func overlay() -> V {
-        return AnyView(VStack {
+    func overlay() -> some View {
+        return VStack {
                 Spacer()
                 HStack(){
                     Spacer()
@@ -104,18 +100,38 @@ struct SpaceDetail: DetailView {
                 
                 }
             }
-        )
+        
     }
     
     
     
     
     var body: some View {
+        
         return self.combined()
+            .sheet(isPresented: $isShowingEditView) {
+                SpaceEditView(space: space, isShowingEditView: $isShowingEditView)
+            }
         
     }
     
-    
+    @ViewBuilder func combined() -> some View {
+        ZStack{
+            ScrollView(.vertical) {
+                VStack {
+                    self.options().frame(maxWidth: 700).padding(.top, 10)
+                    self.content().frame(maxWidth: 700)
+                    HStack{
+                        Spacer()
+                    }
+                }
+            }
+            self.overlay()
+        }
+        .navigationBarTitle(Text(self.name()))
+            
+        
+    }
     
     
     private func itemList(space: Space) -> some View {

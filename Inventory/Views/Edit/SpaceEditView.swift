@@ -12,9 +12,8 @@ import CoreData
 
 struct SpaceEditView: View {
     @Environment(\.managedObjectContext) var moc
-    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var space: Space
-    
+    @Binding var isShowingEditView: Bool
     @State private var newName: String = ""
     
     var body: some View {
@@ -34,7 +33,7 @@ struct SpaceEditView: View {
             .navigationBarTitle(Text("Edit Space"), displayMode: .inline)
             .navigationBarItems(leading:
                                     HStack{
-                Button(action: {self.presentationMode.wrappedValue.dismiss()}) {
+                                        Button(action: {self.$isShowingEditView.wrappedValue.toggle()}) {
                     Image(systemName: "xmark")
                 }
                 .buttonStyle(SecondaryCircleButton())
@@ -68,13 +67,13 @@ struct SpaceEditView: View {
         _ = space.setName(newName: self.newName)
         try? moc.save()
         
-        self.presentationMode.wrappedValue.dismiss()
+        self.$isShowingEditView.wrappedValue.toggle()
     }
     
     func delete() {
         moc.delete(space)
         try? moc.save()
-        self.presentationMode.wrappedValue.dismiss()
+        self.$isShowingEditView.wrappedValue.toggle()
     }
     
 
