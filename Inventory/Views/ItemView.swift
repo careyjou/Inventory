@@ -21,17 +21,16 @@ struct ItemView: View {
                         .frame(maxWidth: 700)
                         .padding(.horizontal)
                         .padding(.top, 5)
-                        .transition(.asymmetric(insertion: .opacity, removal: .identity))
                     
 
+                    
                     ItemList(itemSearch: $itemSearch)
                         .frame(maxWidth: 700)
-                        .padding(.horizontal, 5)
-                        .transition(.asymmetric(insertion: .opacity, removal: .identity))
-                    Spacer()
+                        .zIndex(1)
                     
                 }
             }
+ 
         
             VStack{
                 Spacer()
@@ -55,6 +54,7 @@ struct ItemView: View {
                 }
                 
             }
+
         }
         .navigationBarTitle(Text("Items"))
     }

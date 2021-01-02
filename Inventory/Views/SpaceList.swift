@@ -20,7 +20,7 @@ struct SpaceList: View {
         
         return  LazyVStack {
             ForEach(sortedSpaces.filter {
-                self.spaceSearch.isEmpty ? true : ($0.name != nil && $0.name!.localizedCaseInsensitiveContains(self.spaceSearch))
+                self.spaceSearch.isEmpty ? true : ($0.name?.localizedCaseInsensitiveContains(self.spaceSearch) ?? false)
                 
             }, id: \.self) { space in
                 

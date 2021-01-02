@@ -21,16 +21,15 @@ struct SpaceView: View {
                         .frame(maxWidth: 700)
                         .padding(.horizontal)
                         .padding(.top, 5)
-                        .transition(.asymmetric(insertion: .opacity, removal: .identity))
                     
                     
                     SpaceList(spaceSearch: $spaceSearch)
                     .frame(maxWidth: 700)
                     .zIndex(1)
-                    .transition(.asymmetric(insertion: .scale, removal: .identity))
                     
                 }
             }
+
             VStack{
                 Spacer()
                 HStack{
@@ -53,6 +52,7 @@ struct SpaceView: View {
             }
         }
         .navigationBarTitle(Text("Spaces"))
+
     }
 }
 

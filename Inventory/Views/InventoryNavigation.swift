@@ -55,7 +55,6 @@ struct InventoryNavigation: View {
     @ViewBuilder var nav: some View {
         
         
-        
             ZStack{
             ScrollView {
                 VStack(alignment: .leading){

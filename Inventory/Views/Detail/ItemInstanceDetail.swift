@@ -192,10 +192,12 @@ struct ItemInstanceDetail: View {
                 Spacer()
                 HStack(){
                     
-                    Menu{
+                    Menu(){
+                        #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
                         Button(action: {self.controller.showReposition()}) {
                             Label("Reposition in AR", systemImage: "arkit")
                         }
+                        #endif
                         Button(action: {}) {
                             Label("Place in Existing Item", systemImage: "bag.fill")
                         }
@@ -208,6 +210,7 @@ struct ItemInstanceDetail: View {
                     .accessibility(label: Text("Reposition"))
                     }
                     Spacer()
+                    #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
                     if (instance.getSpace() != nil) {
                         Button(action: {self.controller.showFind()})
                         {
@@ -215,6 +218,7 @@ struct ItemInstanceDetail: View {
                         }.buttonStyle(CircleButton())
                         
                     }
+                    #endif
                 }
             }
 
