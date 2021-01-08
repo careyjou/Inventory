@@ -42,7 +42,7 @@ extension Space {
     
     
  
-    public func getImage(data: AppData) -> UIImage? {
+    public func getImage(data: SpacePointCloudAppData) -> UIImage? {
             return nil
     }
     

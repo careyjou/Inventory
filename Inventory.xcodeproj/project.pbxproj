@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D5104963252ACAE200F820A1 /* PointCloudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5104962252ACAE200F820A1 /* PointCloudView.swift */; };
-		D51E632D24A82756000D97DD /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E632C24A82756000D97DD /* AppData.swift */; };
+		D51E632D24A82756000D97DD /* SpacePointCloudAppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E632C24A82756000D97DD /* SpacePointCloudAppData.swift */; };
 		D51F0EC025941C08005AC360 /* ItemInstancePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51F0EBF25941C08005AC360 /* ItemInstancePreview.swift */; };
 		D5325538247C454400A00D67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D532553A247C454400A00D67 /* Main.storyboard */; };
 		D53A3E1A239B112A006EC344 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A3E19239B112A006EC344 /* AppDelegate.swift */; };
@@ -28,6 +28,7 @@
 		D554C2852591513700C8A97C /* ItemInstanceHierarchy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D554C2842591513700C8A97C /* ItemInstanceHierarchy.swift */; };
 		D558775724DA080B0068756D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D558775624DA080B0068756D /* Utils.swift */; };
 		D55FA0ED250EAB3E0086AB2D /* ARWorldAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55FA0EC250EAB3E0086AB2D /* ARWorldAnchor.swift */; };
+		D561FF1825A7BB7C00C6D5F6 /* CameraPoseLocalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D561FF1725A7BB7C00C6D5F6 /* CameraPoseLocalizer.swift */; };
 		D572309F24F1A90A00F38450 /* ModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D572309E24F1A90A00F38450 /* ModelView.swift */; };
 		D574730F2590233100160E2D /* Inventory.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D574730D2590233100160E2D /* Inventory.xcdatamodeld */; };
 		D574732325902C9E00160E2D /* PositionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574732225902C9E00160E2D /* PositionExtension.swift */; };
@@ -117,7 +118,7 @@
 
 /* Begin PBXFileReference section */
 		D5104962252ACAE200F820A1 /* PointCloudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointCloudView.swift; sourceTree = "<group>"; };
-		D51E632C24A82756000D97DD /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
+		D51E632C24A82756000D97DD /* SpacePointCloudAppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacePointCloudAppData.swift; sourceTree = "<group>"; };
 		D51F0EBF25941C08005AC360 /* ItemInstancePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInstancePreview.swift; sourceTree = "<group>"; };
 		D5325539247C454400A00D67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D53A3E16239B112A006EC344 /* Inventory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Inventory.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +144,7 @@
 		D554C2842591513700C8A97C /* ItemInstanceHierarchy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInstanceHierarchy.swift; sourceTree = "<group>"; };
 		D558775624DA080B0068756D /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		D55FA0EC250EAB3E0086AB2D /* ARWorldAnchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARWorldAnchor.swift; sourceTree = "<group>"; };
+		D561FF1725A7BB7C00C6D5F6 /* CameraPoseLocalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPoseLocalizer.swift; sourceTree = "<group>"; };
 		D572309E24F1A90A00F38450 /* ModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelView.swift; sourceTree = "<group>"; };
 		D574730E2590233100160E2D /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		D574732225902C9E00160E2D /* PositionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionExtension.swift; sourceTree = "<group>"; };
@@ -288,7 +290,7 @@
 				D5D86CAC24A3DFA60068A833 /* InventoryController.swift */,
 				D532553A247C454400A00D67 /* Main.storyboard */,
 				D5DD7DC425167AC5009572A9 /* Capture.storyboard */,
-				D5A03DF72592CA74004E0B7C /* CameraPoseFinder */,
+				D561FF1625A7BB3900C6D5F6 /* CameraPoseLocalizer */,
 				D5B761B125165FAA00BFCF42 /* CaptureAR */,
 				D5B761B025165E7C00BFCF42 /* ViewAR */,
 				D549C7972498796700873FFC /* Models */,
@@ -341,7 +343,7 @@
 				D5E7DAA824849E590079A5ED /* Stack.swift */,
 				D58D13852471B7F400521F3E /* NavigationViewMode.swift */,
 				D5C790E32472EBD3000B0EC2 /* ARViewMode.swift */,
-				D51E632C24A82756000D97DD /* AppData.swift */,
+				D51E632C24A82756000D97DD /* SpacePointCloudAppData.swift */,
 				D558775624DA080B0068756D /* Utils.swift */,
 				D55FA0EC250EAB3E0086AB2D /* ARWorldAnchor.swift */,
 				D5C225C62532B4DE00408735 /* PointCloudVertex.swift */,
@@ -382,6 +384,15 @@
 				D51F0EBF25941C08005AC360 /* ItemInstancePreview.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D561FF1625A7BB3900C6D5F6 /* CameraPoseLocalizer */ = {
+			isa = PBXGroup;
+			children = (
+				D5A03DF72592CA74004E0B7C /* CameraPoseFinder */,
+				D561FF1725A7BB7C00C6D5F6 /* CameraPoseLocalizer.swift */,
+			);
+			path = CameraPoseLocalizer;
 			sourceTree = "<group>";
 		};
 		D5A03DF72592CA74004E0B7C /* CameraPoseFinder */ = {
@@ -611,7 +622,7 @@
 				D549C7962498789900873FFC /* SettingsView.swift in Sources */,
 				D53A3E1A239B112A006EC344 /* AppDelegate.swift in Sources */,
 				D5AE7F0D24A6EA7000D175D2 /* UserPreview.swift in Sources */,
-				D51E632D24A82756000D97DD /* AppData.swift in Sources */,
+				D51E632D24A82756000D97DD /* SpacePointCloudAppData.swift in Sources */,
 				D51F0EC025941C08005AC360 /* ItemInstancePreview.swift in Sources */,
 				D5504DC824C5170C007BF1A5 /* ItemInstanceExtension.swift in Sources */,
 				D5E7446724A67870004803EE /* SuggestedItemsList.swift in Sources */,
@@ -643,6 +654,7 @@
 				D5A03E222592CA74004E0B7C /* StringTokenizer.cpp in Sources */,
 				D5A03E212592CA74004E0B7C /* ConfigMap.cpp in Sources */,
 				D5504DCC24C51DFA007BF1A5 /* ItemInstanceEditView.swift in Sources */,
+				D561FF1825A7BB7C00C6D5F6 /* CameraPoseLocalizer.swift in Sources */,
 				D53A3E1C239B112A006EC344 /* SceneDelegate.swift in Sources */,
 				D5C225C72532B4DE00408735 /* PointCloudVertex.swift in Sources */,
 				D5504DCA24C51D87007BF1A5 /* ItemInstanceDetail.swift in Sources */,

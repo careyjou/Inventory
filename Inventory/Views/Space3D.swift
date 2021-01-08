@@ -11,7 +11,7 @@ import SwiftUI
 struct Space3D: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var space: Space
-    @ObservedObject var data: AppData
+    @ObservedObject var data: SpacePointCloudAppData
     @State var isShowingItemSheet: Bool = false
     @State var itemSelection: ItemInstance? = nil
     
@@ -21,7 +21,7 @@ struct Space3D: View {
         return self.model(data: data)
     }
     
-    @ViewBuilder private func model(data: AppData) -> some View {
+    @ViewBuilder private func model(data: SpacePointCloudAppData) -> some View {
     
 
         if (data.getPointCloud(space: space) != nil) {

@@ -30,6 +30,7 @@ struct ItemInstanceDetail: View {
                 if !instance.getParents().isEmpty || (instance.getSpace() != nil) {
                     HStack{
                     if let space = instance.getSpace() {
+                        Text(Image(systemName: "chevron.right")).foregroundColor(.secondary)
                             NavigationLink(destination: SpaceDetail(space: space)) {
                                 Text(space.getName() ?? "").foregroundColor(.primary)
                             }

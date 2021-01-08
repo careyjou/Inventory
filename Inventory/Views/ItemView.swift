@@ -26,6 +26,7 @@ struct ItemView: View {
                     
                     ItemList(itemSearch: $itemSearch)
                         .frame(maxWidth: 700)
+                        .padding(.horizontal, 5)
                         .zIndex(1)
                     
                 }

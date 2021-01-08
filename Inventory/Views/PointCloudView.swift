@@ -12,7 +12,7 @@ import SceneKit
 
 struct PointCloudView: UIViewRepresentable {
     @ObservedObject var space: Space
-    @ObservedObject var data: AppData
+    @ObservedObject var data: SpacePointCloudAppData
     
     public typealias UIViewType = SCNView
     

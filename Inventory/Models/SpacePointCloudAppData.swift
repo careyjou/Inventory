@@ -10,11 +10,10 @@ import Foundation
 import SwiftUI
 import Combine
 
-final public class AppData: ObservableObject {
+final public class SpacePointCloudAppData: ObservableObject {
     
     // key to PointCloud
     @Published public var pointClouds: Dictionary<UUID, PointCloud> = Dictionary()
-    private var pointCloudQueue = Set<String>()
     
     public func getPointCloud(space: Space) -> PointCloud? {
         if let id = space.getPointCloud()?.id {
