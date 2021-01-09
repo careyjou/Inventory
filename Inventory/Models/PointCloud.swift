@@ -9,6 +9,7 @@
 import Foundation
 
 public class PointCloud: Codable {
+    
     private var pointCloud: [PointCloudVertex]
     
     init(pointCloud: [PointCloudVertex]) {
@@ -20,6 +21,27 @@ public class PointCloud: Codable {
     public func getPointCloud() -> [PointCloudVertex] {
         return self.pointCloud
     }
+    
+
 }
 
+extension PointCloud: NSDiscardableContent {
+    public func beginContentAccess() -> Bool {
+        true
+    }
+    
+    public func endContentAccess() {
+        
+    }
+    
+    public func discardContentIfPossible() {
+        
+    }
+    
+    public func isContentDiscarded() -> Bool {
+        false
+    }
+    
+    
+}
 

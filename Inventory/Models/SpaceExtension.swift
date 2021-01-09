@@ -10,6 +10,7 @@ import SwiftUI
 import Combine
 import Foundation
 import CoreData
+import MapKit
 
 extension Space {
     
@@ -87,6 +88,13 @@ extension Space {
         
         return items.first?.getLastModified() ?? self.getCreatedAt()
         
+    }
+    
+    public func getLocation() -> CLLocation? {
+        if let loc = self.location {
+            return loc.getLocation()
+        }
+        return nil
     }
     
     

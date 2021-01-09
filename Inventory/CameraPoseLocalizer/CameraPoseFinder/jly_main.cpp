@@ -35,11 +35,13 @@ using namespace std;
 #define DEFAULT_MODEL_FNAME "model.txt"
 #define DEFAULT_DATA_FNAME "data.txt"
 
+//float * cameraPose();
 void parseInput(int argc, char **argv, string & modelFName, string & dataFName, int & NdDownsampled, string & configFName, string & outputFName);
 void readConfig(string FName, GoICP & goicp);
 int loadPointCloud(string FName, int & N, POINT3D **  p);
 
-int run(int argc, char** argv)
+/*
+int main(int argc, char** argv)
 {
 	int Nm, Nd, NdDownsampled;
 	clock_t  clockBegin, clockEnd;
@@ -95,6 +97,12 @@ int run(int argc, char** argv)
 
 	return 0;
 }
+
+
+float * cameraPose(POINT3D queryPointCloud[], POINT3D referencePointCloud[]) {
+    
+}
+ */
 
 void parseInput(int argc, char **argv, string & modelFName, string & dataFName, int & NdDownsampled, string & configFName, string & outputFName)
 {

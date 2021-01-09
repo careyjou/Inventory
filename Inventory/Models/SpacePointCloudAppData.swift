@@ -13,17 +13,30 @@ import Combine
 final public class SpacePointCloudAppData: ObservableObject {
     
     // key to PointCloud
-    @Published public var pointClouds: Dictionary<UUID, PointCloud> = Dictionary()
+    private var pointClouds: NSCache<NSString, PointCloud>
+    private var cloudQueue: Set<UUID> = Set()
+    
+    init() {
+        let cache: NSCache<NSString, PointCloud> = NSCache()
+        
+        self.pointClouds = cache
+    }
     
     public func getPointCloud(space: Space) -> PointCloud? {
         if let id = space.getPointCloud()?.id {
-            return pointClouds[id]
+            if !cloudQueue.contains(id) && (pointClouds.object(forKey: NSString(string: id.uuidString)) == nil) {
+                DispatchQueue.global(qos: .userInitiated).async {
+                    self.addCloud(space: space)
+                }
+            }
+            
+            return pointClouds.object(forKey: NSString(string: id.uuidString))
         }
         return nil
     }
     
     public func addPointCloud(key: UUID, pointCloud: PointCloud, cloud: Cloud) {
-        pointClouds[key] = pointCloud
+        self.addToCache(key: key, pointCloud: pointCloud)
         
         let encoder = JSONEncoder()
         
@@ -39,16 +52,28 @@ final public class SpacePointCloudAppData: ObservableObject {
         if let cloud = space.pointCloud,
            let id = cloud.id,
            let data = cloud.pointCloud {
-            guard (pointClouds[id] == nil) else {
+            guard (pointClouds.object(forKey: NSString(string: id.uuidString)) == nil) else {
                 return
             }
             
+            cloudQueue.insert(id)
+            
             let decoder = JSONDecoder()
             if let pointCloud = try? decoder.decode(PointCloud.self, from: data) {
-                DispatchQueue.main.async {
-                    self.pointClouds[id] = pointCloud
-                }
+                self.addToCache(key: id, pointCloud: pointCloud)
             }
+        }
+    }
+    
+    private func addToCache(key: UUID, pointCloud: PointCloud) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            
+            self.pointClouds.setObject(pointCloud, forKey: NSString(string: key.uuidString))
+            self.cloudQueue.remove(key)
+            self.objectWillChange.send()
         }
     }
     

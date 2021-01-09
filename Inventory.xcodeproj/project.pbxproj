@@ -29,6 +29,7 @@
 		D558775724DA080B0068756D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D558775624DA080B0068756D /* Utils.swift */; };
 		D55FA0ED250EAB3E0086AB2D /* ARWorldAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55FA0EC250EAB3E0086AB2D /* ARWorldAnchor.swift */; };
 		D561FF1825A7BB7C00C6D5F6 /* CameraPoseLocalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D561FF1725A7BB7C00C6D5F6 /* CameraPoseLocalizer.swift */; };
+		D561FF2325A8B9A000C6D5F6 /* LocationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D561FF2225A8B9A000C6D5F6 /* LocationExtension.swift */; };
 		D572309F24F1A90A00F38450 /* ModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D572309E24F1A90A00F38450 /* ModelView.swift */; };
 		D574730F2590233100160E2D /* Inventory.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D574730D2590233100160E2D /* Inventory.xcdatamodeld */; };
 		D574732325902C9E00160E2D /* PositionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574732225902C9E00160E2D /* PositionExtension.swift */; };
@@ -145,6 +146,7 @@
 		D558775624DA080B0068756D /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		D55FA0EC250EAB3E0086AB2D /* ARWorldAnchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARWorldAnchor.swift; sourceTree = "<group>"; };
 		D561FF1725A7BB7C00C6D5F6 /* CameraPoseLocalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPoseLocalizer.swift; sourceTree = "<group>"; };
+		D561FF2225A8B9A000C6D5F6 /* LocationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationExtension.swift; sourceTree = "<group>"; };
 		D572309E24F1A90A00F38450 /* ModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelView.swift; sourceTree = "<group>"; };
 		D574730E2590233100160E2D /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		D574732225902C9E00160E2D /* PositionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionExtension.swift; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 				D55FA0EC250EAB3E0086AB2D /* ARWorldAnchor.swift */,
 				D5C225C62532B4DE00408735 /* PointCloudVertex.swift */,
 				D5D10C40254F3C6300448EFE /* PointCloud.swift */,
+				D561FF2225A8B9A000C6D5F6 /* LocationExtension.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -645,6 +648,7 @@
 				D554C2852591513700C8A97C /* ItemInstanceHierarchy.swift in Sources */,
 				D58D138E2471FEB300521F3E /* ImagePicker.swift in Sources */,
 				D5A3EC99248CA35400F8C1B8 /* Space3D.swift in Sources */,
+				D561FF2325A8B9A000C6D5F6 /* LocationExtension.swift in Sources */,
 				D55FA0ED250EAB3E0086AB2D /* ARWorldAnchor.swift in Sources */,
 				D58D13882471BB5700521F3E /* SpaceDetail.swift in Sources */,
 				D5DD7DB825167508009572A9 /* MetalBuffer.swift in Sources */,
