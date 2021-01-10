@@ -19,6 +19,7 @@
 		D53A3E29239B112D006EC344 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D53A3E27239B112D006EC344 /* LaunchScreen.storyboard */; };
 		D53A3E34239B112D006EC344 /* InventoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A3E33239B112D006EC344 /* InventoryTests.swift */; };
 		D53A3E3F239B112D006EC344 /* InventoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A3E3E239B112D006EC344 /* InventoryUITests.swift */; };
+		D547954F25AB9DE900523D44 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D547954E25AB9DE900523D44 /* LocationManager.swift */; };
 		D549C7962498789900873FFC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D549C7952498789900873FFC /* SettingsView.swift */; };
 		D549C79C2499703700873FFC /* SpacePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D549C79B2499703700873FFC /* SpacePreview.swift */; };
 		D5504DC824C5170C007BF1A5 /* ItemInstanceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5504DC724C5170C007BF1A5 /* ItemInstanceExtension.swift */; };
@@ -136,6 +137,7 @@
 		D53A3E3A239B112D006EC344 /* InventoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InventoryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D53A3E3E239B112D006EC344 /* InventoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryUITests.swift; sourceTree = "<group>"; };
 		D53A3E40239B112D006EC344 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D547954E25AB9DE900523D44 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		D549C7952498789900873FFC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D549C79B2499703700873FFC /* SpacePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacePreview.swift; sourceTree = "<group>"; };
 		D5504DC724C5170C007BF1A5 /* ItemInstanceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInstanceExtension.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				D5C225C62532B4DE00408735 /* PointCloudVertex.swift */,
 				D5D10C40254F3C6300448EFE /* PointCloud.swift */,
 				D561FF2225A8B9A000C6D5F6 /* LocationExtension.swift */,
+				D547954E25AB9DE900523D44 /* LocationManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -614,6 +617,7 @@
 				D5C790E624737294000B0EC2 /* ARViewWrapper.swift in Sources */,
 				D5D86CA724A3C5710068A833 /* SpaceList.swift in Sources */,
 				D5DD7DB925167508009572A9 /* Shaders.metal in Sources */,
+				D547954F25AB9DE900523D44 /* LocationManager.swift in Sources */,
 				D5DD7DAF25167499009572A9 /* Renderer.swift in Sources */,
 				D58D138C2471FA9800521F3E /* AddSpaceView.swift in Sources */,
 				D5A03E252592CA74004E0B7C /* matrix.cpp in Sources */,

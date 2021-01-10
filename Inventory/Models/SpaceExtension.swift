@@ -97,6 +97,10 @@ extension Space {
         return nil
     }
     
+    public func setLocation(location: Location) -> Space {
+        self.location = location
+        return self
+    }
     
     
 }

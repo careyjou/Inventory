@@ -14,6 +14,7 @@ struct AddSpaceView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var moc
     @EnvironmentObject var controller: InventoryController
+    @ObservedObject var locationManager = LocationManager()
     
     @State private var name = ""
     @State private var note = ""
@@ -55,7 +56,15 @@ struct AddSpaceView: View {
         if let pointCloud = controller.pointCloud {
             let cloud = Cloud(context: moc).setID()
             let space = Space(context: moc).setID().setName(newName: self.name).setPointCloud(cloud: cloud)
+            
             space.createdAt = Date()
+            
+            if let loc = self.locationManager.lastLocation {
+                let location = Location(context: moc).setID()
+                _ = location.setLocation(location: loc)
+                _ = space.setLocation(location: location)
+            }
+            
             
             guard space.pointCloud != nil else {
                 return
