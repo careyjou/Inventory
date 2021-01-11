@@ -32,14 +32,17 @@ using namespace std;
 
 #include "jly_icp3d.hpp"
 #include "jly_3ddt.h"
+#include "point_3d.h"
 
 #define PI 3.1415926536
 #define SQRT3 1.732050808
 
+/*
 typedef struct _POINT3D
 {
 	float x, y, z;
 }POINT3D;
+ */
 
 typedef struct _ROTNODE
 {

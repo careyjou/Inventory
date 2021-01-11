@@ -141,6 +141,7 @@
 		D53A3E3A239B112D006EC344 /* InventoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InventoryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D53A3E3E239B112D006EC344 /* InventoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryUITests.swift; sourceTree = "<group>"; };
 		D53A3E40239B112D006EC344 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5433A8725ACE282002A9600 /* point_3d.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = point_3d.h; sourceTree = "<group>"; };
 		D547954E25AB9DE900523D44 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		D549C7952498789900873FFC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D549C79B2499703700873FFC /* SpacePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacePreview.swift; sourceTree = "<group>"; };
@@ -428,6 +429,7 @@
 				D5A03E112592CA74004E0B7C /* jly_sorting.hpp */,
 				D5A03E122592CA74004E0B7C /* jly_3ddt.cpp */,
 				D5A03E132592CA74004E0B7C /* nanoflann.hpp */,
+				D5433A8725ACE282002A9600 /* point_3d.h */,
 			);
 			path = CameraPoseFinder;
 			sourceTree = "<group>";

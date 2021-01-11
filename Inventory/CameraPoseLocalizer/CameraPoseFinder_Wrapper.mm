@@ -11,12 +11,21 @@
 
 @implementation CameraPoseFinder_Wrapper
 
--(CAMERAPOSEFINDERRESULT) getCameraPose:(SCNVector3[]) queryCloud secondCloud: (SCNVector3[]) referenceCloud {
+-(CAMERAPOSEFINDERRESULT) getCameraPose:(POINT3D[]) queryCloud queryCloudSize: (int) queryCloudSize referenceCloud: (POINT3D[]) referenceCloud referenceCloudSize: (int) referenceCloudSize {
     CameraPoseFinder finder;
-    POINT3D *query = {};
-    POINT3D *reference = {};
-    finder.cameraPose(query, 0, reference, 0);
-    return CAMERAPOSEFINDERRESULT();
+    GoICP goicp = finder.cameraPose(queryCloud, queryCloudSize, referenceCloud, referenceCloudSize);
+    
+    Matrix optR = goicp.optR;
+    Matrix optT = goicp.optT;
+    
+    
+    CAMERAPOSEFINDERRESULT result = CAMERAPOSEFINDERRESULT();
+    
+    result.matrix = SCNMatrix4();
+    result.error = goicp.optError;
+    
+    
+    return result;
 }
 
 @end

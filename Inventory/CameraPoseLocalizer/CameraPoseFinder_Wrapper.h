@@ -8,14 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import <SceneKit/SceneKitTypes.h>
+#import "point_3d.h"
 
 typedef struct CAMERAPOSEFINDERRESULT_ {
     SCNMatrix4 matrix;
-    float confidence;
+    float error;
 }CAMERAPOSEFINDERRESULT;
 
 
+
 @interface CameraPoseFinder_Wrapper : NSObject
--(CAMERAPOSEFINDERRESULT) getCameraPose:(SCNVector3[]) queryCloud secondCloud: (SCNVector3[]) referenceCloud;
+-(CAMERAPOSEFINDERRESULT) getCameraPose:(POINT3D[]) queryCloud queryCloudSize: (int) queryCloudSize referenceCloud: (POINT3D[]) referenceCloud referenceCloudSize: (int) referenceCloudSize;
 @end
 

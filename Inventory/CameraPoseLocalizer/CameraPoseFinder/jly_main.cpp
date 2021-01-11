@@ -100,7 +100,7 @@ int run(int argc, char** argv)
 */
 
 
-float * CameraPoseFinder::cameraPose(POINT3D queryPointCloud[], int sizeQueryCloud, POINT3D referencePointCloud[], int sizeReferenceCloud) {
+GoICP CameraPoseFinder::cameraPose(POINT3D queryPointCloud[], int sizeQueryCloud, POINT3D referencePointCloud[], int sizeReferenceCloud) {
     int Nm, Nd, NdDownsampled;
     GoICP goicp;
     
@@ -133,11 +133,7 @@ float * CameraPoseFinder::cameraPose(POINT3D queryPointCloud[], int sizeQueryClo
     delete(queryPointCloud);
     delete(referencePointCloud);
    
-    //TODO
-    
-    static float values[4] = {0,0,0,0};
-    
-    return values;
+    return goicp;
 }
 
 void parseInput(int argc, char **argv, string & modelFName, string & dataFName, int & NdDownsampled, string & configFName, string & outputFName)

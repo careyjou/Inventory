@@ -10,5 +10,5 @@
 
 class CameraPoseFinder {
 public:
-    float * cameraPose(POINT3D queryPointCloud[], int sizeQueryCloud, POINT3D referencePointCloud[], int sizeReferenceCloud);
+    GoICP cameraPose(POINT3D queryPointCloud[], int sizeQueryCloud, POINT3D referencePointCloud[], int sizeReferenceCloud);
 };

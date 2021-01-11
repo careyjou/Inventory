@@ -42,13 +42,51 @@ class CameraPoseLocalizer {
         }
         
         for space in spaces {
-            //TODO
-            guard let referenceCloud = data.getPointCloud(space: space) else {
+            guard let referencePointCloud = data.getPointCloud(space: space) else {
+                continue
+            }
+            
+            let scaledClouds = self.scalePointClouds(queryPointCloud: queryPointCloud, referencePointCloud: referencePointCloud)
+            
+            let scaledQueryCloud = scaledClouds.scaledQueryPointCloud
+            let scaledReferenceCloud = scaledClouds.scaledReferencePointCloud
+            
+            let unsafeQueryCloud = UnsafeMutableBufferPointer<POINT3D>.allocate(capacity: scaledQueryCloud.count)
+                
+            _ = unsafeQueryCloud.initialize(from: scaledQueryCloud)
+            
+            let unsafeReferenceCloud = UnsafeMutableBufferPointer<POINT3D>.allocate(capacity: scaledReferenceCloud.count)
+            
+            
+            _ = unsafeReferenceCloud.initialize(from: scaledReferenceCloud)
+            
+            defer {
+                unsafeQueryCloud.deallocate()
+                unsafeReferenceCloud.deallocate()
+            }
+           
+            guard let unsafeQueryPointer = unsafeQueryCloud.baseAddress else {
+                continue
+            }
+            
+            guard let unsafeReferencePointer = unsafeReferenceCloud.baseAddress else {
                 continue
             }
             
             
-            let cameraPose = CameraPoseFinder_Wrapper()
+            let cameraPose = CameraPoseFinder_Wrapper().getCameraPose(unsafeQueryPointer, queryCloudSize: Int32(scaledClouds.scaledQueryPointCloud.count), referenceCloud: unsafeReferencePointer, referenceCloudSize: Int32(scaledClouds.scaledReferencePointCloud.count))
+            
+            // initially unscaled
+            var pose = simd_float4x4(cameraPose.matrix)
+            // undo scaling
+            pose.columns.3.x = pose.columns.3.x / scaledClouds.scaleFactor
+            pose.columns.3.y = pose.columns.3.y / scaledClouds.scaleFactor
+            pose.columns.3.z = pose.columns.3.z / scaledClouds.scaleFactor
+            
+            
+            if cameraPose.error < 0.6 {
+                return CameraPoseResult(space: space, pose: pose, confidence: (1 - cameraPose.error))
+            }
             
         }
         return nil
@@ -73,24 +111,24 @@ class CameraPoseLocalizer {
             maxDimension = max(maxDimension, abs(p.x),abs(p.y),abs(p.z))
         }
         
-        let scaleFactor: Float = 0.99 / maxDimension
+        let scaleFactor: Float = 0.499 / maxDimension
         let scaledQueryPointCloud = self.scaleCloud(cloud: queryPointCloud, scaleFactor: scaleFactor)
         let scaledReferencePointCloud = self.scaleCloud(cloud: referencePointCloud, scaleFactor: scaleFactor)
         
         return ScaledPointCloudsResult(scaledQueryPointCloud: scaledQueryPointCloud, scaledReferencePointCloud: scaledReferencePointCloud, scaleFactor: scaleFactor)
     }
 
-    private func scaleCloud(cloud: PointCloud, scaleFactor: Float) -> [SCNVector3] {
+    private func scaleCloud(cloud: PointCloud, scaleFactor: Float) -> [POINT3D] {
         let points = cloud.getPointCloud()
-        return points.map({SCNVector3(x: $0.x * scaleFactor, y: $0.y * scaleFactor, z: $0.z * scaleFactor)})
+        return points.map({POINT3D(x: $0.x * scaleFactor, y: $0.y * scaleFactor, z: $0.z * scaleFactor)})
     }
     
 }
 
 
 struct ScaledPointCloudsResult {
-    let scaledQueryPointCloud: [SCNVector3]
-    let scaledReferencePointCloud: [SCNVector3]
+    let scaledQueryPointCloud: [POINT3D]
+    let scaledReferencePointCloud: [POINT3D]
     let scaleFactor: Float
 }
 
