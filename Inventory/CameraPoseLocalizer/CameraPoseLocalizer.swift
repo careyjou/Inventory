@@ -28,8 +28,8 @@ class CameraPoseLocalizer {
     /// <#Description#>
     /// - Parameters:
     ///   - queryPointCloud: <#queryPointCloud description#>
-    ///   - location: <#location description#>
-    /// - Returns: <#description#>
+    ///   - location: Device's current location (if available)
+    /// - Returns: The camera pose of the world origin in relation to the matched space's point cloud
     public func getCameraPose(queryPointCloud: PointCloud, location: CLLocation?) -> CameraPoseResult? {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Space")
         

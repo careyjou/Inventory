@@ -19,11 +19,36 @@
     Matrix optT = goicp.optT;
     
     
+    SCNMatrix4 matrix = SCNMatrix4();
+    // add translation
+    matrix.m14 = optT.val[0][0];
+    matrix.m24 = optT.val[0][1];
+    matrix.m34 = optT.val[0][2];
+    
+    // add rotation
+    matrix.m11 = optR.val[0][0];
+    matrix.m21 = optR.val[0][1];
+    matrix.m31 = optR.val[0][2];
+    
+    matrix.m12 = optR.val[1][0];
+    matrix.m22 = optR.val[1][1];
+    matrix.m32 = optR.val[1][2];
+    
+    matrix.m13 = optR.val[2][0];
+    matrix.m23 = optR.val[2][1];
+    matrix.m33 = optR.val[2][2];
+    
+    // add bottom row
+    matrix.m41 = 0;
+    matrix.m42 = 0;
+    matrix.m43 = 0;
+    matrix.m44 = 1;
+    
+    
     CAMERAPOSEFINDERRESULT result = CAMERAPOSEFINDERRESULT();
     
-    result.matrix = SCNMatrix4();
+    result.matrix = matrix;
     result.error = goicp.optError;
-    
     
     return result;
 }
