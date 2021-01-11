@@ -43,6 +43,13 @@ class CameraPoseLocalizer {
         
         for space in spaces {
             //TODO
+            guard let referenceCloud = data.getPointCloud(space: space) else {
+                continue
+            }
+            
+            
+            let cameraPose = CameraPoseFinder_Wrapper()
+            
         }
         return nil
         
@@ -73,17 +80,17 @@ class CameraPoseLocalizer {
         return ScaledPointCloudsResult(scaledQueryPointCloud: scaledQueryPointCloud, scaledReferencePointCloud: scaledReferencePointCloud, scaleFactor: scaleFactor)
     }
 
-    private func scaleCloud(cloud: PointCloud, scaleFactor: Float) -> [simd_float3] {
+    private func scaleCloud(cloud: PointCloud, scaleFactor: Float) -> [SCNVector3] {
         let points = cloud.getPointCloud()
-        return points.map({simd_float3(x: $0.x * scaleFactor, y: $0.y * scaleFactor, z: $0.z * scaleFactor)})
+        return points.map({SCNVector3(x: $0.x * scaleFactor, y: $0.y * scaleFactor, z: $0.z * scaleFactor)})
     }
     
 }
 
 
 struct ScaledPointCloudsResult {
-    let scaledQueryPointCloud: [simd_float3]
-    let scaledReferencePointCloud: [simd_float3]
+    let scaledQueryPointCloud: [SCNVector3]
+    let scaledReferencePointCloud: [SCNVector3]
     let scaleFactor: Float
 }
 

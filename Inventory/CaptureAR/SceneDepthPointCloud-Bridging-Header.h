@@ -6,3 +6,4 @@ Bridging header for shared shader types.
 */
 
 #import "ShaderTypes.h"
+#import "CameraPoseFinder_Wrapper.h"
