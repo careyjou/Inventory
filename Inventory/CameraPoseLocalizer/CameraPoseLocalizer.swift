@@ -14,13 +14,13 @@ class CameraPoseLocalizer {
     let data: SpacePointCloudAppData
     let moc: NSManagedObjectContext
     
-    init?(appData: SpacePointCloudAppData) {
+    init?() {
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
               return nil
           }
         
-        self.data = appData
+        self.data = appDelegate.data
         self.moc = appDelegate.persistentContainer.viewContext
     }
     

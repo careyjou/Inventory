@@ -233,11 +233,15 @@ final class Renderer {
         commandBuffer.commit()
     }
     
-    func getPoints() -> [PointCloudVertex] {
+    public func getPoints() -> [PointCloudVertex] {
         //Workaround to keep the semaphore from crashing the app
         self.inFlightSemaphore.signal()
         
         return particles
+    }
+    
+    public func numPoints() -> Int {
+        return particles.count
     }
     
     

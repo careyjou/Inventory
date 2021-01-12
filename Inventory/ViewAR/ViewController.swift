@@ -9,14 +9,19 @@
 import UIKit
 import SwiftUI
 import RealityKit
+import CoreLocation
 #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
 import ARKit
 
 
-class ViewController: UIViewController, ARSessionDelegate {
+class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDelegate {
     @IBOutlet var arView: ARView!
-    private var space: Space?
+    private var cameraPose: CameraPoseResult?
+    private var spaceAnchor: ARWorldAnchor?
     weak open var delegate: ARCoordinator?
+    private var renderer: Renderer!
+    private var isFindingCameraPose: Bool = false
+    private var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,13 +46,37 @@ class ViewController: UIViewController, ARSessionDelegate {
         // The screen shouldn't dim during AR experiences.
         UIApplication.shared.isIdleTimerDisabled = true
         
+        self.getLocation()
+        
+    }
+    
+    @IBAction func getLocation() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.startUpdatingLocation()
     }
     
     
     func session(_ session: ARSession, didUpdate: ARFrame) {
-        if (space == nil) {
-            // see if current frame query matches space point cloud
-            //didUpdate.camera.transform
+        if (cameraPose?.space == nil && (renderer.numPoints() < 100000)) {
+            renderer.draw()
+        }
+        else if (!self.isFindingCameraPose && cameraPose?.space == nil && renderer.numPoints() >= 100000) {
+            let queryPoints = renderer.getPoints()
+            self.isFindingCameraPose = true
+            guard let cameraPoseLocalizer = CameraPoseLocalizer() else {
+                return
+            }
+            
+            DispatchQueue.global(qos: .userInitiated).async {
+                if let result = cameraPoseLocalizer.getCameraPose(queryPointCloud: PointCloud(pointCloud: queryPoints), location: self.locationManager.location) {
+                    DispatchQueue.main.async {
+                        self.setCameraPose(pose: result)
+                    }
+                }
+                
+            }
+            
         }
         
     }
@@ -63,50 +92,43 @@ class ViewController: UIViewController, ARSessionDelegate {
         
     }
     
-    public func setSpace(space: Space, spacePosition: simd_float4x4) {
-        self.setSpaceAnchor(spacePosition: spacePosition)
-        self.space = space
+    public func setCameraPose(pose: CameraPoseResult) {
+        self.setSpaceAnchor(spacePosition: pose.pose)
+        self.cameraPose = pose
+        self.isFindingCameraPose = false
         self.delegate?.hasSpace()
         
     }
     
     
     private func setSpaceAnchor(spacePosition: simd_float4x4) {
+        let anchor = ARWorldAnchor(column0: spacePosition.columns.0, column1: spacePosition.columns.1, column2: spacePosition.columns.2, column3: spacePosition.columns.3)
+        self.spaceAnchor = anchor
         
-        arView.session.add(anchor: ARWorldAnchor(column0: spacePosition.columns.0, column1: spacePosition.columns.1, column2: spacePosition.columns.2, column3: spacePosition.columns.3))
+        arView.session.add(anchor: anchor)
         
     }
     
     
     public func hasSpace() -> Bool {
-        return self.space != nil
+        return self.cameraPose?.space != nil
     }
     
     
     public func getSpace() -> Space? {
-        return self.space
+        return self.cameraPose?.space
     }
     
-    public func getItemPosition() -> simd_float3 {
+    public func getItemPosition() -> simd_float3? {
         let frame = arView.session.currentFrame!
-        
-        let anchors = frame.anchors
         
         let camera = frame.camera.transform
         
-        
-        var spacePosition: simd_float4x4 = simd_float4x4()
-        
-        for anchor in anchors {
-            if (anchor is ARWorldAnchor) {
-                spacePosition = anchor.transform
-                
-                break
-                
-            }
+        guard let inverse = self.cameraPose?.pose.inverse else {
+            return nil
         }
         
-        let relativePosition = spacePosition.inverse * camera
+        let relativePosition = inverse * camera
          
         return simd_float3(x: Float(relativePosition.columns.3.x), y: Float(relativePosition.columns.3.y), z: Float(relativePosition.columns.3.z))
         
@@ -116,6 +138,7 @@ class ViewController: UIViewController, ARSessionDelegate {
 
     
 }
+
 
 #endif
 
