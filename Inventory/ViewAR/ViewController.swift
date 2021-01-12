@@ -10,6 +10,8 @@ import UIKit
 import SwiftUI
 import RealityKit
 import CoreLocation
+import Metal
+import MetalKit
 #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
 import ARKit
 
@@ -46,8 +48,48 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         // The screen shouldn't dim during AR experiences.
         UIApplication.shared.isIdleTimerDisabled = true
         
+        guard let device = MTLCreateSystemDefaultDevice() else {
+            print("Metal is not supported on this device")
+            return
+        }
+        
+        // Set the view to use the default device
+        
+        
+        
+        let mtkView = MTKView()
+        
+            mtkView.device = device
+            
+            view.backgroundColor = UIColor.clear
+            // we need this to enable depth test
+            mtkView.depthStencilPixelFormat = .depth32Float
+            view.contentScaleFactor = 1
+            
+            // Configure the renderer to draw to the view
+            renderer = Renderer(session: arView.session, metalDevice: device, renderDestination: mtkView)
+            renderer.drawRectResized(size: view.bounds.size)
+        
+        
+        
+        
         self.getLocation()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Create a world-tracking configuration, and
+        // enable the scene depth frame-semantic.
+        let configuration = ARWorldTrackingConfiguration()
+        configuration.frameSemantics = .sceneDepth
+
+        // Run the view's session
+        arView.session.run(configuration)
+        
+        // The screen shouldn't dim during AR experiences.
+        UIApplication.shared.isIdleTimerDisabled = true
     }
     
     @IBAction func getLocation() {
@@ -58,24 +100,26 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     
     
     func session(_ session: ARSession, didUpdate: ARFrame) {
-        if (cameraPose?.space == nil && (renderer.numPoints() < 100000)) {
-            renderer.draw()
+        if (cameraPose?.space == nil && (renderer.numPoints() < 20000)) {
+            renderer.gatherPoints()
         }
-        else if (!self.isFindingCameraPose && cameraPose?.space == nil && renderer.numPoints() >= 100000) {
+        else if (!self.isFindingCameraPose && cameraPose?.space == nil && renderer.numPoints() >= 20000) {
             let queryPoints = renderer.getPoints()
             self.isFindingCameraPose = true
             guard let cameraPoseLocalizer = CameraPoseLocalizer() else {
                 return
             }
             
-            DispatchQueue.global(qos: .userInitiated).async {
+            print("Started Registration")
+            
+            
                 if let result = cameraPoseLocalizer.getCameraPose(queryPointCloud: PointCloud(pointCloud: queryPoints), location: self.locationManager.location) {
-                    DispatchQueue.main.async {
                         self.setCameraPose(pose: result)
-                    }
+                        print("found space")
+                    
                 }
                 
-            }
+            
             
         }
         
@@ -138,6 +182,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
 
     
 }
+
 
 
 #endif

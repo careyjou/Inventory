@@ -177,6 +177,73 @@ final class Renderer {
         pointCloudUniforms.cameraIntrinsicsInversed = cameraIntrinsicsInversed
     }
     
+    func gatherPoints() {
+        guard let device = MTLCreateSystemDefaultDevice() else {
+            print("Metal is not supported on this device")
+            return
+        }
+        
+        guard let currentFrame = session.currentFrame,
+              let commandBuffer = commandQueue.makeCommandBuffer(),
+              let renderDescriptor = MTKView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: viewportSize), device: device).currentRenderPassDescriptor,
+              let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderDescriptor)
+        else {
+            return
+        }
+        
+       
+        
+    
+        
+        _ = inFlightSemaphore.wait(timeout: DispatchTime.distantFuture)
+        commandBuffer.addCompletedHandler { [weak self] commandBuffer in
+            if let self = self {
+                self.inFlightSemaphore.signal()
+            }
+        }
+        
+        // update frame data
+        update(frame: currentFrame)
+        updateCapturedImageTextures(frame: currentFrame)
+        
+        // handle buffer rotating
+        currentBufferIndex = (currentBufferIndex + 1) % maxInFlightBuffers
+        pointCloudUniformsBuffers[currentBufferIndex][0] = pointCloudUniforms
+        
+        if shouldAccumulate(frame: currentFrame), updateDepthTextures(frame: currentFrame) {
+            accumulatePoints(frame: currentFrame, commandBuffer: commandBuffer, renderEncoder: renderEncoder)
+        }
+        
+        // check and render rgb camera image
+        if rgbUniforms.radius > 0 {
+            var retainingTextures = [capturedImageTextureY, capturedImageTextureCbCr]
+            commandBuffer.addCompletedHandler { buffer in
+                retainingTextures.removeAll()
+            }
+            rgbUniformsBuffers[currentBufferIndex][0] = rgbUniforms
+            
+            renderEncoder.setDepthStencilState(relaxedStencilState)
+            renderEncoder.setRenderPipelineState(rgbPipelineState)
+            renderEncoder.setVertexBuffer(rgbUniformsBuffers[currentBufferIndex])
+            renderEncoder.setFragmentBuffer(rgbUniformsBuffers[currentBufferIndex])
+            renderEncoder.setFragmentTexture(CVMetalTextureGetTexture(capturedImageTextureY!), index: Int(kTextureY.rawValue))
+            renderEncoder.setFragmentTexture(CVMetalTextureGetTexture(capturedImageTextureCbCr!), index: Int(kTextureCbCr.rawValue))
+            renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4)
+        }
+       
+        // render particles
+        renderEncoder.setDepthStencilState(depthStencilState)
+        //renderEncoder.setRenderPipelineState(particlePipelineState)
+        renderEncoder.setVertexBuffer(pointCloudUniformsBuffers[currentBufferIndex])
+        renderEncoder.setVertexBuffer(particlesBuffer)
+        //renderEncoder.drawPrimitives(type: .point, vertexStart: 0, vertexCount: currentPointCount)
+        renderEncoder.endEncoding()
+            
+        //commandBuffer.present(renderDestination.currentDrawable!)
+        commandBuffer.commit()
+        
+    }
+    
     func draw() {
         guard let currentFrame = session.currentFrame,
             let renderDescriptor = renderDestination.currentRenderPassDescriptor,
@@ -267,6 +334,7 @@ final class Renderer {
         
         
         renderEncoder.setVertexBuffer(particlesBuffer)
+        
         renderEncoder.setVertexBuffer(gridPointsBuffer)
         renderEncoder.setVertexTexture(CVMetalTextureGetTexture(capturedImageTextureY!), index: Int(kTextureY.rawValue))
         renderEncoder.setVertexTexture(CVMetalTextureGetTexture(capturedImageTextureCbCr!), index: Int(kTextureCbCr.rawValue))
