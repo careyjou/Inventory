@@ -19,7 +19,7 @@ import ARKit
 class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDelegate {
     @IBOutlet var arView: ARView!
     private var cameraPose: CameraPoseResult?
-    private var spaceAnchor: ARWorldAnchor?
+    private var spaceAnchor: AnchorEntity?
     weak open var delegate: ARCoordinator?
     private var renderer: Renderer!
     private var isFindingCameraPose: Bool = false
@@ -112,12 +112,15 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
             
             print("Started Registration")
             
-            
+            DispatchQueue.global(qos: .userInitiated).async {
                 if let result = cameraPoseLocalizer.getCameraPose(queryPointCloud: PointCloud(pointCloud: queryPoints), location: self.locationManager.location) {
+                    DispatchQueue.main.async {
                         self.setCameraPose(pose: result)
                         print("found space")
-                    
+                    }
+                
                 }
+            }
                 
             
             
@@ -146,10 +149,17 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     
     
     private func setSpaceAnchor(spacePosition: simd_float4x4) {
-        let anchor = ARWorldAnchor(column0: spacePosition.columns.0, column1: spacePosition.columns.1, column2: spacePosition.columns.2, column3: spacePosition.columns.3)
+        let anchor = AnchorEntity(anchor: ARWorldAnchor(column0: spacePosition.columns.0, column1: spacePosition.columns.1, column2: spacePosition.columns.2, column3: spacePosition.columns.3))
         self.spaceAnchor = anchor
         
-        arView.session.add(anchor: anchor)
+        arView.scene.anchors.append(anchor)
+        
+        let sphere = MeshResource.generateSphere(radius: 0.5)
+        
+        let entity = ModelEntity(mesh: sphere, materials: [SimpleMaterial(color: .magenta, isMetallic: false)])
+        
+        anchor.addChild(entity)
+        
         
     }
     

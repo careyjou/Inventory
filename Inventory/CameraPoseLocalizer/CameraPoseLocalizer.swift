@@ -60,10 +60,6 @@ class CameraPoseLocalizer {
             
             _ = unsafeReferenceCloud.initialize(from: scaledReferenceCloud)
             
-            defer {
-                unsafeQueryCloud.deallocate()
-                unsafeReferenceCloud.deallocate()
-            }
            
             guard let unsafeQueryPointer = unsafeQueryCloud.baseAddress else {
                 continue

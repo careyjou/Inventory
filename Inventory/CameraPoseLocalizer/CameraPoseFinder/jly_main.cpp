@@ -108,12 +108,30 @@ GoICP CameraPoseFinder::cameraPose(POINT3D queryPointCloud[], int sizeQueryCloud
     Nd = sizeQueryCloud;
     NdDownsampled = 0;
     
-    readConfig("config_example.txt", goicp);
+    //config
+    goicp.MSEThresh = 0.001;
+    goicp.initNodeRot.a = -3.1416;
+    goicp.initNodeRot.b = -3.1416;
+    goicp.initNodeRot.c = -3.1416;
+    goicp.initNodeRot.w = 6.2832;
+    goicp.initNodeTrans.x = -0.5;
+    goicp.initNodeTrans.y = -0.5;
+    goicp.initNodeTrans.z = -0.5;
+    goicp.initNodeTrans.w = 1.0;
+    goicp.trimFraction = 0.0;
     
     goicp.pModel = referencePointCloud;
     goicp.Nm = Nm;
     goicp.pData = queryPointCloud;
     goicp.Nd = Nd;
+    
+    if(goicp.trimFraction < 0.001)
+    {
+        goicp.doTrim = false;
+    }
+    
+    goicp.dt.SIZE = 300;
+    goicp.dt.expandFactor = 2.0;
     
     // Build Distance Transform
     goicp.BuildDT();
