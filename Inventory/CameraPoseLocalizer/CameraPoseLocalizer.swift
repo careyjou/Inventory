@@ -79,9 +79,8 @@ class CameraPoseLocalizer {
             pose.columns.3.y = pose.columns.3.y / scaledClouds.scaleFactor
             pose.columns.3.z = pose.columns.3.z / scaledClouds.scaleFactor
             
-            
-            if cameraPose.error < 0.6 {
-                return CameraPoseResult(space: space, pose: pose, confidence: (1 - cameraPose.error))
+            if cameraPose.error < 0.2 {
+                return CameraPoseResult(space: space, pose: pose, confidence: max((1 - cameraPose.error), 0))
             }
             
         }

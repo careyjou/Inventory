@@ -104,8 +104,11 @@ GoICP CameraPoseFinder::cameraPose(POINT3D queryPointCloud[], int sizeQueryCloud
     int Nm, Nd, NdDownsampled;
     GoICP goicp;
     
+    
     Nm = sizeReferenceCloud;
     Nd = sizeQueryCloud;
+ 
+    
     NdDownsampled = 0;
     
     //config
@@ -118,12 +121,15 @@ GoICP CameraPoseFinder::cameraPose(POINT3D queryPointCloud[], int sizeQueryCloud
     goicp.initNodeTrans.y = -0.5;
     goicp.initNodeTrans.z = -0.5;
     goicp.initNodeTrans.w = 1.0;
-    goicp.trimFraction = 0.0;
+    goicp.trimFraction = 0.4;
+    
     
     goicp.pModel = referencePointCloud;
     goicp.Nm = Nm;
     goicp.pData = queryPointCloud;
     goicp.Nd = Nd;
+  
+   
     
     if(goicp.trimFraction < 0.001)
     {

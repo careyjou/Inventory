@@ -82,6 +82,7 @@ final class Renderer {
     
     
     private var particles: [PointCloudVertex] = []
+    private var isCameraLoaded = false
     
     
     
@@ -136,6 +137,10 @@ final class Renderer {
         depthStencilState = device.makeDepthStencilState(descriptor: depthStateDescriptor)!
         
         inFlightSemaphore = DispatchSemaphore(value: maxInFlightBuffers)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.isCameraLoaded = true
+        }
     }
     
     func drawRectResized(size: CGSize) {
@@ -210,7 +215,7 @@ final class Renderer {
         currentBufferIndex = (currentBufferIndex + 1) % maxInFlightBuffers
         pointCloudUniformsBuffers[currentBufferIndex][0] = pointCloudUniforms
         
-        if shouldAccumulate(frame: currentFrame), updateDepthTextures(frame: currentFrame) {
+        if shouldAccumulate(frame: currentFrame), updateDepthTextures(frame: currentFrame), isCameraLoaded {
             accumulatePoints(frame: currentFrame, commandBuffer: commandBuffer, renderEncoder: renderEncoder)
         }
         
@@ -267,7 +272,7 @@ final class Renderer {
         currentBufferIndex = (currentBufferIndex + 1) % maxInFlightBuffers
         pointCloudUniformsBuffers[currentBufferIndex][0] = pointCloudUniforms
         
-        if shouldAccumulate(frame: currentFrame), updateDepthTextures(frame: currentFrame) {
+        if shouldAccumulate(frame: currentFrame), updateDepthTextures(frame: currentFrame), isCameraLoaded {
             accumulatePoints(frame: currentFrame, commandBuffer: commandBuffer, renderEncoder: renderEncoder)
         }
         

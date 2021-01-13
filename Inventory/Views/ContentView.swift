@@ -75,7 +75,9 @@ struct ContentView: View {
     
     
     private func updateSpacePointClouds() {
-        let data = (UIApplication.shared.delegate as! AppDelegate).data
+        guard let data = (UIApplication.shared.delegate as? AppDelegate)?.data else {
+            return
+        }
         
         for space in spaces {
             DispatchQueue.global(qos: .userInitiated).async {

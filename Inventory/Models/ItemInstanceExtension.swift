@@ -132,7 +132,7 @@ extension ItemInstance {
     
     
     
-    #if !targetEnvironment(macCatalyst)
+
     
     /// <#Description#>
     /// - Parameter vector: <#vector description#>
@@ -152,6 +152,5 @@ extension ItemInstance {
     }
     
     
-    #endif
     
 }

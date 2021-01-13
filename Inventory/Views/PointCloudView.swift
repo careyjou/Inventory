@@ -91,13 +91,17 @@ struct PointCloudView: UIViewRepresentable {
                         
  
                     let node = SCNNode()
+                    let origin = SCNNode()
+                
+                    let sphere = SCNSphere(radius: 0.05)
+                    origin.geometry = sphere
                     
                     node.geometry = geometry
                     
                 
-                    
             
                     scene.rootNode.addChildNode(node)
+                    scene.rootNode.addChildNode(origin)
                 
             
             }

@@ -71,6 +71,18 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
             renderer.drawRectResized(size: view.bounds.size)
         
         
+        let anchor = AnchorEntity()
+        
+        arView.scene.addAnchor(anchor)
+        
+        
+        let brightWhite = UnlitMaterial(color: .red)
+                               
+                               
+        let ball = ModelEntity(mesh: .generatePlane(width: 0.1, depth: 0.1), materials: [brightWhite])
+        
+        
+        anchor.addChild(ball)
         
         
         self.getLocation()
@@ -112,6 +124,9 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
             
             print("Started Registration")
             
+
+            
+            
             DispatchQueue.global(qos: .userInitiated).async {
                 if let result = cameraPoseLocalizer.getCameraPose(queryPointCloud: PointCloud(pointCloud: queryPoints), location: self.locationManager.location) {
                     DispatchQueue.main.async {
@@ -121,6 +136,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
                 
                 }
             }
+ 
                 
             
             
@@ -149,16 +165,19 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     
     
     private func setSpaceAnchor(spacePosition: simd_float4x4) {
-        let anchor = AnchorEntity(anchor: ARWorldAnchor(column0: spacePosition.columns.0, column1: spacePosition.columns.1, column2: spacePosition.columns.2, column3: spacePosition.columns.3))
+        let anchor = AnchorEntity(.world(transform: spacePosition))
         self.spaceAnchor = anchor
         
-        arView.scene.anchors.append(anchor)
+        arView.scene.addAnchor(anchor)
         
-        let sphere = MeshResource.generateSphere(radius: 0.5)
         
-        let entity = ModelEntity(mesh: sphere, materials: [SimpleMaterial(color: .magenta, isMetallic: false)])
+        let brightWhite = UnlitMaterial(color: .green)
+                               
+                               
+        let ball = ModelEntity(mesh: .generatePlane(width: 0.1, depth: 0.1), materials: [brightWhite])
         
-        anchor.addChild(entity)
+        
+        anchor.addChild(ball)
         
         
     }

@@ -48,6 +48,14 @@ struct SpaceDetail: View {
                 .font(Font.system(.subheadline).bold())
                 .buttonStyle(RoundedButton(textColor: .primary, cornerRadius: 10))
                 .padding(.trailing, 10)
+                
+                Button(action: { self.sharePointCloud()}) {
+                    Label("Export Cloud", systemImage: "square.and.arrow.up")
+                }
+                .font(Font.system(.subheadline).bold())
+                .buttonStyle(RoundedButton(textColor: .primary, cornerRadius: 10))
+                .padding(.trailing, 10)
+                
                 Spacer()
                 
             }
@@ -165,6 +173,39 @@ struct SpaceDetail: View {
                     .aspectRatio(contentMode: .fit)
                     .padding()
             
+        
+        
+    }
+    
+    private func sharePointCloud() {
+        guard let data = (UIApplication.shared.delegate as? AppDelegate)?.data,
+              let cloud = data.getPointCloud(space: space)
+        else {
+            return
+        }
+    
+        let name = (space.getName() ?? "") + "_cloud"
+        
+        let file = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("\(name).ply")
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            Utils.plyFileFromPoints(points: cloud.getPointCloud(), url: file)
+            DispatchQueue.main.async {
+                let activityView = UIActivityViewController(activityItems: [file], applicationActivities: nil)
+                
+                UIApplication.shared.windows.first?.rootViewController?.present(activityView, animated: true, completion: nil)
+                
+                if UIDevice.current.userInterfaceIdiom == .pad {
+                    activityView.popoverPresentationController?.sourceView = UIApplication.shared.windows.first
+                    activityView.popoverPresentationController?.sourceRect = CGRect(x: UIScreen.main.bounds.width / 2.1, y: UIScreen.main.bounds.height / 2.3, width: 200, height: 300)
+                }
+                
+            }
+            
+        }
+       
+        
+        
         
         
     }

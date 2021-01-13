@@ -29,7 +29,6 @@
 		D554C280259103D500C8A97C /* ItemPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D554C27F259103D500C8A97C /* ItemPreview.swift */; };
 		D554C2852591513700C8A97C /* ItemInstanceHierarchy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D554C2842591513700C8A97C /* ItemInstanceHierarchy.swift */; };
 		D558775724DA080B0068756D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D558775624DA080B0068756D /* Utils.swift */; };
-		D55FA0ED250EAB3E0086AB2D /* ARWorldAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55FA0EC250EAB3E0086AB2D /* ARWorldAnchor.swift */; };
 		D561FF1825A7BB7C00C6D5F6 /* CameraPoseLocalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D561FF1725A7BB7C00C6D5F6 /* CameraPoseLocalizer.swift */; };
 		D561FF2325A8B9A000C6D5F6 /* LocationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D561FF2225A8B9A000C6D5F6 /* LocationExtension.swift */; };
 		D572309F24F1A90A00F38450 /* ModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D572309E24F1A90A00F38450 /* ModelView.swift */; };
@@ -151,7 +150,6 @@
 		D554C27F259103D500C8A97C /* ItemPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPreview.swift; sourceTree = "<group>"; };
 		D554C2842591513700C8A97C /* ItemInstanceHierarchy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInstanceHierarchy.swift; sourceTree = "<group>"; };
 		D558775624DA080B0068756D /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		D55FA0EC250EAB3E0086AB2D /* ARWorldAnchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARWorldAnchor.swift; sourceTree = "<group>"; };
 		D561FF1725A7BB7C00C6D5F6 /* CameraPoseLocalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPoseLocalizer.swift; sourceTree = "<group>"; };
 		D561FF2225A8B9A000C6D5F6 /* LocationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationExtension.swift; sourceTree = "<group>"; };
 		D572309E24F1A90A00F38450 /* ModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelView.swift; sourceTree = "<group>"; };
@@ -354,7 +352,6 @@
 				D5C790E32472EBD3000B0EC2 /* ARViewMode.swift */,
 				D51E632C24A82756000D97DD /* SpacePointCloudAppData.swift */,
 				D558775624DA080B0068756D /* Utils.swift */,
-				D55FA0EC250EAB3E0086AB2D /* ARWorldAnchor.swift */,
 				D5C225C62532B4DE00408735 /* PointCloudVertex.swift */,
 				D5D10C40254F3C6300448EFE /* PointCloud.swift */,
 				D561FF2225A8B9A000C6D5F6 /* LocationExtension.swift */,
@@ -663,7 +660,6 @@
 				D58D138E2471FEB300521F3E /* ImagePicker.swift in Sources */,
 				D5A3EC99248CA35400F8C1B8 /* Space3D.swift in Sources */,
 				D561FF2325A8B9A000C6D5F6 /* LocationExtension.swift in Sources */,
-				D55FA0ED250EAB3E0086AB2D /* ARWorldAnchor.swift in Sources */,
 				D58D13882471BB5700521F3E /* SpaceDetail.swift in Sources */,
 				D5DD7DB825167508009572A9 /* MetalBuffer.swift in Sources */,
 				D5A3EC97248C282500F8C1B8 /* SeachBar.swift in Sources */,
