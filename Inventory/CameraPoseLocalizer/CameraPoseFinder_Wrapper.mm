@@ -11,9 +11,9 @@
 
 @implementation CameraPoseFinder_Wrapper
 
--(CAMERAPOSEFINDERRESULT) getCameraPose:(POINT3D[]) queryCloud queryCloudSize: (int) queryCloudSize referenceCloud: (POINT3D[]) referenceCloud referenceCloudSize: (int) referenceCloudSize {
+-(CAMERAPOSEFINDERRESULT) getCameraPose:(POINT3D[]) source sourceSize: (int) sourceSize destination: (POINT3D[]) destination destinationSize: (int) destinationSize {
     CameraPoseFinder finder;
-    GoICP goicp = finder.cameraPose(queryCloud, queryCloudSize, referenceCloud, referenceCloudSize);
+    GoICP goicp = finder.cameraPose(source, sourceSize, destination, destinationSize);
     
     Matrix optR = goicp.optR;
     Matrix optT = goicp.optT;

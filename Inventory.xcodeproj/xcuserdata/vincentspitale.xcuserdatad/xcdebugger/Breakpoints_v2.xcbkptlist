@@ -272,7 +272,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "24"
             endingLineNumber = "24"
-            landmarkName = "-getCameraPose:queryCloudSize:referenceCloud:referenceCloudSize:"
+            landmarkName = "-getCameraPose:sourceSize:destination:destinationSize:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -288,7 +288,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "16"
             endingLineNumber = "16"
-            landmarkName = "-getCameraPose:queryCloudSize:referenceCloud:referenceCloudSize:"
+            landmarkName = "-getCameraPose:sourceSize:destination:destinationSize:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -302,9 +302,9 @@
             filePath = "Inventory/CameraPoseLocalizer/CameraPoseFinder/jly_main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
-            landmarkName = "CameraPoseFinder::cameraPose(queryPointCloud, sizeQueryCloud, referencePointCloud, sizeReferenceCloud)"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "CameraPoseFinder::cameraPose(source, sizeSource, destination, sizeDestination)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -318,9 +318,9 @@
             filePath = "Inventory/CameraPoseLocalizer/CameraPoseFinder/jly_main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
-            landmarkName = "CameraPoseFinder::cameraPose(queryPointCloud, sizeQueryCloud, referencePointCloud, sizeReferenceCloud)"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
+            landmarkName = "CameraPoseFinder::cameraPose(source, sizeSource, destination, sizeDestination)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -353,22 +353,6 @@
             startingLineNumber = "903"
             endingLineNumber = "903"
             landmarkName = "DT3D::Build(_x, _y, _z, num)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FBDB096D-64A6-44A4-9267-CCAE2526939F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Inventory/CameraPoseLocalizer/CameraPoseLocalizer.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "getCameraPose(queryPointCloud:location:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -424,15 +408,15 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "3EFBA89E-CDBA-497D-9EB1-ECB4C5D057E3"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Inventory/CameraPoseLocalizer/CameraPoseLocalizer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "getCameraPose(queryPointCloud:location:)"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "getCameraPose(queryPointCloud:location:poseFinder:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

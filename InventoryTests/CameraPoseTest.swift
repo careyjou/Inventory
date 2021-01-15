@@ -17,21 +17,37 @@ class CameraPoseTest: XCTestCase {
         // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
 
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testCameraPose() throws {
+    func testTranslation() throws {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let bundle = Bundle(for: type(of: self))
+        guard let desk = bundle.url(forResource: "couch-1", withExtension: "ply"),
+            let deskPoints = Utils.pointsFromPLY(url: desk)
+            else {
+            throw ParsingError.couldNotLoad
+        }
+        
+        let movedDeskPoints = PointCloud(pointCloud: deskPoints.getPointCloud().map({PointCloudVertex(x: $0.x - 2, y: $0.y - 0.5, z: $0.z + 1, r: $0.r, g: $0.g, b: $0.g)}))
+        
+        guard let result = GoICPPose().cameraPose(source: deskPoints, destination: movedDeskPoints) else {
+            return
+        }
         
         
+        XCTAssertEqual(-2, result.pose.columns.3.x, accuracy: 0.05)
+        XCTAssertEqual(-0.5, result.pose.columns.3.y, accuracy: 0.05)
+        XCTAssertEqual(1, result.pose.columns.3.z, accuracy: 0.05)
     }
 
+}
+
+
+enum ParsingError: Error {
+    case couldNotLoad
 }

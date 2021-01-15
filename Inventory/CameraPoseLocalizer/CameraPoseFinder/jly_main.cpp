@@ -100,14 +100,10 @@ int run(int argc, char** argv)
 */
 
 
-GoICP CameraPoseFinder::cameraPose(POINT3D queryPointCloud[], int sizeQueryCloud, POINT3D referencePointCloud[], int sizeReferenceCloud) {
-    int Nm, Nd, NdDownsampled;
+GoICP CameraPoseFinder::cameraPose(POINT3D source[], int sizeSource, POINT3D destination[], int sizeDestination) {
+    int NdDownsampled;
     GoICP goicp;
     
-    
-    Nm = sizeReferenceCloud;
-    Nd = sizeQueryCloud;
- 
     
     NdDownsampled = 0;
     
@@ -121,13 +117,15 @@ GoICP CameraPoseFinder::cameraPose(POINT3D queryPointCloud[], int sizeQueryCloud
     goicp.initNodeTrans.y = -0.5;
     goicp.initNodeTrans.z = -0.5;
     goicp.initNodeTrans.w = 1.0;
-    goicp.trimFraction = 0.4;
+    goicp.trimFraction = 0.0;
     
     
-    goicp.pModel = referencePointCloud;
-    goicp.Nm = Nm;
-    goicp.pData = queryPointCloud;
-    goicp.Nd = Nd;
+    goicp.pModel = destination;
+    goicp.Nm = sizeDestination;
+    
+    
+    goicp.pData = source;
+    goicp.Nd = sizeSource;
   
    
     
@@ -154,8 +152,8 @@ GoICP CameraPoseFinder::cameraPose(POINT3D queryPointCloud[], int sizeQueryCloud
     cout << goicp.optT << endl;
     
 
-    delete(queryPointCloud);
-    delete(referencePointCloud);
+    delete(source);
+    delete(destination);
    
     return goicp;
 }

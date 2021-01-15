@@ -18,7 +18,7 @@ import ARKit
 
 class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDelegate {
     @IBOutlet var arView: ARView!
-    private var cameraPose: CameraPoseResult?
+    private var cameraPose: SpacePoseResult?
     private var spaceAnchor: AnchorEntity?
     weak open var delegate: ARCoordinator?
     private var renderer: Renderer!
@@ -113,7 +113,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
             
 
             DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-                if let result = cameraPoseLocalizer.getCameraPose(queryPointCloud: PointCloud(pointCloud: queryPoints), location: self?.locationManager.location) {
+                if let result = cameraPoseLocalizer.getCameraPose(queryPointCloud: PointCloud(pointCloud: queryPoints), location: self?.locationManager.location, poseFinder: GoICPPose()) {
                     DispatchQueue.main.async {
                         self?.setCameraPose(pose: result)
                         print("found space")
@@ -138,7 +138,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         
     }
     
-    public func setCameraPose(pose: CameraPoseResult) {
+    public func setCameraPose(pose: SpacePoseResult) {
         self.setSpaceAnchor(spacePosition: pose.pose)
         self.cameraPose = pose
         self.isFindingCameraPose = false
@@ -154,10 +154,10 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         arView.scene.addAnchor(anchor)
         
         
-        let brightWhite = UnlitMaterial(color: .green)
+        let brightWhite = UnlitMaterial(color: .white)
                                
                                
-        let ball = ModelEntity(mesh: .generatePlane(width: 0.1, depth: 0.1), materials: [brightWhite])
+        let ball = ModelEntity(mesh: .generateSphere(radius: 0.05), materials: [brightWhite])
         
         
         anchor.addChild(ball)

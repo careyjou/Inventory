@@ -18,6 +18,6 @@ typedef struct CAMERAPOSEFINDERRESULT_ {
 
 
 @interface CameraPoseFinder_Wrapper : NSObject
--(CAMERAPOSEFINDERRESULT) getCameraPose:(POINT3D[]) queryCloud queryCloudSize: (int) queryCloudSize referenceCloud: (POINT3D[]) referenceCloud referenceCloudSize: (int) referenceCloudSize;
+-(CAMERAPOSEFINDERRESULT) getCameraPose:(POINT3D[]) source sourceSize: (int) sourceSize destination: (POINT3D[]) destination destinationSize: (int) destinationSize;
 @end
 
