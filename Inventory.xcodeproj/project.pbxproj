@@ -76,6 +76,7 @@
 		D5DD7DB925167508009572A9 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = D5DD7DB625167508009572A9 /* Shaders.metal */; };
 		D5DD7DBA25167508009572A9 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DD7DB725167508009572A9 /* Helpers.swift */; };
 		D5DD7DC525167AC5009572A9 /* Capture.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5DD7DC425167AC5009572A9 /* Capture.storyboard */; };
+		D5E3D64F25B14727000806F9 /* CameraPoseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E3D64E25B14727000806F9 /* CameraPoseTest.swift */; };
 		D5E7446724A67870004803EE /* SuggestedItemsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E7446624A67870004803EE /* SuggestedItemsList.swift */; };
 		D5E7446924A67DA0004803EE /* SuggestedSpaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E7446824A67DA0004803EE /* SuggestedSpaces.swift */; };
 		D5E7DAA924849E590079A5ED /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E7DAA824849E590079A5ED /* Stack.swift */; };
@@ -207,6 +208,7 @@
 		D5DD7DB625167508009572A9 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		D5DD7DB725167508009572A9 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		D5DD7DC425167AC5009572A9 /* Capture.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Capture.storyboard; sourceTree = "<group>"; };
+		D5E3D64E25B14727000806F9 /* CameraPoseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPoseTest.swift; sourceTree = "<group>"; };
 		D5E7446624A67870004803EE /* SuggestedItemsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedItemsList.swift; sourceTree = "<group>"; };
 		D5E7446824A67DA0004803EE /* SuggestedSpaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedSpaces.swift; sourceTree = "<group>"; };
 		D5E7DAA824849E590079A5ED /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				D53A3E33239B112D006EC344 /* InventoryTests.swift */,
 				D53A3E35239B112D006EC344 /* Info.plist */,
 				D5A0F40225957D2D008E5A96 /* ItemTest.swift */,
+				D5E3D64E25B14727000806F9 /* CameraPoseTest.swift */,
 			);
 			path = InventoryTests;
 			sourceTree = "<group>";
@@ -683,6 +686,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5A0F40325957D2D008E5A96 /* ItemTest.swift in Sources */,
+				D5E3D64F25B14727000806F9 /* CameraPoseTest.swift in Sources */,
 				D53A3E34239B112D006EC344 /* InventoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

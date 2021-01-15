@@ -49,12 +49,6 @@ struct SpaceDetail: View {
                 .buttonStyle(RoundedButton(textColor: .primary, cornerRadius: 10))
                 .padding(.trailing, 10)
                 
-                Button(action: { self.sharePointCloud()}) {
-                    Label("Export Cloud", systemImage: "square.and.arrow.up")
-                }
-                .font(Font.system(.subheadline).bold())
-                .buttonStyle(RoundedButton(textColor: .primary, cornerRadius: 10))
-                .padding(.trailing, 10)
                 
                 Spacer()
                 
@@ -104,6 +98,11 @@ struct SpaceDetail: View {
                     {
                         Image(systemName: "view.3d")
                     }.buttonStyle(CircleButton())
+                    .contextMenu {
+                        Button(action: { self.sharePointCloud()}) {
+                            Label("Export Cloud", systemImage: "square.and.arrow.up")
+                        }
+                    }
                     
                 
                 }
@@ -195,10 +194,12 @@ struct SpaceDetail: View {
                 
                 UIApplication.shared.windows.first?.rootViewController?.present(activityView, animated: true, completion: nil)
                 
+                
                 if UIDevice.current.userInterfaceIdiom == .pad {
                     activityView.popoverPresentationController?.sourceView = UIApplication.shared.windows.first
-                    activityView.popoverPresentationController?.sourceRect = CGRect(x: UIScreen.main.bounds.width / 2.1, y: UIScreen.main.bounds.height / 2.3, width: 200, height: 300)
+                    activityView.popoverPresentationController?.sourceRect = CGRect(x: UIScreen.main.bounds.width, y: UIScreen.main.bounds.height, width: 200, height: 300)
                 }
+ 
                 
             }
             

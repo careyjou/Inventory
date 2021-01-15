@@ -34,7 +34,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         let configuration = ARWorldTrackingConfiguration()
         
         
-        //self.arView.debugOptions.insert(.showWorldOrigin)
+        self.arView.debugOptions.insert(.showWorldOrigin)
         //self.arView.debugOptions.insert(.showFeaturePoints)
         
         
@@ -70,19 +70,6 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
             renderer = Renderer(session: arView.session, metalDevice: device, renderDestination: mtkView)
             renderer.drawRectResized(size: view.bounds.size)
         
-        
-        let anchor = AnchorEntity()
-        
-        arView.scene.addAnchor(anchor)
-        
-        
-        let brightWhite = UnlitMaterial(color: .red)
-                               
-                               
-        let ball = ModelEntity(mesh: .generatePlane(width: 0.1, depth: 0.1), materials: [brightWhite])
-        
-        
-        anchor.addChild(ball)
         
         
         self.getLocation()
@@ -125,20 +112,16 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
             print("Started Registration")
             
 
-            
-            
-            DispatchQueue.global(qos: .userInitiated).async {
-                if let result = cameraPoseLocalizer.getCameraPose(queryPointCloud: PointCloud(pointCloud: queryPoints), location: self.locationManager.location) {
+            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+                if let result = cameraPoseLocalizer.getCameraPose(queryPointCloud: PointCloud(pointCloud: queryPoints), location: self?.locationManager.location) {
                     DispatchQueue.main.async {
-                        self.setCameraPose(pose: result)
+                        self?.setCameraPose(pose: result)
                         print("found space")
                     }
                 
                 }
             }
  
-                
-            
             
         }
         
