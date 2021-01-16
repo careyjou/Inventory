@@ -39,3 +39,23 @@ enum ARViewMode: Equatable {
    
     
 }
+
+enum LocalizationStatus: Equatable {
+    case capturing
+    case localizing
+    case foundSpace
+    case errorLocalizing
+    
+    public func statusText() -> String {
+        switch self {
+        case .capturing:
+            return "Capturing"
+        case .localizing:
+            return "Localizing"
+        case .foundSpace:
+            return "Localized"
+        case .errorLocalizing:
+            return "Unable to Localize"
+        }
+    }
+}

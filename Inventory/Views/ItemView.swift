@@ -37,21 +37,22 @@ struct ItemView: View {
                 Spacer()
                 HStack{
                     Spacer()
-                    Menu{
-                        Button(action: {}) {
-                            Label("Create Item Without Position", systemImage: "location.slash.fill")
-                        }
-                    #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
+                    
                         Button(action: {controller.showAddItemView()}) {
-                            Label("Create Item in AR", systemImage: "arkit")
-                        }
-                    #endif
-                    } label: {
-                        Button(action: {}) {
                             Image(systemName: "plus")
                         }
                         .buttonStyle(CircleButton())
-                    }
+                        .contextMenu{
+                                Button(action: {}) {
+                                    Label("Create Item Without Position", systemImage: "location.slash.fill")
+                                }
+                            #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
+                                Button(action: {}) {
+                                    Label("Create Item in AR", systemImage: "arkit")
+                                }
+                            #endif
+                        }
+                    
                 }
                 
             }
@@ -64,6 +65,6 @@ struct ItemView: View {
 
 struct ItemView_Previews: PreviewProvider {
     static var previews: some View {
-        ItemView()
+        ItemView().environmentObject(InventoryController())
     }
 }

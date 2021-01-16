@@ -50,7 +50,9 @@ class CameraPoseLocalizer {
                 continue
             }
             
+            if cameraPose.confidence > 0.5 {
             return SpacePoseResult(space: space, pose: cameraPose.pose, confidence: cameraPose.confidence)
+            }
             
             
         }

@@ -44,7 +44,9 @@ class GoICPPose: CameraPoseFinder {
         pose.columns.3.y = pose.columns.3.y / scaledClouds.scaleFactor
         pose.columns.3.z = pose.columns.3.z / scaledClouds.scaleFactor
         
-        return CameraPoseResult(pose: pose, confidence: cameraPose.error)
+        let confidence = (1 / pow(((0.5  * abs(cameraPose.error)) + 0.1), 0.1)) / 1.259
+        
+        return CameraPoseResult(pose: pose, confidence: confidence)
     }
     
     

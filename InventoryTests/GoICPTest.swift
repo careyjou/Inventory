@@ -9,7 +9,7 @@
 import XCTest
 @testable import Inventory
 
-class CameraPoseTest: XCTestCase {
+class GoICPTest: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -28,8 +28,7 @@ class CameraPoseTest: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         let bundle = Bundle(for: type(of: self))
         guard let desk = bundle.url(forResource: "couch-1", withExtension: "ply"),
-            let deskPoints = Utils.pointsFromPLY(url: desk)
-            else {
+            let deskPoints = Utils.pointsFromPLY(url: desk) else {
             throw ParsingError.couldNotLoad
         }
         
@@ -44,10 +43,12 @@ class CameraPoseTest: XCTestCase {
         XCTAssertEqual(-0.5, result.pose.columns.3.y, accuracy: 0.05)
         XCTAssertEqual(1, result.pose.columns.3.z, accuracy: 0.05)
     }
+    
+    enum ParsingError: Error {
+        case couldNotLoad
+    }
 
 }
 
 
-enum ParsingError: Error {
-    case couldNotLoad
-}
+

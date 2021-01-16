@@ -50,7 +50,7 @@ final class ARCaptureWrapper: UIViewControllerRepresentable {
 }
 
 class ARCaptureCoordinator: NSObject, UINavigationControllerDelegate {
-    weak var parent: ARCaptureWrapper?
+    var parent: ARCaptureWrapper?
     weak var child: CaptureViewController?
     
     init(_ parent: ARCaptureWrapper) {

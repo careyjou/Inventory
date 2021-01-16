@@ -48,7 +48,7 @@ final class ARViewWrapper: UIViewControllerRepresentable {
 }
 
 class ARCoordinator: NSObject, UINavigationControllerDelegate {
-    weak var parent: ARViewWrapper?
+    var parent: ARViewWrapper?
     weak var child: ViewController?
     
     init(_ parent: ARViewWrapper) {
@@ -63,7 +63,11 @@ class ARCoordinator: NSObject, UINavigationControllerDelegate {
     }
     
     public func hasSpace() {
-        parent?.controller.arHasSpace = true
+        parent?.controller.hasSpace()
+    }
+    
+    public func setLocalizationStatus(status: LocalizationStatus) {
+        self.parent?.controller.setLocalizationStatus(status: status)
     }
     
     public func getItemPosition() -> simd_float3? {

@@ -111,14 +111,21 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
             
             print("Started Registration")
             
+            self.sendLocalizationStatus(status: .localizing)
 
             DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                 if let result = cameraPoseLocalizer.getCameraPose(queryPointCloud: PointCloud(pointCloud: queryPoints), location: self?.locationManager.location, poseFinder: GoICPPose()) {
                     DispatchQueue.main.async {
                         self?.setCameraPose(pose: result)
                         print("found space")
+                        self?.sendLocalizationStatus(status: .foundSpace)
                     }
                 
+                }
+                else {
+                    DispatchQueue.main.async {
+                        self?.sendLocalizationStatus(status: .errorLocalizing)
+                    }
                 }
             }
  
@@ -189,6 +196,10 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         return simd_float3(x: Float(relativePosition.columns.3.x), y: Float(relativePosition.columns.3.y), z: Float(relativePosition.columns.3.z))
         
         
+    }
+    
+    private func sendLocalizationStatus(status: LocalizationStatus) {
+        self.delegate?.setLocalizationStatus(status: status)
     }
     
 
