@@ -17,7 +17,7 @@ struct SuggestedSpaces: View {
         
         let suggestedSpaces = sortedSpaces.prefix(4)
         
-        return LazyVStack{
+        return VStack{
             
             ForEach(suggestedSpaces, id: \.self) { space in
             

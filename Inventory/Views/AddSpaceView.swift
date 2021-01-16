@@ -38,7 +38,7 @@ struct AddSpaceView: View {
             }
             .navigationBarTitle(Text("Add Space"), displayMode: .inline)
             .navigationBarItems(leading:
-                Button(action: { controller.isShowingAddSpaceView = false}) {
+                                    Button(action: { presentationMode.wrappedValue.dismiss()}) {
                     Image(systemName: "xmark")
                 }
                 .buttonStyle(SecondaryCircleButton()),

@@ -50,7 +50,7 @@ struct AddItemView: View {
             }
             .navigationBarTitle(Text("Add Item"), displayMode: .inline)
             .navigationBarItems(leading:
-                Button(action: { controller.isShowingAddItemView = false}) {
+                                    Button(action: { presentationMode.wrappedValue.dismiss()}) {
                     Image(systemName: "xmark")
                 }
                 .buttonStyle(SecondaryCircleButton()),
@@ -73,8 +73,9 @@ struct AddItemView: View {
         let item = Item(context: moc).setID().setName(newName: name)
         item.createdAt = Date()
         
-        let instance = ItemInstance(context: moc).setQuantity(newQuantity: self.quantity.isEmpty ? 1: (Int(self.quantity) ?? 0)).setDate()
+        let instance = ItemInstance(context: moc).setQuantity(newQuantity: self.quantity.isEmpty ? 1: (Int(self.quantity) ?? 0)).setDate().setID()
         
+        instance.item = item
         
         if let space = controller.arCoordinator?.getSpace(),
            let position = controller.itemPosition {

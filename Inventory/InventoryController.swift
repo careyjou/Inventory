@@ -17,12 +17,12 @@ import ARKit
 #endif
 
 class InventoryController: ObservableObject {
-    @Published public var isShowingAddItemView: Bool = false
-    @Published public var isShowingAddSpaceView: Bool = false
-    @Published public var isShowingItemSelector: Bool = false
+    @Published public var isShowingSheet: Bool = false
+    @Published public var arSheetMode: ARSheet = .addItemView
     @Published public var arHasSpace: Bool = false
     @Published public var arViewMode: ARViewMode = .none
     @Published public var arLocalizationStatus: LocalizationStatus = .capturing
+    @Published public var itemListSelection: ItemInstance? = nil
     
     public var spaceToAdd: String? = nil
     
@@ -53,6 +53,7 @@ class InventoryController: ObservableObject {
         self.arCaptureCoordinator = nil
         #endif
         self.arLocalizationStatus = .capturing
+        self.arSheetMode = .addItemView
     }
     
     /// <#Description#>
@@ -85,7 +86,7 @@ class InventoryController: ObservableObject {
     }
     
     public func hasSpace() {
-        self.arHasSpace = true
+        withAnimation{self.arHasSpace = true}
     }
     
     public func setLocalizationStatus(status: LocalizationStatus) {
@@ -100,7 +101,7 @@ class InventoryController: ObservableObject {
     
     public func placeItem() {
         self.itemPosition = self.arCoordinator?.getItemPosition()
-        self.isShowingAddItemView = true
+        self.setSheet(mode: .addItemView)
     }
     
   
@@ -134,14 +135,22 @@ class InventoryController: ObservableObject {
     public func saveSpace() {
         self.setPointCloud()
         self.AROff()
-        self.isShowingAddSpaceView = true
+        self.setSheet(mode: .addSpaceView)
     }
    
     #endif
 
   
-
+    public func setSheet(mode: ARSheet) {
+        self.arSheetMode = mode
+        self.isShowingSheet = true
+    }
     
     
 }
 
+enum ARSheet: Equatable {
+    case addSpaceView
+    case addItemView
+    case itemSelector
+}

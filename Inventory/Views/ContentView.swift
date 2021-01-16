@@ -27,13 +27,21 @@ struct ContentView: View {
         return ZStack {
             InventoryNavigation()
                 .zIndex(0)
-                .sheet(isPresented: $controller.isShowingAddItemView) {
-                    AddItemView()
+                .sheet(isPresented: $controller.isShowingSheet) {
+                    switch controller.arSheetMode {
+                    case .addItemView:
+                        AddItemView()
+                    case .addSpaceView:
+                        AddSpaceView()
+                    case .itemSelector:
+                        #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
+                    if let space = controller.getSpace() {
+                        SpaceItemList(space: space, selection: $controller.itemListSelection)
+                    }
+                        #endif
+                    }
                 }
-                .sheet(isPresented: $controller.isShowingAddSpaceView) {
-                    AddSpaceView()
-                }
-                .disabled(self.controller.arViewMode != .none && !self.controller.isShowingAddItemView)
+                .disabled(self.controller.arViewMode != .none && (self.controller.arSheetMode != .addItemView) && self.controller.arSheetMode != .itemSelector)
             
             
             
@@ -123,7 +131,7 @@ struct ContentView: View {
                                 .padding(.top)
                             }
                             if (self.controller.arViewMode == .general || self.controller.arViewMode == .findItem) {
-                        Button(action: {self.controller.isShowingItemSelector = true}) {
+                                Button(action: {self.controller.setSheet(mode: .itemSelector)}) {
                             Image(systemName: "magnifyingglass")
                         }
                         .buttonStyle(SecondaryCircleButton())
@@ -151,6 +159,9 @@ struct ContentView: View {
                 #endif
                 VStack{
                     HStack{
+                        if (!self.controller.arHasSpace) {
+                        Spacer()
+                        }
                         Group{
                             if (self.controller.arHasSpace) {
                                 #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))

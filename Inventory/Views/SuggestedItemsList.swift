@@ -18,14 +18,14 @@ struct SuggestedItemsList: View {
         
         let suggestedItems = items.prefix(3)
         
-        return ForEach(suggestedItems, id: \.id) { instance in
-            NavigationLink(destination: ItemInstanceDetail(instance: instance).onAppear {
-                controller.selectedItem = instance.item
-            }) {
+        return VStack{
+            ForEach(suggestedItems, id: \.self) { instance in
+            NavigationLink(destination: ItemInstanceDetail(instance: instance)) {
                 ItemInstancePreview(instance: instance)
                 
             }
             .buttonStyle(NavigationButton())
+        }
         }
     }
 }
