@@ -15,6 +15,7 @@ struct ItemInstanceDetail: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var controller: InventoryController
     @State private var isShowingEditView = false
+    @State private var isShowing3DView = false
     
 
     
@@ -215,11 +216,31 @@ struct ItemInstanceDetail: View {
                     .accessibility(label: Text("Reposition"))
                     }
                     Spacer()
+                    
+                    if let space = instance.getSpace(),
+                    let data = (UIApplication.shared.delegate as? AppDelegate)?.data {
+                        NavigationLink(destination: Space3D(space: space, data: data, itemSelection: instance), isActive: $isShowing3DView) {
+                            EmptyView()
+                        }
+                    }
+                    
                     #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
                     if (instance.getSpace() != nil && ARWorldTrackingConfiguration.supportsFrameSemantics(.sceneDepth)) {
                         Button(action: {self.controller.showFind(finding: instance)})
                         {
                             Image(systemName: "magnifyingglass")
+                        }.buttonStyle(CircleButton())
+                        .contextMenu {
+                                Button(action: {self.isShowing3DView = true}) {
+                                Label("3D Viewer", systemImage: "view.3d")
+                            }
+                            
+                        }
+                        
+                    }
+                    else if (instance.getSpace() != nil) {
+                        Button(action: {self.isShowing3DView = true}) {
+                            Image(systemName: "view.3d")
                         }.buttonStyle(CircleButton())
                         
                     }

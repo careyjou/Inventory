@@ -11,6 +11,7 @@ import Foundation
 protocol Findable {
     
     func getTransform(space: Space) -> simd_float3?
+    func getName() -> String?
     
 }
 

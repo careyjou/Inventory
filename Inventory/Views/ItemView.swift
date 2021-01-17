@@ -43,7 +43,7 @@ struct ItemView: View {
                 HStack{
                     Spacer()
                     
-                    Button(action: { ARWorldTrackingConfiguration.supportsFrameSemantics(.sceneDepth) ? controller.showAddItemView() : (self.isShowingPositionFreeAddItemView = true)}) {
+                    Button(action: { ARWorldTrackingConfiguration.supportsFrameSemantics(.sceneDepth) ? controller.showGeneralView() : (self.isShowingPositionFreeAddItemView = true)}) {
                             Image(systemName: "plus")
                         }
                         .buttonStyle(CircleButton())
@@ -53,7 +53,7 @@ struct ItemView: View {
                                 }
                             #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
                             if ARWorldTrackingConfiguration.supportsFrameSemantics(.sceneDepth) {
-                                Button(action: {controller.showAddItemView()}) {
+                                Button(action: {controller.showGeneralView()}) {
                                     Label("Create Item in AR", systemImage: "arkit")
                                 }
                             }

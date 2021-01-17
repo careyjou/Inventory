@@ -101,7 +101,7 @@ struct ContentView: View {
                 ZStack{
                 HStack{
                     #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
-                    if (self.controller.arViewMode == .general || self.controller.arViewMode == .addItem) {
+                    if (self.controller.arViewMode == .general) {
                         
                         Button(action: {self.controller.placeItem()}) {
                             Text("Place Item")
@@ -165,7 +165,18 @@ struct ContentView: View {
                         Group{
                             if (self.controller.arHasSpace) {
                                 #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
+                                if (self.controller.arViewMode == .findItem) {
+                                    HStack {
+                                        Text(self.controller.getSpace()?.getName() ?? "Space")
+                                        if let finding = self.controller.finding {
+                                        Text(Image(systemName: "chevron.right")).foregroundColor(.secondary)
+                                            Text(finding.getName() ?? "Item")
+                                        }
+                                    }
+                                }
+                                else {
                                 Text(self.controller.getSpace()?.getName() ?? "Space")
+                                }
                                 #endif
                             }
                             else {

@@ -28,6 +28,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     private var isFindingCameraPose: Bool = false
     private var locationManager = CLLocationManager()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -193,12 +194,14 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     }
     
     
-    public func animateItemPosition(item: ItemInstance) {
+    public func animateItemPosition(finding: Findable) {
         self.removeSpheres()
         
-        guard let position = item.getTransform() else {
+        guard let space = self.getSpace(),
+              let position = finding.getTransform(space: space) else {
             return
         }
+        
         
         let frame = arView.session.currentFrame!
         
@@ -227,9 +230,9 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         let column2 = simd_float4(x: 0, y: 0, z: 1, w: 0)
         var column3 = simd_float4(x: 0, y: 0, z: 0, w: 1)
         
-        column3.x = position.x
-        column3.y = position.y
-        column3.z = position.z
+        column3.x = position.x - camera.columns.3.x
+        column3.y = position.y - camera.columns.3.y
+        column3.z = position.z - camera.columns.3.z
         
         let transform = simd_float4x4(columns: (column0, column1, column2, column3))
         
@@ -240,6 +243,10 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         
     }
     
+    public func setFinding(toFind: Findable) {
+        self.animateItemPosition(finding: toFind)
+    }
+    
     public func removeSpheres() {
         self.itemPosition?.removeFromParent()
         self.movingItemPosition?.removeFromParent()
@@ -247,6 +254,8 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         self.itemPosition = nil
         self.movingItemPosition = nil
     }
+    
+    
     
     private func sendLocalizationStatus(status: LocalizationStatus) {
         self.delegate?.setLocalizationStatus(status: status)

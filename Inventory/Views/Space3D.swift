@@ -53,7 +53,7 @@ struct Space3D: View {
                                             HStack{
                                                 Text(space.getName() ?? "Space" )
                                                 Text(Image(systemName: "chevron.right")).foregroundColor(.secondary)
-                                                Text((itemSelection as? ItemInstance)?.getName() ?? "Item")
+                                                Text(itemSelection?.getName() ?? "Item")
                                             }
                                         }
                                         else {

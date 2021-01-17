@@ -25,12 +25,14 @@ struct SpaceItemList: View {
                 VStack {
                     SearchBar(text: $search, label: "Search Items")
                         .padding()
+                    VStack {
                     ForEach(itemInstances.filter({self.search.isEmpty ? true : ($0.getName()?.localizedCaseInsensitiveContains(search) ?? false)}), id: \.self) { instance in
                 if instance == selection as? ItemInstance {
                     Button(action: {self.setfinding(instance: instance)}) {
                         Text(instance.getName() ?? "")
+                            .foregroundColor(Color(.white))
                     }
-                    .buttonStyle(NavigationButton(backgroundColor: Color(.systemGray4)))
+                    .buttonStyle(NavigationButton(backgroundColor: .accentColor))
                 }
                 else {
                     Button(action: {self.setfinding(instance: instance)}) {
@@ -39,6 +41,7 @@ struct SpaceItemList: View {
                     .buttonStyle(NavigationButton(backgroundColor: Color(.clear)))
                 }
             }
+                    }.padding(.horizontal, 5)
                     
                     Spacer()
                 }

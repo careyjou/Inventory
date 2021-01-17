@@ -66,13 +66,6 @@ class InventoryController: ObservableObject {
         withAnimation{self.arViewMode = .general}
     }
     
-    /// <#Description#>
-    public func showAddItemView() {
-        
-        withAnimation{self.arViewMode = .addItem}
-        
-        
-    }
     
     public func showMapSpaceView() {
         withAnimation{self.arViewMode = .mapSpace}
@@ -85,8 +78,11 @@ class InventoryController: ObservableObject {
     
     public func showFind(finding: Findable) {
         self.finding = finding
+        self.arCoordinator?.setFinding(toFind: finding)
         withAnimation{self.arViewMode = .findItem}
     }
+  
+
     
     public func hasSpace() {
         withAnimation{self.arHasSpace = true}
@@ -95,6 +91,8 @@ class InventoryController: ObservableObject {
     public func setLocalizationStatus(status: LocalizationStatus) {
         self.arLocalizationStatus = status
     }
+
+    
 
     
     #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
@@ -107,7 +105,7 @@ class InventoryController: ObservableObject {
         self.setSheet(mode: .addItemView)
     }
     
-  
+
     
     public func repositionInstance() {
         // Get new position

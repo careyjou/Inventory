@@ -11,7 +11,6 @@ import Foundation
 enum ARViewMode: Equatable {
     case none
     case general
-    case addItem
     case addInstance
     case repositionInstance
     case findItem
@@ -23,8 +22,6 @@ enum ARViewMode: Equatable {
             return ""
         case .general:
             return ""
-        case .addItem:
-            return "Place Item"
         case .addInstance:
             return "Place Instance"
         case .repositionInstance:

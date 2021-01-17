@@ -135,7 +135,6 @@ struct InventoryNavigation: View {
                         .foregroundColor(.gray)
                 }
                 .buttonStyle(ScalingOpacityButton()))
-            
                 ItemView()
             }
     }

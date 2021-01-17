@@ -70,6 +70,10 @@ class ARCoordinator: NSObject, UINavigationControllerDelegate {
         self.parent?.controller.setLocalizationStatus(status: status)
     }
     
+    public func setFinding(toFind: Findable) {
+        self.child?.setFinding(toFind: toFind)
+    }
+    
     public func getItemPosition() -> simd_float3? {
         if let child = self.child {
             return child.getItemPosition()

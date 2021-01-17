@@ -72,6 +72,7 @@ struct SpaceDetail: View {
                     SearchBar(text: $itemSearch, label: "Search Items")
                         .frame(maxWidth: 700)
                         .padding(.horizontal)
+                        .padding(.top)
                     self.itemList(space: space)
                         .padding(.horizontal, 5)
                 }.frame(maxWidth: 700)
@@ -94,7 +95,8 @@ struct SpaceDetail: View {
                 HStack(){
                     Spacer()
                     
-                    NavigationLink(destination: Space3D(space: space, data: (UIApplication.shared.delegate as! AppDelegate).data))
+                    if let data = (UIApplication.shared.delegate as? AppDelegate)?.data {
+                    NavigationLink(destination: Space3D(space: space, data: data))
                     {
                         Image(systemName: "view.3d")
                     }.buttonStyle(CircleButton())
@@ -102,6 +104,7 @@ struct SpaceDetail: View {
                         Button(action: { self.sharePointCloud()}) {
                             Label("Export Cloud", systemImage: "square.and.arrow.up")
                         }
+                    }
                     }
                     
                 
@@ -152,7 +155,7 @@ struct SpaceDetail: View {
         }
         
         items.sort(by: { $0.getLastModified() > $1.getLastModified() })
-        return ForEach(items, id: \.self) { item in
+        return VStack{ForEach(items, id: \.self) { item in
             NavigationLink(destination: ItemInstanceDetail(instance: item)) {
                 Text(item.getName() ?? "")
                     .font(.body)
@@ -161,6 +164,7 @@ struct SpaceDetail: View {
                 
             }
             .buttonStyle(NavigationButton())
+        }
         }
         
     }
