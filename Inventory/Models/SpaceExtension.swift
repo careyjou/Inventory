@@ -11,13 +11,20 @@ import Combine
 import Foundation
 import CoreData
 import MapKit
+import CoreData
 
 extension Space {
     
-    public func setID() -> Space {
+    convenience init(moc: NSManagedObjectContext, name: String, pointCloud: Cloud, location: Location?) {
+        self.init(context: moc)
         self.id = UUID()
-        return self
+        self.createdAt = Date()
+        self.name = name
+        self.location = location
+        self.pointCloud = pointCloud
+        
     }
+    
     
     public func getCreatedAt() -> Date {
         return self.createdAt ?? Date()

@@ -70,18 +70,23 @@ struct AddItemView: View {
     
     #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
     func addItem() {
-        let item = Item(context: moc).setID().setName(newName: name)
-        item.createdAt = Date()
         
-        let instance = ItemInstance(context: moc).setQuantity(newQuantity: self.quantity.isEmpty ? 1: (Int(self.quantity) ?? 0)).setDate().setID()
-        
-        instance.item = item
-        
-        if let space = controller.arCoordinator?.getSpace(),
-           let position = controller.itemPosition {
-            let pos = Position(context: moc).setID().setPosition(position: position).setSpace(space: space)
-            _ = instance.setDate().setPosition(position: pos)
+        guard let space = controller.arCoordinator?.getSpace(),
+           let position = controller.itemPosition else {
+            return
         }
+        
+        
+        let pos = Position(moc: moc, position: position, space: space)
+        
+        
+        let item = Item(moc: moc, name: name)
+        
+        let quantity = self.quantity.isEmpty ? 1: (Int(self.quantity) ?? 0)
+        
+        _ = ItemInstance(moc: moc, item: item, position: pos, quantity: quantity)
+        
+
         
         try? moc.save()
         

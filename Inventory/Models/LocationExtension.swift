@@ -8,11 +8,14 @@
 
 import Foundation
 import MapKit
+import CoreData
 
 extension Location {
-    public func setID() -> Location {
+    convenience init(moc: NSManagedObjectContext, location: CLLocation) {
+        self.init(context: moc)
         self.id = UUID()
-        return self
+        self.latitude = Float(location.coordinate.latitude)
+        self.longitude = Float(location.coordinate.longitude)
     }
     
     public func getLocation() -> CLLocation? {

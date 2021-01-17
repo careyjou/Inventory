@@ -7,12 +7,17 @@
 //
 
 import Foundation
+import CoreData
 
 extension Position {
     
-    public func setID() -> Position {
+    convenience init(moc: NSManagedObjectContext, position: simd_float3, space: Space) {
+        self.init(context: moc)
         self.id = UUID()
-        return self
+        self.x = position.x
+        self.y = position.y
+        self.z = position.z
+        self.space = space
     }
     
     public func getSpace() -> Space? {

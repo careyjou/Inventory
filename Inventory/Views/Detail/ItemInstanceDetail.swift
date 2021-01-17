@@ -267,24 +267,18 @@ struct ItemInstance_Previews: PreviewProvider {
     static var previews: some View {
         let moc = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
-        let item = Item(context: moc)
-        item.id = UUID()
-        item.name = "Green Bag"
-        item.createdAt = Date()
-        let instance = ItemInstance(context: moc).setID().setDate().setQuantity(newQuantity: 1)
+        let item = Item(moc: moc, name: "Green Bag")
+        let instance = ItemInstance(moc: moc, item: item, position: nil, quantity: 1)
         instance.item = item
         
         
-        let subItem = Item(context: moc).setID().setName(newName: "Small Bag")
+        let subItem = Item(moc: moc, name: "Small Bag")
         subItem.createdAt = Date()
-        let subInstance = ItemInstance(context: moc).setID().setDate().setQuantity(newQuantity: 1)
-        subInstance.item = subItem
+        let subInstance = ItemInstance(moc: moc, item: subItem, position: nil, quantity: 1)
         _ = subInstance.setParent(instance: instance)
         
-        let subItem2 = Item(context: moc).setID().setName(newName: "iPad")
-        subItem2.createdAt = Date()
-        let subInstance2 = ItemInstance(context: moc).setID().setDate().setQuantity(newQuantity: 1)
-        subInstance2.item = subItem2
+        let subItem2 = Item(moc: moc, name: "iPad")
+        let subInstance2 = ItemInstance(moc: moc, item: subItem2, position: nil, quantity: 1)
         _ = subInstance2.setParent(instance: subInstance)
         
         

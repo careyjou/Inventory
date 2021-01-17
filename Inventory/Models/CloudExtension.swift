@@ -7,11 +7,19 @@
 //
 
 import Foundation
+import CoreData
 
 extension Cloud {
     
-    public func setID() -> Cloud {
+    convenience init(moc: NSManagedObjectContext) {
+        self.init(context: moc)
         self.id = UUID()
-        return self
+        
     }
+    
+    
+    public func setPointCloud(pointCloud: Data?) {
+        self.pointCloud = pointCloud
+    }
+    
 }

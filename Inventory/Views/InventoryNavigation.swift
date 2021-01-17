@@ -129,8 +129,8 @@ struct InventoryNavigation: View {
             
             nav
                 .navigationTitle(Text("inventory"))
-                .navigationBarItems(trailing: NavigationLink(destination: SettingsView()) {
-                    Image(systemName: "gearshape")
+                .navigationBarItems(trailing: NavigationLink(destination: InfoView()) {
+                    Image(systemName: "info.circle")
                         .font(.title2)
                         .foregroundColor(.gray)
                 }

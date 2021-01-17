@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct SettingsView: View {
+struct InfoView: View {
     
     var body: some View {
         ScrollView{
@@ -38,7 +38,7 @@ struct SettingsView: View {
         
         }
         
-        .navigationBarTitle("Settings")
+        .navigationBarTitle("Info")
             
     
     
@@ -48,6 +48,6 @@ struct SettingsView: View {
 
 struct OptionsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        InfoView()
     }
 }

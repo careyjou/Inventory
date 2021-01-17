@@ -43,7 +43,7 @@ final public class SpacePointCloudAppData: ObservableObject {
         let data = try? encoder.encode(pointCloud)
         
         DispatchQueue.main.async {
-            cloud.pointCloud = data
+            cloud.setPointCloud(pointCloud: data)
         }
         
     }

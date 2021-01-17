@@ -18,7 +18,7 @@ struct AboutView: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(maxWidth: 300)
                 .padding()
-            Text("The inventory platform is developed by Vincent Spitale, a student studying computer science at Northeastern University.")
+            Text("Inventory is developed by Vincent Spitale, a student studying computer science and mathematics at Northeastern University.")
                 .padding()
             Spacer()
             

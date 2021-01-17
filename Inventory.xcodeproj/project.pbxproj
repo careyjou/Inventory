@@ -23,7 +23,7 @@
 		D53A3E34239B112D006EC344 /* InventoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A3E33239B112D006EC344 /* InventoryTests.swift */; };
 		D53A3E3F239B112D006EC344 /* InventoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A3E3E239B112D006EC344 /* InventoryUITests.swift */; };
 		D547954F25AB9DE900523D44 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D547954E25AB9DE900523D44 /* LocationManager.swift */; };
-		D549C7962498789900873FFC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D549C7952498789900873FFC /* SettingsView.swift */; };
+		D549C7962498789900873FFC /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D549C7952498789900873FFC /* InfoView.swift */; };
 		D549C79C2499703700873FFC /* SpacePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D549C79B2499703700873FFC /* SpacePreview.swift */; };
 		D5504DC824C5170C007BF1A5 /* ItemInstanceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5504DC724C5170C007BF1A5 /* ItemInstanceExtension.swift */; };
 		D5504DCA24C51D87007BF1A5 /* ItemInstanceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5504DC924C51D87007BF1A5 /* ItemInstanceDetail.swift */; };
@@ -150,7 +150,7 @@
 		D53A3E40239B112D006EC344 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5433A8725ACE282002A9600 /* point_3d.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = point_3d.h; sourceTree = "<group>"; };
 		D547954E25AB9DE900523D44 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		D549C7952498789900873FFC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		D549C7952498789900873FFC /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		D549C79B2499703700873FFC /* SpacePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacePreview.swift; sourceTree = "<group>"; };
 		D5504DC724C5170C007BF1A5 /* ItemInstanceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInstanceExtension.swift; sourceTree = "<group>"; };
 		D5504DC924C51D87007BF1A5 /* ItemInstanceDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInstanceDetail.swift; sourceTree = "<group>"; };
@@ -361,6 +361,7 @@
 				D5504DC724C5170C007BF1A5 /* ItemInstanceExtension.swift */,
 				D59A38A1245E803100306CF3 /* ItemExtension.swift */,
 				D59A38A3245E856300306CF3 /* SpaceExtension.swift */,
+				D561FF2225A8B9A000C6D5F6 /* LocationExtension.swift */,
 				D5E7DAA824849E590079A5ED /* Stack.swift */,
 				D58D13852471B7F400521F3E /* NavigationViewMode.swift */,
 				D5C790E32472EBD3000B0EC2 /* ARViewMode.swift */,
@@ -368,7 +369,6 @@
 				D558775624DA080B0068756D /* Utils.swift */,
 				D5C225C62532B4DE00408735 /* PointCloudVertex.swift */,
 				D5D10C40254F3C6300448EFE /* PointCloud.swift */,
-				D561FF2225A8B9A000C6D5F6 /* LocationExtension.swift */,
 				D547954E25AB9DE900523D44 /* LocationManager.swift */,
 				D529B4D825B3BFA10086A444 /* Findable.swift */,
 			);
@@ -389,7 +389,7 @@
 				D5D86CB024A503BB0068A833 /* SpaceView.swift */,
 				D5D86CA624A3C5710068A833 /* SpaceList.swift */,
 				D5D86CA824A3C5F00068A833 /* ItemList.swift */,
-				D549C7952498789900873FFC /* SettingsView.swift */,
+				D549C7952498789900873FFC /* InfoView.swift */,
 				D5EBA6F12468ED29008020F9 /* TextView.swift */,
 				D58D138B2471FA9800521F3E /* AddSpaceView.swift */,
 				D5EBA6F924691013008020F9 /* AddItemView.swift */,
@@ -662,7 +662,7 @@
 				D5D86CAB24A3CA4B0068A833 /* InventoryNavigation.swift in Sources */,
 				D59A38A4245E856300306CF3 /* SpaceExtension.swift in Sources */,
 				D5C790E42472EBD3000B0EC2 /* ARViewMode.swift in Sources */,
-				D549C7962498789900873FFC /* SettingsView.swift in Sources */,
+				D549C7962498789900873FFC /* InfoView.swift in Sources */,
 				D53A3E1A239B112A006EC344 /* AppDelegate.swift in Sources */,
 				D5AE7F0D24A6EA7000D175D2 /* UserPreview.swift in Sources */,
 				D51E632D24A82756000D97DD /* SpacePointCloudAppData.swift in Sources */,

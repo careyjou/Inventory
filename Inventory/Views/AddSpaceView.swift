@@ -54,21 +54,18 @@ struct AddSpaceView: View {
     
     private func addSpace() {
         if let pointCloud = controller.pointCloud {
-            let cloud = Cloud(context: moc).setID()
-            let space = Space(context: moc).setID().setName(newName: self.name).setPointCloud(cloud: cloud)
             
-            space.createdAt = Date()
+            
+            let cloud = Cloud(moc: moc)
+            
+            var location: Location? = nil
             
             if let loc = self.locationManager.lastLocation {
-                let location = Location(context: moc).setID()
-                _ = location.setLocation(location: loc)
-                _ = space.setLocation(location: location)
+                location = Location(moc: moc, location: loc)
             }
             
+            let space = Space(moc: moc, name: self.name, pointCloud: cloud, location: location)
             
-            guard space.pointCloud != nil else {
-                return
-            }
             
             if let key = cloud.id{
                 let data = (UIApplication.shared.delegate as! AppDelegate).data

@@ -54,7 +54,6 @@ class InventoryController: ObservableObject {
         self.arCaptureCoordinator = nil
         #endif
         self.arLocalizationStatus = .capturing
-        self.arSheetMode = .addItemView
         self.itemToAdd = nil
     }
     

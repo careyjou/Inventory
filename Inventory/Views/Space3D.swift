@@ -23,7 +23,7 @@ struct Space3D: View {
     
     @ViewBuilder private func model(data: SpacePointCloudAppData) -> some View {
     
-
+        
         if (data.getPointCloud(space: space) != nil) {
             ZStack{
                 GeometryReader { geometry in
@@ -42,16 +42,33 @@ struct Space3D: View {
                         Spacer()
                     }
                 }
-            }
+            
                         .sheet(isPresented: $isShowingItemSheet) {
                             SpaceItemList(space: space, selection: $itemSelection)
                         }
                     
-                }
+            }.navigationBarItems(trailing:
+                                    Group{
+                                        if ((itemSelection as? ItemInstance) != nil) {
+                                            HStack{
+                                                Text(space.getName() ?? "Space" )
+                                                Text(Image(systemName: "chevron.right")).foregroundColor(.secondary)
+                                                Text((itemSelection as? ItemInstance)?.getName() ?? "Item")
+                                            }
+                                        }
+                                        else {
+                                            Text(space.getName() ?? "Space")
+                                        }
+                                    }
+                                    .font(.body)
+                                )
             
+            
+        }
         
         
     }
+
     
 
     

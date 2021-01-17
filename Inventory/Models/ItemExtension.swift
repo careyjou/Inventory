@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Combine
+import CoreData
 #if !targetEnvironment(macCatalyst)
 import ARKit
 #endif
@@ -15,10 +16,11 @@ import ARKit
 
 
 extension Item {
-
-    public func setID() -> Item {
+    convenience init(moc: NSManagedObjectContext, name: String) {
+        self.init(context: moc)
         self.id = UUID()
-        return self
+        self.name = name
+        self.createdAt = Date()
     }
     
     public func getName() -> String? {

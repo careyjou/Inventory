@@ -35,8 +35,6 @@ struct PointCloudView: UIViewRepresentable {
     
     public func updateUIView(_ uiView: Self.UIViewType, context: Context) {
         
-        self.updateModel(scene: scene)
-        
         let nodes = self.scene.rootNode.childNodes
             
         for node in nodes {
