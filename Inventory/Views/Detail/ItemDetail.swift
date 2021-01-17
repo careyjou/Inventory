@@ -8,6 +8,7 @@
 
 import SwiftUI
 import SceneKit
+import ARKit
 
 struct ItemDetail: View {
     
@@ -91,9 +92,12 @@ struct ItemDetail: View {
                     Button(action: {}) {
                         Label("Add to Existing Item", systemImage: "bag.fill")
                     }
-                    Button(action: {}) {
+                    if (ARWorldTrackingConfiguration.supportsFrameSemantics(.sceneDepth)) {
+                        Button(action: {}) {
                         Label("Add in AR", systemImage: "arkit")
                     }
+                    }
+                    
                 } label: {
                     Button(action: {}) {
                         Image(systemName: "plus")
@@ -104,7 +108,7 @@ struct ItemDetail: View {
 
                 Spacer()
                 #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
-                if (item.hasPosition()) {
+                if (ARWorldTrackingConfiguration.supportsFrameSemantics(.sceneDepth) && item.hasPosition()) {
                     Button(action: {self.controller.showFind(finding: item)})
                 {
                     Image(systemName: "magnifyingglass")

@@ -27,7 +27,7 @@ struct Space3D: View {
         if (data.getPointCloud(space: space) != nil) {
             ZStack{
                 GeometryReader { geometry in
-            PointCloudView(space: space, data: data).aspectRatio(contentMode: .fill).edgesIgnoringSafeArea(.all)
+                    PointCloudView(space: space, data: data, findable: $itemSelection).aspectRatio(contentMode: .fill).edgesIgnoringSafeArea(.all)
                 .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height)
                 }
                 VStack{

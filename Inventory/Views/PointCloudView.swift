@@ -13,12 +13,15 @@ import SceneKit
 struct PointCloudView: UIViewRepresentable {
     @ObservedObject var space: Space
     @ObservedObject var data: SpacePointCloudAppData
+    @Binding var findable: Findable?
+    
+    @State var scene: SCNScene = SCNScene()
+    
     
     public typealias UIViewType = SCNView
     
     public func makeUIView(context: Context) -> Self.UIViewType {
         let view = SCNView()
-        let scene = SCNScene()
         self.updateModel(scene: scene)
         view.scene = scene
         view.backgroundColor = .clear
@@ -31,8 +34,40 @@ struct PointCloudView: UIViewRepresentable {
     }
     
     public func updateUIView(_ uiView: Self.UIViewType, context: Context) {
-        let scene = SCNScene()
+        
         self.updateModel(scene: scene)
+        
+        let nodes = self.scene.rootNode.childNodes
+            
+        for node in nodes {
+            if node.name == "ball" {
+                node.removeFromParentNode()
+            }
+        }
+        
+        guard let finding = findable,
+              let transform = finding.getTransform(space: space) else {
+            return
+        }
+        
+        let column0 = simd_float4(x: 1, y: 0, z: 0, w: 0)
+        let column1 = simd_float4(x: 0, y: 1, z: 0, w: 0)
+        let column2 = simd_float4(x: 0, y: 0, z: 1, w: 0)
+        var column3 = simd_float4(x: 0, y: 0, z: 0, w: 1)
+        
+        column3.x = transform.x
+        column3.y = transform.y
+        column3.z = transform.z
+        
+        let sphere = SCNSphere(radius: 0.05)
+        let node = SCNNode()
+        node.name = "ball"
+        node.geometry = sphere
+        node.transform = SCNMatrix4(simd_float4x4(columns: (column0, column1, column2, column3)))
+            
+        scene.rootNode.addChildNode(node)
+        
+        
  
     }
     

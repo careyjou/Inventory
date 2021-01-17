@@ -23,6 +23,7 @@ class InventoryController: ObservableObject {
     @Published public var arViewMode: ARViewMode = .none
     @Published public var arLocalizationStatus: LocalizationStatus = .capturing
     @Published public var finding: Findable? = nil
+    private var itemToAdd: Item?
     
     public var spaceToAdd: String? = nil
     
@@ -54,6 +55,7 @@ class InventoryController: ObservableObject {
         #endif
         self.arLocalizationStatus = .capturing
         self.arSheetMode = .addItemView
+        self.itemToAdd = nil
     }
     
     /// <#Description#>

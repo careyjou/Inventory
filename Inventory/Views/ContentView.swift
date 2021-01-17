@@ -188,6 +188,7 @@ struct ContentView: View {
                 #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
                 ARCaptureWrapper(controller: self.controller)
                     .edgesIgnoringSafeArea(.all)
+                    .onDisappear(perform: {self.controller.resetAR()})
                 
                 VStack{
                     Spacer()

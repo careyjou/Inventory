@@ -11,6 +11,7 @@
 		D51E632D24A82756000D97DD /* SpacePointCloudAppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E632C24A82756000D97DD /* SpacePointCloudAppData.swift */; };
 		D51F0EC025941C08005AC360 /* ItemInstancePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51F0EBF25941C08005AC360 /* ItemInstancePreview.swift */; };
 		D529B4D925B3BFA10086A444 /* Findable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D529B4D825B3BFA10086A444 /* Findable.swift */; };
+		D529B4DE25B3CA3B0086A444 /* PositionFreeAddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D529B4DD25B3CA3B0086A444 /* PositionFreeAddItemView.swift */; };
 		D5325538247C454400A00D67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D532553A247C454400A00D67 /* Main.storyboard */; };
 		D53448C425ABFD8600033351 /* CameraPoseFinder_Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = D53448C325ABFD8600033351 /* CameraPoseFinder_Wrapper.mm */; };
 		D53A3E1A239B112A006EC344 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A3E19239B112A006EC344 /* AppDelegate.swift */; };
@@ -128,6 +129,7 @@
 		D51E632C24A82756000D97DD /* SpacePointCloudAppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacePointCloudAppData.swift; sourceTree = "<group>"; };
 		D51F0EBF25941C08005AC360 /* ItemInstancePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInstancePreview.swift; sourceTree = "<group>"; };
 		D529B4D825B3BFA10086A444 /* Findable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Findable.swift; sourceTree = "<group>"; };
+		D529B4DD25B3CA3B0086A444 /* PositionFreeAddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionFreeAddItemView.swift; sourceTree = "<group>"; };
 		D5325539247C454400A00D67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D53448C225ABFC4900033351 /* jly_main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = jly_main.hpp; sourceTree = "<group>"; };
 		D53448C325ABFD8600033351 /* CameraPoseFinder_Wrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CameraPoseFinder_Wrapper.mm; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 				D5A081B12571C21E0053BC5E /* SpaceItemList.swift */,
 				D554C27F259103D500C8A97C /* ItemPreview.swift */,
 				D51F0EBF25941C08005AC360 /* ItemInstancePreview.swift */,
+				D529B4DD25B3CA3B0086A444 /* PositionFreeAddItemView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -690,6 +693,7 @@
 				D58D13882471BB5700521F3E /* SpaceDetail.swift in Sources */,
 				D5DD7DB825167508009572A9 /* MetalBuffer.swift in Sources */,
 				D5A3EC97248C282500F8C1B8 /* SeachBar.swift in Sources */,
+				D529B4DE25B3CA3B0086A444 /* PositionFreeAddItemView.swift in Sources */,
 				D5D10C41254F3C6300448EFE /* PointCloud.swift in Sources */,
 				D5F9D14524C4E22F00677EFD /* AboutView.swift in Sources */,
 				D5A03E222592CA74004E0B7C /* StringTokenizer.cpp in Sources */,

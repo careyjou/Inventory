@@ -7,10 +7,12 @@
 //
 
 import SwiftUI
+import ARKit
 
 struct ItemView: View {
     @EnvironmentObject var controller: InventoryController
     @State private var itemSearch = ""
+    @State private var isShowingPositionFreeAddItemView: Bool = false
     
     
     var body: some View {
@@ -30,6 +32,9 @@ struct ItemView: View {
                         .zIndex(1)
                     
                 }
+                .sheet(isPresented: $isShowingPositionFreeAddItemView) {
+                    PositionFreeAddItemView()
+                }
             }
  
         
@@ -38,7 +43,7 @@ struct ItemView: View {
                 HStack{
                     Spacer()
                     
-                        Button(action: {controller.showAddItemView()}) {
+                    Button(action: { ARWorldTrackingConfiguration.supportsFrameSemantics(.sceneDepth) ? controller.showAddItemView() : (self.isShowingPositionFreeAddItemView = true)}) {
                             Image(systemName: "plus")
                         }
                         .buttonStyle(CircleButton())
@@ -47,9 +52,11 @@ struct ItemView: View {
                                     Label("Create Item Without Position", systemImage: "location.slash.fill")
                                 }
                             #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
-                                Button(action: {}) {
+                            if ARWorldTrackingConfiguration.supportsFrameSemantics(.sceneDepth) {
+                                Button(action: {controller.showAddItemView()}) {
                                     Label("Create Item in AR", systemImage: "arkit")
                                 }
+                            }
                             #endif
                         }
                     

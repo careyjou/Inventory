@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import ARKit
 
 struct ItemInstanceDetail: View {
     
@@ -195,8 +196,11 @@ struct ItemInstanceDetail: View {
                     
                     Menu(){
                         #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
+                        
+                        if (ARWorldTrackingConfiguration.supportsFrameSemantics(.sceneDepth)) {
                         Button(action: {self.controller.showReposition(instance: instance)}) {
                             Label("Reposition in AR", systemImage: "arkit")
+                        }
                         }
                         #endif
                         Button(action: {}) {
@@ -212,7 +216,7 @@ struct ItemInstanceDetail: View {
                     }
                     Spacer()
                     #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
-                    if (instance.getSpace() != nil) {
+                    if (instance.getSpace() != nil && ARWorldTrackingConfiguration.supportsFrameSemantics(.sceneDepth)) {
                         Button(action: {self.controller.showFind(finding: instance)})
                         {
                             Image(systemName: "magnifyingglass")
