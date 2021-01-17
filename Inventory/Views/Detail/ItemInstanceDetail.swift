@@ -195,7 +195,7 @@ struct ItemInstanceDetail: View {
                     
                     Menu(){
                         #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
-                        Button(action: {self.controller.showReposition()}) {
+                        Button(action: {self.controller.showReposition(instance: instance)}) {
                             Label("Reposition in AR", systemImage: "arkit")
                         }
                         #endif
@@ -213,7 +213,7 @@ struct ItemInstanceDetail: View {
                     Spacer()
                     #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
                     if (instance.getSpace() != nil) {
-                        Button(action: {self.controller.showFind()})
+                        Button(action: {self.controller.showFind(finding: instance)})
                         {
                             Image(systemName: "magnifyingglass")
                         }.buttonStyle(CircleButton())

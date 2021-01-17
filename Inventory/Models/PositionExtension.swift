@@ -46,4 +46,8 @@ extension Position {
         return self
     }
     
+    public func getTransform() -> simd_float3 {
+        return simd_float3(x: self.x, y: self.y, z: self.z)
+    }
+    
 }

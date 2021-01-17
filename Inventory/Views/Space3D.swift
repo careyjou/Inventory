@@ -13,7 +13,7 @@ struct Space3D: View {
     @ObservedObject var space: Space
     @ObservedObject var data: SpacePointCloudAppData
     @State var isShowingItemSheet: Bool = false
-    @State var itemSelection: ItemInstance? = nil
+    @State var itemSelection: Findable? = nil
     
     var body: some View {
         

@@ -105,7 +105,7 @@ struct ItemDetail: View {
                 Spacer()
                 #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
                 if (item.hasPosition()) {
-                    Button(action: {self.controller.showFind()})
+                    Button(action: {self.controller.showFind(finding: item)})
                 {
                     Image(systemName: "magnifyingglass")
                 }.buttonStyle(CircleButton())

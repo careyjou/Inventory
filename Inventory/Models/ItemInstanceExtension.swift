@@ -131,7 +131,6 @@ extension ItemInstance {
 
     
     
-    
 
     
     /// <#Description#>
@@ -149,6 +148,15 @@ extension ItemInstance {
     /// - Returns: <#description#>
     public func getPosition() -> Position? {
         return self.position
+    }
+    
+    public func getTransform() -> simd_float3? {
+        if let itemParent = self.parent {
+            return itemParent.getTransform()
+        }
+        else {
+            return self.position?.getTransform()
+        }
     }
     
     

@@ -36,7 +36,7 @@ struct ContentView: View {
                     case .itemSelector:
                         #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
                     if let space = controller.getSpace() {
-                        SpaceItemList(space: space, selection: $controller.itemListSelection)
+                        SpaceItemList(space: space, selection: $controller.finding)
                     }
                         #endif
                     }

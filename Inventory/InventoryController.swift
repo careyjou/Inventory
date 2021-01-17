@@ -22,7 +22,7 @@ class InventoryController: ObservableObject {
     @Published public var arHasSpace: Bool = false
     @Published public var arViewMode: ARViewMode = .none
     @Published public var arLocalizationStatus: LocalizationStatus = .capturing
-    @Published public var itemListSelection: ItemInstance? = nil
+    @Published public var finding: Findable? = nil
     
     public var spaceToAdd: String? = nil
     
@@ -77,11 +77,13 @@ class InventoryController: ObservableObject {
         withAnimation{self.arViewMode = .mapSpace}
     }
     
-    public func showReposition() {
+    public func showReposition(instance: ItemInstance) {
+        self.finding = instance
         withAnimation{self.arViewMode = .repositionInstance}
     }
     
-    public func showFind() {
+    public func showFind(finding: Findable) {
+        self.finding = finding
         withAnimation{self.arViewMode = .findItem}
     }
     

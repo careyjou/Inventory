@@ -10,6 +10,7 @@
 		D5104963252ACAE200F820A1 /* PointCloudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5104962252ACAE200F820A1 /* PointCloudView.swift */; };
 		D51E632D24A82756000D97DD /* SpacePointCloudAppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E632C24A82756000D97DD /* SpacePointCloudAppData.swift */; };
 		D51F0EC025941C08005AC360 /* ItemInstancePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51F0EBF25941C08005AC360 /* ItemInstancePreview.swift */; };
+		D529B4D925B3BFA10086A444 /* Findable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D529B4D825B3BFA10086A444 /* Findable.swift */; };
 		D5325538247C454400A00D67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D532553A247C454400A00D67 /* Main.storyboard */; };
 		D53448C425ABFD8600033351 /* CameraPoseFinder_Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = D53448C325ABFD8600033351 /* CameraPoseFinder_Wrapper.mm */; };
 		D53A3E1A239B112A006EC344 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A3E19239B112A006EC344 /* AppDelegate.swift */; };
@@ -126,6 +127,7 @@
 		D5104962252ACAE200F820A1 /* PointCloudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointCloudView.swift; sourceTree = "<group>"; };
 		D51E632C24A82756000D97DD /* SpacePointCloudAppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacePointCloudAppData.swift; sourceTree = "<group>"; };
 		D51F0EBF25941C08005AC360 /* ItemInstancePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInstancePreview.swift; sourceTree = "<group>"; };
+		D529B4D825B3BFA10086A444 /* Findable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Findable.swift; sourceTree = "<group>"; };
 		D5325539247C454400A00D67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D53448C225ABFC4900033351 /* jly_main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = jly_main.hpp; sourceTree = "<group>"; };
 		D53448C325ABFD8600033351 /* CameraPoseFinder_Wrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CameraPoseFinder_Wrapper.mm; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 				D5D10C40254F3C6300448EFE /* PointCloud.swift */,
 				D561FF2225A8B9A000C6D5F6 /* LocationExtension.swift */,
 				D547954E25AB9DE900523D44 /* LocationManager.swift */,
+				D529B4D825B3BFA10086A444 /* Findable.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -645,6 +648,7 @@
 				D5B761B82516633700BFCF42 /* CaptureViewController.swift in Sources */,
 				D5C790E624737294000B0EC2 /* ARViewWrapper.swift in Sources */,
 				D5D86CA724A3C5710068A833 /* SpaceList.swift in Sources */,
+				D529B4D925B3BFA10086A444 /* Findable.swift in Sources */,
 				D5DD7DB925167508009572A9 /* Shaders.metal in Sources */,
 				D547954F25AB9DE900523D44 /* LocationManager.swift in Sources */,
 				D5DD7DAF25167499009572A9 /* Renderer.swift in Sources */,

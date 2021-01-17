@@ -20,6 +20,9 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     @IBOutlet var arView: ARView!
     private var cameraPose: SpacePoseResult?
     private var spaceAnchor: AnchorEntity?
+    private var itemPosition: ModelEntity?
+    private var movingItemPosition: ModelEntity?
+    
     weak open var delegate: ARCoordinator?
     private var renderer: Renderer!
     private var isFindingCameraPose: Bool = false
@@ -34,7 +37,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         let configuration = ARWorldTrackingConfiguration()
         
         
-        self.arView.debugOptions.insert(.showWorldOrigin)
+        //self.arView.debugOptions.insert(.showWorldOrigin)
         //self.arView.debugOptions.insert(.showFeaturePoints)
         
         
@@ -161,15 +164,6 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         arView.scene.addAnchor(anchor)
         
         
-        let brightWhite = UnlitMaterial(color: .white)
-                               
-                               
-        let ball = ModelEntity(mesh: .generateSphere(radius: 0.05), materials: [brightWhite])
-        
-        
-        anchor.addChild(ball)
-        
-        
     }
     
     
@@ -198,11 +192,65 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         
     }
     
+    
+    public func animateItemPosition(item: ItemInstance) {
+        self.removeSpheres()
+        
+        guard let position = item.getTransform() else {
+            return
+        }
+        
+        let frame = arView.session.currentFrame!
+        
+        let camera = frame.camera.transform
+        
+        
+        let brightWhite = UnlitMaterial(color: .white)
+                               
+                               
+        let fixedItemPosition = ModelEntity(mesh: .generateSphere(radius: 0.05), materials: [brightWhite])
+        
+        let animatingPosition = ModelEntity(mesh: .generateSphere(radius: 0.05), materials: [brightWhite])
+        
+        animatingPosition.position = simd_float3(x: camera.columns.3.x, y: camera.columns.3.y, z: camera.columns.3.z)
+        
+        fixedItemPosition.position = position
+        
+        spaceAnchor?.addChild(fixedItemPosition)
+        spaceAnchor?.addChild(animatingPosition)
+        
+        self.itemPosition = fixedItemPosition
+        self.movingItemPosition = animatingPosition
+        
+        let column0 = simd_float4(x: 1, y: 0, z: 0, w: 0)
+        let column1 = simd_float4(x: 0, y: 1, z: 0, w: 0)
+        let column2 = simd_float4(x: 0, y: 0, z: 1, w: 0)
+        var column3 = simd_float4(x: 0, y: 0, z: 0, w: 1)
+        
+        column3.x = position.x
+        column3.y = position.y
+        column3.z = position.z
+        
+        let transform = simd_float4x4(columns: (column0, column1, column2, column3))
+        
+        let length = powf((powf(position.x - camera.columns.3.x, 2) + powf(position.y - camera.columns.3.y, 2) + powf(position.z - camera.columns.3.z, 2)), 0.5) * 3
+        
+        animatingPosition.move(to: transform, relativeTo: .none, duration: TimeInterval(length))
+        
+        
+    }
+    
+    public func removeSpheres() {
+        self.itemPosition?.removeFromParent()
+        self.movingItemPosition?.removeFromParent()
+        
+        self.itemPosition = nil
+        self.movingItemPosition = nil
+    }
+    
     private func sendLocalizationStatus(status: LocalizationStatus) {
         self.delegate?.setLocalizationStatus(status: status)
     }
-    
-
     
 }
 
