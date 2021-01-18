@@ -26,13 +26,9 @@ extension Position {
     
     public func getItemInstances() -> [ItemInstance] {
         var allInstances = [ItemInstance]()
-        if let instances = self.items {
-            for instance in instances {
-                if let item = (instance as? ItemInstance) {
-                    allInstances.append(item)
-                    allInstances.append(contentsOf: item.getSubItems())
-                }
-            }
+        if let instance = self.item {
+                    allInstances.append(instance)
+                    allInstances.append(contentsOf: instance.getSubItems())
         }
         return allInstances
     }

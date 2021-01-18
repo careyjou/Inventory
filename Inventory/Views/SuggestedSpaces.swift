@@ -10,7 +10,6 @@ import SwiftUI
 
 struct SuggestedSpaces: View {
     @FetchRequest(entity: Space.entity(), sortDescriptors: []) var spaces: FetchedResults<Space>
-    @EnvironmentObject var controller: InventoryController
     
     var body: some View {
         let sortedSpaces = spaces.sorted(by: {$0.getMostRecentMovedDate() > $1.getMostRecentMovedDate()})

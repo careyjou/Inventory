@@ -15,15 +15,15 @@ import ARKit
 
 
 final class ARViewWrapper: UIViewControllerRepresentable {
-    init(controller: InventoryController) {
-        self.controller = controller
+    init(viewModel: InventoryViewModel) {
+        self.viewModel = viewModel
     }
     
-    var controller: InventoryController
+    var viewModel: InventoryViewModel
     
     func makeCoordinator() -> ARCoordinator {
         let coordinator = Coordinator(self)
-        controller.arCoordinator = coordinator
+        viewModel.arCoordinator = coordinator
         return coordinator
         
     }
@@ -37,6 +37,7 @@ final class ARViewWrapper: UIViewControllerRepresentable {
     let arView = loadedStoryboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
     let coordinator = context.coordinator
     arView.delegate = coordinator
+    arView.viewModel = self.viewModel
     coordinator.child = arView
     
     return arView
@@ -55,24 +56,6 @@ class ARCoordinator: NSObject, UINavigationControllerDelegate {
         self.parent = parent
     }
     
-    public func getSpace() -> Space? {
-        if let child = self.child {
-            return child.getSpace()
-        }
-        return nil
-    }
-    
-    public func hasSpace() {
-        parent?.controller.hasSpace()
-    }
-    
-    public func setLocalizationStatus(status: LocalizationStatus) {
-        self.parent?.controller.setLocalizationStatus(status: status)
-    }
-    
-    public func setFinding(toFind: Findable) {
-        self.child?.setFinding(toFind: toFind)
-    }
     
     public func getItemPosition() -> simd_float3? {
         if let child = self.child {

@@ -29,6 +29,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     private var locationManager = CLLocationManager()
     
     private var disposables = Set<AnyCancellable>()
+    var viewModel: InventoryViewModel?
     
     
     override func viewDidLoad() {
@@ -127,6 +128,9 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
                         self?.setCameraPose(pose: result)
                         print("found space")
                         self?.sendLocalizationStatus(status: .foundSpace)
+                        if let finding = self?.viewModel?.finding {
+                            self?.animateItemPosition(findable: finding)
+                        }
                     }
                 
                 }
@@ -157,7 +161,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         self.setSpaceAnchor(spacePosition: pose.pose)
         self.cameraPose = pose
         self.isFindingCameraPose = false
-        self.delegate?.hasSpace()
+        self.viewModel?.space = pose.space
         
     }
     
@@ -172,12 +176,12 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     }
     
     
-    public func hasSpace() -> Bool {
+    private func hasSpace() -> Bool {
         return self.cameraPose?.space != nil
     }
     
     
-    public func getSpace() -> Space? {
+    private func getSpace() -> Space? {
         return self.cameraPose?.space
     }
     
@@ -254,11 +258,11 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     }
     
     private func bindFindable() {
-        self.delegate?.parent?.controller.$finding
+        self.viewModel?.$finding
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: {[weak self] toFind in
                 if let find = toFind {
-                        self?.delegate?.parent?.controller.arViewMode = .findItem
+                        self?.viewModel?.arViewMode = .findItem
                         self?.setFinding(toFind: find)
                     
                 }
@@ -266,11 +270,11 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     }
     
     private func bindARViewMode() {
-        self.delegate?.parent?.controller.$arViewMode
+        self.viewModel?.$arViewMode
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: {[weak self] arMode in
                     if arMode != .findItem && arMode != .none {
-                    self?.delegate?.parent?.controller.finding = nil
+                    self?.viewModel?.finding = nil
                     self?.removeSpheres()
                 }
             })
@@ -278,8 +282,10 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     }
     
     private func sendLocalizationStatus(status: LocalizationStatus) {
-        self.delegate?.setLocalizationStatus(status: status)
+        self.viewModel?.setLocalizationStatus(status: status)
     }
+    
+    
     
 }
 

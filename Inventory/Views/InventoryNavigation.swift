@@ -13,7 +13,7 @@ struct InventoryNavigation: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @FetchRequest(entity: ItemInstance.entity(), sortDescriptors: []) var itemInstances: FetchedResults<ItemInstance>
     @FetchRequest(entity: Space.entity(), sortDescriptors: []) var spaces: FetchedResults<Space>
-    @EnvironmentObject var controller: InventoryController
+    @EnvironmentObject var viewModel: InventoryViewModel
     @State private var itemSearch = ""
     @Environment(\.colorScheme) var colorScheme
     
@@ -103,7 +103,7 @@ struct InventoryNavigation: View {
                         Spacer()
                         #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
                         if ARWorldTrackingConfiguration.supportsFrameSemantics(.sceneDepth) {
-                        Button(action: {controller.showGeneralView()}) {
+                        Button(action: {viewModel.showGeneralView()}) {
                                 Image(systemName: "arkit")
                                     .font(.title)
                                     .accessibility(label: Text("AR View"))

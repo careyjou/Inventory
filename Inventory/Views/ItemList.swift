@@ -10,7 +10,6 @@ import SwiftUI
 
 struct ItemList: View {
     @FetchRequest(entity: Item.entity(), sortDescriptors: []) var items: FetchedResults<Item>
-    @EnvironmentObject var controller: InventoryController
     @Binding var itemSearch: String
     
     var body: some View {

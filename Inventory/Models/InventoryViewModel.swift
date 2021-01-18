@@ -1,5 +1,5 @@
 //
-//  InventoryController.swift
+//  InventoryViewModel.swift
 //  Inventory
 //
 //  Created by Vincent Spitale on 6/24/20.
@@ -7,53 +7,44 @@
 //
 
 import SwiftUI
-import CoreData
-import RealityKit
 import Foundation
-import SceneKit
-import Combine
 
 #if !targetEnvironment(macCatalyst)
 import ARKit
 #endif
 
-class InventoryController: ObservableObject {
+class InventoryViewModel: ObservableObject {
     @Published public var isShowingSheet: Bool = false
     @Published public var arSheetMode: ARSheet = .addItemView
-    @Published public var arHasSpace: Bool = false
+    @Published public var space: Space? = nil
     @Published public var arViewMode: ARViewMode = .none
     @Published public var arLocalizationStatus: LocalizationStatus = .capturing
     @Published public var finding: Findable? = nil
+    
+    
+    public var arHasSpace: Bool {return self.space != nil}
+    
     private var itemToAdd: Item?
     
-    public var spaceToAdd: String? = nil
     
+    private var itemPosition: simd_float3?
     
-    public var itemPosition: simd_float3?
-    
-    
-
-    public var selectedItem: Item? = nil
-    public var spaceFile: URL?
-    public var pointCloud: [PointCloudVertex]?
     #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
     
     public var arCoordinator: ARCoordinator?
     public var arCaptureCoordinator: ARCaptureCoordinator?
     
     #endif
+    
+    private var spaceFile: URL?
+    private var pointCloud: [PointCloudVertex]?
 
 
 
     
 
     public func resetAR() {
-        self.arHasSpace = false;
-        
-        #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
-        self.arCoordinator = nil
-        self.arCaptureCoordinator = nil
-        #endif
+        self.space = nil
         self.arLocalizationStatus = .capturing
         self.itemToAdd = nil
         self.finding = nil
@@ -77,18 +68,8 @@ class InventoryController: ObservableObject {
         self.finding = instance
         withAnimation{self.arViewMode = .repositionInstance}
     }
-    
-    public func showFind(finding: Findable) {
-        self.finding = finding
-        self.arCoordinator?.setFinding(toFind: finding)
-        withAnimation{self.arViewMode = .findItem}
-    }
   
 
-    
-    public func hasSpace() {
-        withAnimation{self.arHasSpace = true}
-    }
     
     public func setLocalizationStatus(status: LocalizationStatus) {
         self.arLocalizationStatus = status
@@ -99,7 +80,11 @@ class InventoryController: ObservableObject {
     
     #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
     public func getSpace() -> Space? {
-        self.arCoordinator?.getSpace()
+        return self.space
+    }
+    
+    public func setSpace(space: Space) {
+        self.space = space
     }
     
     public func placeItem() {
@@ -107,6 +92,10 @@ class InventoryController: ObservableObject {
         self.setSheet(mode: .addItemView)
     }
     
+    public func showFind(finding: Findable) {
+        self.finding = finding
+        withAnimation{self.arViewMode = .findItem}
+    }
 
     
     public func repositionInstance() {
@@ -114,7 +103,7 @@ class InventoryController: ObservableObject {
         self.itemPosition = self.arCoordinator?.getItemPosition()
         
         // Get new space
-        let space = self.arCoordinator?.getSpace()
+       
         
         
         //Add item to new space
@@ -149,6 +138,13 @@ class InventoryController: ObservableObject {
         self.isShowingSheet = true
     }
     
+    public func getItemPosition() -> simd_float3? {
+        return self.itemPosition
+    }
+    
+    public func getPointCloud() -> [PointCloudVertex]? {
+        return self.pointCloud
+    }
     
     
 }

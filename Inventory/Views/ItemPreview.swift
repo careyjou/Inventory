@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct ItemPreview: View {
-    @EnvironmentObject var controller: InventoryController
     @ObservedObject var item: Item
     
     var body: some View {
@@ -25,9 +24,7 @@ struct ItemPreview: View {
         
         else {
         
-            NavigationLink(destination: ItemDetail(item: item).onAppear {
-            controller.selectedItem = item
-        }) {
+            NavigationLink(destination: ItemDetail(item: item)) {
             
             if let name = item.name {
             Text(name)

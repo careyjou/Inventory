@@ -31,9 +31,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             
-            let controller = InventoryController()
+            let viewModel = InventoryViewModel()
             
-            window.rootViewController = UIHostingController(rootView: contentView.environmentObject(controller))
+            window.rootViewController = UIHostingController(rootView: contentView.environmentObject(viewModel))
             self.window = window
             window.makeKeyAndVisible()
         }

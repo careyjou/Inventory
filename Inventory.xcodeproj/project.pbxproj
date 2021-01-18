@@ -72,7 +72,7 @@
 		D5D86CA724A3C5710068A833 /* SpaceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D86CA624A3C5710068A833 /* SpaceList.swift */; };
 		D5D86CA924A3C5F00068A833 /* ItemList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D86CA824A3C5F00068A833 /* ItemList.swift */; };
 		D5D86CAB24A3CA4B0068A833 /* InventoryNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D86CAA24A3CA4B0068A833 /* InventoryNavigation.swift */; };
-		D5D86CAD24A3DFA60068A833 /* InventoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D86CAC24A3DFA60068A833 /* InventoryController.swift */; };
+		D5D86CAD24A3DFA60068A833 /* InventoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D86CAC24A3DFA60068A833 /* InventoryViewModel.swift */; };
 		D5D86CAF24A502C00068A833 /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D86CAE24A502C00068A833 /* ItemView.swift */; };
 		D5D86CB124A503BB0068A833 /* SpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D86CB024A503BB0068A833 /* SpaceView.swift */; };
 		D5DCA3BD25B22D8D00EE3470 /* GoICPPose.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DCA3BC25B22D8D00EE3470 /* GoICPPose.swift */; };
@@ -209,7 +209,7 @@
 		D5D86CA624A3C5710068A833 /* SpaceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceList.swift; sourceTree = "<group>"; };
 		D5D86CA824A3C5F00068A833 /* ItemList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemList.swift; sourceTree = "<group>"; };
 		D5D86CAA24A3CA4B0068A833 /* InventoryNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryNavigation.swift; sourceTree = "<group>"; };
-		D5D86CAC24A3DFA60068A833 /* InventoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryController.swift; sourceTree = "<group>"; };
+		D5D86CAC24A3DFA60068A833 /* InventoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewModel.swift; sourceTree = "<group>"; };
 		D5D86CAE24A502C00068A833 /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
 		D5D86CB024A503BB0068A833 /* SpaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceView.swift; sourceTree = "<group>"; };
 		D5DCA3BC25B22D8D00EE3470 /* GoICPPose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoICPPose.swift; sourceTree = "<group>"; };
@@ -312,9 +312,6 @@
 				D5EBA6F52469069F008020F9 /* Inventory.entitlements */,
 				D53A3E19239B112A006EC344 /* AppDelegate.swift */,
 				D53A3E1B239B112A006EC344 /* SceneDelegate.swift */,
-				D5D86CAC24A3DFA60068A833 /* InventoryController.swift */,
-				D532553A247C454400A00D67 /* Main.storyboard */,
-				D5DD7DC425167AC5009572A9 /* Capture.storyboard */,
 				D561FF1625A7BB3900C6D5F6 /* CameraPoseLocalizer */,
 				D5B761B125165FAA00BFCF42 /* CaptureAR */,
 				D5B761B025165E7C00BFCF42 /* ViewAR */,
@@ -362,6 +359,7 @@
 		D549C7972498796700873FFC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D5D86CAC24A3DFA60068A833 /* InventoryViewModel.swift */,
 				D57473302590777900160E2D /* CloudExtension.swift */,
 				D574732225902C9E00160E2D /* PositionExtension.swift */,
 				D5504DC724C5170C007BF1A5 /* ItemInstanceExtension.swift */,
@@ -465,6 +463,7 @@
 		D5B761B025165E7C00BFCF42 /* ViewAR */ = {
 			isa = PBXGroup;
 			children = (
+				D532553A247C454400A00D67 /* Main.storyboard */,
 				D575C357247B06D8003BAC16 /* ViewController.swift */,
 				D5C790E524737294000B0EC2 /* ARViewWrapper.swift */,
 			);
@@ -474,6 +473,7 @@
 		D5B761B125165FAA00BFCF42 /* CaptureAR */ = {
 			isa = PBXGroup;
 			children = (
+				D5DD7DC425167AC5009572A9 /* Capture.storyboard */,
 				D5DD7DAE25167499009572A9 /* Renderer.swift */,
 				D5DD7DB725167508009572A9 /* Helpers.swift */,
 				D5DD7DB525167508009572A9 /* MetalBuffer.swift */,
@@ -673,7 +673,7 @@
 				D5DD7DAF25167499009572A9 /* Renderer.swift in Sources */,
 				D58D138C2471FA9800521F3E /* AddSpaceView.swift in Sources */,
 				D5A03E252592CA74004E0B7C /* matrix.cpp in Sources */,
-				D5D86CAD24A3DFA60068A833 /* InventoryController.swift in Sources */,
+				D5D86CAD24A3DFA60068A833 /* InventoryViewModel.swift in Sources */,
 				D5A03E1E2592CA74004E0B7C /* jly_goicp.cpp in Sources */,
 				D5D86CAB24A3CA4B0068A833 /* InventoryNavigation.swift in Sources */,
 				D59A38A4245E856300306CF3 /* SpaceExtension.swift in Sources */,

@@ -13,7 +13,7 @@ import CoreData
 struct AddSpaceView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var moc
-    @EnvironmentObject var controller: InventoryController
+    @EnvironmentObject var controller: InventoryViewModel
     @ObservedObject var locationManager = LocationManager()
     
     @State private var name = ""
@@ -53,7 +53,7 @@ struct AddSpaceView: View {
     
     
     private func addSpace() {
-        if let pointCloud = controller.pointCloud {
+        if let pointCloud = controller.getPointCloud() {
             
             
             let cloud = Cloud(moc: moc)
@@ -64,7 +64,7 @@ struct AddSpaceView: View {
                 location = Location(moc: moc, location: loc)
             }
             
-            let space = Space(moc: moc, name: self.name, pointCloud: cloud, location: location)
+            _ = Space(moc: moc, name: self.name, pointCloud: cloud, location: location)
             
             
             if let key = cloud.id{

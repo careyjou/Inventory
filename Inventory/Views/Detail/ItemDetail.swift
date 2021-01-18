@@ -13,7 +13,7 @@ import ARKit
 struct ItemDetail: View {
     
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var controller: InventoryController
+    @EnvironmentObject var controller: InventoryViewModel
     @ObservedObject var item: Item
     
     @State private var isShowingEditView = false

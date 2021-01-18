@@ -17,15 +17,15 @@ import ARKit
 
 final class ARCaptureWrapper: UIViewControllerRepresentable {
 
-    var controller : InventoryController
+    var viewModel : InventoryViewModel
     
-    init(controller: InventoryController) {
-        self.controller = controller
+    init(viewModel: InventoryViewModel) {
+        self.viewModel = viewModel
     }
     
     func makeCoordinator() -> ARCaptureCoordinator {
         let coordinator = Coordinator(self)
-        controller.arCaptureCoordinator = coordinator
+        viewModel.arCaptureCoordinator = coordinator
         return coordinator
         
     }

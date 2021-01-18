@@ -13,7 +13,7 @@ struct ItemInstanceDetail: View {
     
     @ObservedObject var instance : ItemInstance
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var controller: InventoryController
+    @EnvironmentObject var controller: InventoryViewModel
     @State private var isShowingEditView = false
     @State private var isShowing3DView = false
     

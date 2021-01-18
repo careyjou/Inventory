@@ -6,8 +6,6 @@
 //  Copyright © 2020 Vincent Spitale. All rights reserved.
 //
 
-import SwiftUI
-import Combine
 import Foundation
 import CoreData
 import MapKit

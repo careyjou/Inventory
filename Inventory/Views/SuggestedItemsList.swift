@@ -10,7 +10,6 @@ import SwiftUI
 import CoreData
 
 struct SuggestedItemsList: View {
-    @EnvironmentObject var controller: InventoryController
     @FetchRequest(entity: ItemInstance.entity(), sortDescriptors: [NSSortDescriptor(key: "lastModified", ascending: false)]) var items: FetchedResults<ItemInstance>
     
     var body: some View {

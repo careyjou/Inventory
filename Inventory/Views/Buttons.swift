@@ -68,11 +68,10 @@ public struct SecondaryCircleButton: ButtonStyle {
     public func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .font(Font.system(.subheadline).bold())
-            
+            .foregroundColor(.primary)
             //.shadow(radius: 3.0)
             .padding(10)
-            .foregroundColor(.primary)
-            
+            .frame(minWidth: 30, maxWidth: 30, minHeight: 30, maxHeight: 30)
             
             .background(Blur(style: .systemUltraThinMaterial))
             .contentShape(Circle())

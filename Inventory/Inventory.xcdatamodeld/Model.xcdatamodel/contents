@@ -18,7 +18,7 @@
         <relationship name="children" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemInstance" inverseName="parent" inverseEntity="ItemInstance"/>
         <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="instances" inverseEntity="Item"/>
         <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemInstance" inverseName="children" inverseEntity="ItemInstance"/>
-        <relationship name="position" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Position" inverseName="items" inverseEntity="Position"/>
+        <relationship name="position" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Position" inverseName="item" inverseEntity="Position"/>
     </entity>
     <entity name="Location" representedClassName="Location" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
@@ -31,7 +31,7 @@
         <attribute name="x" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="y" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="z" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemInstance" inverseName="position" inverseEntity="ItemInstance"/>
+        <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemInstance" inverseName="position" inverseEntity="ItemInstance"/>
         <relationship name="space" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Space" inverseName="positions" inverseEntity="Space"/>
     </entity>
     <entity name="Space" representedClassName="Space" syncable="YES" codeGenerationType="class">
@@ -45,7 +45,7 @@
     <elements>
         <element name="Cloud" positionX="117.69921875" positionY="-81.0859375" width="128" height="74"/>
         <element name="Item" positionX="-7.078125" positionY="118.15234375" width="128" height="103"/>
-        <element name="ItemInstance" positionX="-317.87109375" positionY="410.6328125" width="128" height="148"/>
+        <element name="ItemInstance" positionX="-317.87109375" positionY="410.6328125" width="128" height="134"/>
         <element name="Location" positionX="-551.7421875" positionY="245.32421875" width="128" height="103"/>
         <element name="Position" positionX="-281.69140625" positionY="95.125" width="128" height="119"/>
         <element name="Space" positionX="-527.01171875" positionY="-54.7578125" width="128" height="133"/>

@@ -18,7 +18,7 @@ import ARKit
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) var moc
-    @EnvironmentObject var controller: InventoryController
+    @EnvironmentObject var viewModel: InventoryViewModel
     @FetchRequest(entity: Space.entity(), sortDescriptors: []) var spaces: FetchedResults<Space>
     
     var body: some View {
@@ -27,32 +27,32 @@ struct ContentView: View {
         return ZStack {
             InventoryNavigation()
                 .zIndex(0)
-                .sheet(isPresented: $controller.isShowingSheet) {
-                    switch controller.arSheetMode {
+                .sheet(isPresented: $viewModel.isShowingSheet) {
+                    switch viewModel.arSheetMode {
                     case .addItemView:
                         AddItemView()
                     case .addSpaceView:
                         AddSpaceView()
                     case .itemSelector:
                         #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
-                    if let space = controller.getSpace() {
-                        SpaceItemList(space: space, selection: $controller.finding)
+                    if let space = viewModel.getSpace() {
+                        SpaceItemList(space: space, selection: $viewModel.finding)
                     }
                         #endif
                     }
                 }
-                .disabled(self.controller.arViewMode != .none && (self.controller.arSheetMode != .addItemView) && self.controller.arSheetMode != .itemSelector)
+                .disabled(self.viewModel.arViewMode != .none && (self.viewModel.arSheetMode != .addItemView) && self.viewModel.arSheetMode != .itemSelector)
             
             
             
             
-            if (self.controller.arViewMode != .none) {
+            if (self.viewModel.arViewMode != .none) {
                 ZStack{
                     self.arViewOverlay()
                     VStack{
                         HStack{
                             Spacer()
-                            Button(action: {self.controller.AROff()}) {
+                            Button(action: {self.viewModel.AROff()}) {
                                 Image(systemName: "xmark")
                             }
                             .buttonStyle(SecondaryCircleButton())
@@ -97,20 +97,20 @@ struct ContentView: View {
         return VStack(alignment: .center) {
             Spacer()
             Group{
-                if (self.controller.arHasSpace) {
+                if (self.viewModel.arHasSpace) {
                 ZStack{
                 HStack{
                     #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
-                    if (self.controller.arViewMode == .general) {
+                    if (self.viewModel.arViewMode == .general) {
                         
-                        Button(action: {self.controller.placeItem()}) {
+                        Button(action: {self.viewModel.placeItem()}) {
                             Text("Place Item")
                         }
                         .buttonStyle(LargeTransparentRoundedButton(isSelected: true))
                     }
                     
-                    if (self.controller.arViewMode == .repositionInstance) {
-                        Button(action: {self.controller.repositionInstance()}) {
+                    if (self.viewModel.arViewMode == .repositionInstance) {
+                        Button(action: {self.viewModel.repositionInstance()}) {
                             Text("Reposition Item")
                         }
                         .buttonStyle(LargeTransparentRoundedButton(isSelected: true))
@@ -123,15 +123,15 @@ struct ContentView: View {
                     HStack{
                     VStack{
                         Group{
-                            if (self.controller.arViewMode != .general) {
-                                Button(action: {self.controller.arViewMode = .general}) {
+                            if (self.viewModel.arViewMode != .general) {
+                                Button(action: {self.viewModel.arViewMode = .general}) {
                                     Image(systemName: "chevron.left")
                                 }
                                 .buttonStyle(SecondaryCircleButton())
                                 .padding(.top)
                             }
-                            if (self.controller.arViewMode == .general || self.controller.arViewMode == .findItem) {
-                                Button(action: {self.controller.setSheet(mode: .itemSelector)}) {
+                            if (self.viewModel.arViewMode == .general || self.viewModel.arViewMode == .findItem) {
+                                Button(action: {self.viewModel.setSheet(mode: .itemSelector)}) {
                             Image(systemName: "magnifyingglass")
                         }
                         .buttonStyle(SecondaryCircleButton())
@@ -153,34 +153,34 @@ struct ContentView: View {
     
     private func arViewOverlay() -> some View {
         return  ZStack {
-            if (self.controller.arViewMode != .mapSpace) {
+            if (self.viewModel.arViewMode != .mapSpace) {
                 #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
-                ARViewWrapper(controller: self.controller).edgesIgnoringSafeArea(.all).onDisappear(perform: {self.controller.resetAR()})
+                ARViewWrapper(viewModel: self.viewModel).edgesIgnoringSafeArea(.all).onDisappear(perform: {self.viewModel.resetAR()})
                 #endif
                 VStack{
                     HStack{
-                        if (!self.controller.arHasSpace) {
+                        if (!self.viewModel.arHasSpace) {
                         Spacer()
                         }
                         Group{
-                            if (self.controller.arHasSpace) {
+                            if (self.viewModel.arHasSpace) {
                                 #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
-                                if (self.controller.arViewMode == .findItem) {
+                                if (self.viewModel.arViewMode == .findItem) {
                                     HStack {
-                                        Text(self.controller.getSpace()?.getName() ?? "Space")
-                                        if let finding = self.controller.finding {
+                                        Text(self.viewModel.getSpace()?.getName() ?? "Space")
+                                        if let finding = self.viewModel.finding {
                                         Text(Image(systemName: "chevron.right")).foregroundColor(.secondary)
                                             Text(finding.getName() ?? "Item")
                                         }
                                     }
                                 }
                                 else {
-                                Text(self.controller.getSpace()?.getName() ?? "Space")
+                                Text(self.viewModel.getSpace()?.getName() ?? "Space")
                                 }
                                 #endif
                             }
                             else {
-                                Text(self.controller.arLocalizationStatus.statusText())
+                                Text(self.viewModel.arLocalizationStatus.statusText())
                             }
                         }
                         .padding(10)
@@ -197,13 +197,13 @@ struct ContentView: View {
             }
             else {
                 #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
-                ARCaptureWrapper(controller: self.controller)
+                ARCaptureWrapper(viewModel: self.viewModel)
                     .edgesIgnoringSafeArea(.all)
-                    .onDisappear(perform: {self.controller.resetAR()})
+                    .onDisappear(perform: {self.viewModel.resetAR()})
                 
                 VStack{
                     Spacer()
-                    Button(action: {self.controller.saveSpace()}) {
+                    Button(action: {self.viewModel.saveSpace()}) {
                         Text("Save Space")
                     }
                     .buttonStyle(LargeTransparentRoundedButton(isSelected: true))

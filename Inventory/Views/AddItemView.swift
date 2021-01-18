@@ -13,7 +13,7 @@ import CoreData
 struct AddItemView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var controller: InventoryController
+    @EnvironmentObject var viewModel: InventoryViewModel
     
     @State private var name = ""
     @State private var quantity = ""
@@ -71,8 +71,8 @@ struct AddItemView: View {
     #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
     func addItem() {
         
-        guard let space = controller.arCoordinator?.getSpace(),
-           let position = controller.itemPosition else {
+        guard let space = viewModel.getSpace(),
+           let position = viewModel.getItemPosition() else {
             return
         }
         

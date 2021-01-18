@@ -10,7 +10,7 @@ import SwiftUI
 import ARKit
 
 struct SpaceView: View {
-    @EnvironmentObject var controller: InventoryController
+    @EnvironmentObject var viewModel: InventoryViewModel
     @State private var spaceSearch = ""
     
     var body: some View {
@@ -38,7 +38,7 @@ struct SpaceView: View {
                     #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
                     if ARWorldTrackingConfiguration.supportsFrameSemantics(.sceneDepth) {
                     Button(action: {
-                            controller.showMapSpaceView()
+                            viewModel.showMapSpaceView()
                         
                     }) {
                         Image(systemName: "plus")

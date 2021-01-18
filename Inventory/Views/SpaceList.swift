@@ -11,7 +11,6 @@ import ARKit
 
 struct SpaceList: View {
     @FetchRequest(entity: Space.entity(), sortDescriptors: []) var spaces: FetchedResults<Space>
-    @EnvironmentObject var controller: InventoryController
     @Binding var spaceSearch: String
     
     var body: some View {
