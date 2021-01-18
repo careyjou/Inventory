@@ -67,6 +67,8 @@
 		D5C790E42472EBD3000B0EC2 /* ARViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C790E32472EBD3000B0EC2 /* ARViewMode.swift */; };
 		D5C790E624737294000B0EC2 /* ARViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C790E524737294000B0EC2 /* ARViewWrapper.swift */; };
 		D5D10C41254F3C6300448EFE /* PointCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D10C40254F3C6300448EFE /* PointCloud.swift */; };
+		D5D681E425B52E68002C8D0F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5D681E325B52E68002C8D0F /* AVFoundation.framework */; };
+		D5D681E725B52EA2002C8D0F /* Blow.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D5D681E625B52EA2002C8D0F /* Blow.aiff */; };
 		D5D86CA724A3C5710068A833 /* SpaceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D86CA624A3C5710068A833 /* SpaceList.swift */; };
 		D5D86CA924A3C5F00068A833 /* ItemList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D86CA824A3C5F00068A833 /* ItemList.swift */; };
 		D5D86CAB24A3CA4B0068A833 /* InventoryNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D86CAA24A3CA4B0068A833 /* InventoryNavigation.swift */; };
@@ -202,6 +204,8 @@
 		D5C790E32472EBD3000B0EC2 /* ARViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewMode.swift; sourceTree = "<group>"; };
 		D5C790E524737294000B0EC2 /* ARViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewWrapper.swift; sourceTree = "<group>"; };
 		D5D10C40254F3C6300448EFE /* PointCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointCloud.swift; sourceTree = "<group>"; };
+		D5D681E325B52E68002C8D0F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		D5D681E625B52EA2002C8D0F /* Blow.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Blow.aiff; sourceTree = "<group>"; };
 		D5D86CA624A3C5710068A833 /* SpaceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceList.swift; sourceTree = "<group>"; };
 		D5D86CA824A3C5F00068A833 /* ItemList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemList.swift; sourceTree = "<group>"; };
 		D5D86CAA24A3CA4B0068A833 /* InventoryNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryNavigation.swift; sourceTree = "<group>"; };
@@ -237,6 +241,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5D681E425B52E68002C8D0F /* AVFoundation.framework in Frameworks */,
 				D5EBA6F8246906A8008020F9 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,6 +308,7 @@
 		D53A3E18239B112A006EC344 /* Inventory */ = {
 			isa = PBXGroup;
 			children = (
+				D5D681E525B52E88002C8D0F /* Sounds */,
 				D5EBA6F52469069F008020F9 /* Inventory.entitlements */,
 				D53A3E19239B112A006EC344 /* AppDelegate.swift */,
 				D53A3E1B239B112A006EC344 /* SceneDelegate.swift */,
@@ -480,6 +486,14 @@
 			path = CaptureAR;
 			sourceTree = "<group>";
 		};
+		D5D681E525B52E88002C8D0F /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				D5D681E625B52EA2002C8D0F /* Blow.aiff */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		D5DCA3B125B2283E00EE3470 /* TestData */ = {
 			isa = PBXGroup;
 			children = (
@@ -492,6 +506,7 @@
 		D5EBA6F6246906A8008020F9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D5D681E325B52E68002C8D0F /* AVFoundation.framework */,
 				D5EBA6F7246906A8008020F9 /* CloudKit.framework */,
 			);
 			name = Frameworks;
@@ -609,6 +624,7 @@
 				D5A03E242592CA74004E0B7C /* config_example.txt in Resources */,
 				D53A3E26239B112D006EC344 /* Preview Assets.xcassets in Resources */,
 				D5A03E1F2592CA74004E0B7C /* LICENSE in Resources */,
+				D5D681E725B52EA2002C8D0F /* Blow.aiff in Resources */,
 				D53A3E23239B112D006EC344 /* Assets.xcassets in Resources */,
 				D5A03E1D2592CA74004E0B7C /* CMakeLists.txt in Resources */,
 			);

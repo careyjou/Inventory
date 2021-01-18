@@ -12,6 +12,7 @@ import RealityKit
 import CoreLocation
 import Metal
 import MetalKit
+import Combine
 #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
 import ARKit
 
@@ -21,12 +22,13 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     private var cameraPose: SpacePoseResult?
     private var spaceAnchor: AnchorEntity?
     private var itemPosition: ModelEntity?
-    private var movingItemPosition: ModelEntity?
     
     weak open var delegate: ARCoordinator?
     private var renderer: Renderer!
     private var isFindingCameraPose: Bool = false
     private var locationManager = CLLocationManager()
+    
+    private var disposables = Set<AnyCancellable>()
     
     
     override func viewDidLoad() {
@@ -77,6 +79,8 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         
         
         self.getLocation()
+        self.bindFindable()
+        self.bindARViewMode()
         
     }
     
@@ -182,11 +186,11 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         
         let camera = frame.camera.transform
         
-        guard let inverse = self.cameraPose?.pose.inverse else {
+        guard let pose = self.cameraPose?.pose else {
             return nil
         }
         
-        let relativePosition = inverse * camera
+        let relativePosition = pose.inverse * camera
          
         return simd_float3(x: Float(relativePosition.columns.3.x), y: Float(relativePosition.columns.3.y), z: Float(relativePosition.columns.3.z))
         
@@ -194,18 +198,26 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     }
     
     
-    public func animateItemPosition(finding: Findable) {
+    public func animateItemPosition(findable: Findable) {
         self.removeSpheres()
         
         guard let space = self.getSpace(),
-              let position = finding.getTransform(space: space) else {
+              let position = findable.getTransform(space: space) else {
             return
         }
         
+        /*
+        let column0 = simd_float4(x: 1, y: 0, z: 0, w: 0)
+        let column1 = simd_float4(x: 0, y: 1, z: 0, w: 0)
+        let column2 = simd_float4(x: 0, y: 0, z: 1, w: 0)
+        var column3 = simd_float4(x: 0, y: 0, z: 0, w: 1)
         
-        let frame = arView.session.currentFrame!
+        column3.x = position.x
+        column3.y = position.y
+        column3.z = position.z
         
-        let camera = frame.camera.transform
+        let transform = simd_float4x4(columns: (column0, column1, column2, column3))
+        */
         
         
         let brightWhite = UnlitMaterial(color: .white)
@@ -213,49 +225,57 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
                                
         let fixedItemPosition = ModelEntity(mesh: .generateSphere(radius: 0.05), materials: [brightWhite])
         
-        let animatingPosition = ModelEntity(mesh: .generateSphere(radius: 0.05), materials: [brightWhite])
         
-        animatingPosition.position = simd_float3(x: camera.columns.3.x, y: camera.columns.3.y, z: camera.columns.3.z)
-        
-        fixedItemPosition.position = position
+        fixedItemPosition.move(to: Transform(translation: position), relativeTo: .none)
         
         spaceAnchor?.addChild(fixedItemPosition)
-        spaceAnchor?.addChild(animatingPosition)
         
         self.itemPosition = fixedItemPosition
-        self.movingItemPosition = animatingPosition
         
-        let column0 = simd_float4(x: 1, y: 0, z: 0, w: 0)
-        let column1 = simd_float4(x: 0, y: 1, z: 0, w: 0)
-        let column2 = simd_float4(x: 0, y: 0, z: 1, w: 0)
-        var column3 = simd_float4(x: 0, y: 0, z: 0, w: 1)
+        guard let soundUrl = Bundle.main.url(forResource: "Blow", withExtension: "aiff"),
+              let beaconSound = try? AudioFileResource.load(contentsOf: soundUrl, inputMode: .spatial, loadingStrategy: .preload, shouldLoop: true) else {
+            return
+        }
         
-        column3.x = position.x - camera.columns.3.x
-        column3.y = position.y - camera.columns.3.y
-        column3.z = position.z - camera.columns.3.z
-        
-        let transform = simd_float4x4(columns: (column0, column1, column2, column3))
-        
-        let length = powf((powf(position.x - camera.columns.3.x, 2) + powf(position.y - camera.columns.3.y, 2) + powf(position.z - camera.columns.3.z, 2)), 0.5) * 3
-        
-        animatingPosition.move(to: transform, relativeTo: .none, duration: TimeInterval(length))
+        let audioController = fixedItemPosition.prepareAudio(beaconSound)
+        audioController.play()
         
         
     }
     
     public func setFinding(toFind: Findable) {
-        self.animateItemPosition(finding: toFind)
+        self.animateItemPosition(findable: toFind)
     }
     
     public func removeSpheres() {
         self.itemPosition?.removeFromParent()
-        self.movingItemPosition?.removeFromParent()
         
         self.itemPosition = nil
-        self.movingItemPosition = nil
     }
     
+    private func bindFindable() {
+        self.delegate?.parent?.controller.$finding
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: {[weak self] toFind in
+                if let find = toFind {
+                        self?.delegate?.parent?.controller.arViewMode = .findItem
+                        self?.setFinding(toFind: find)
+                    
+                }
+        }).store(in: &disposables)
+    }
     
+    private func bindARViewMode() {
+        self.delegate?.parent?.controller.$arViewMode
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: {[weak self] arMode in
+                    if arMode != .findItem && arMode != .none {
+                    self?.delegate?.parent?.controller.finding = nil
+                    self?.removeSpheres()
+                }
+            })
+            .store(in: &disposables)
+    }
     
     private func sendLocalizationStatus(status: LocalizationStatus) {
         self.delegate?.setLocalizationStatus(status: status)

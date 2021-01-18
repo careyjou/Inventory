@@ -11,6 +11,7 @@ import CoreData
 import RealityKit
 import Foundation
 import SceneKit
+import Combine
 
 #if !targetEnvironment(macCatalyst)
 import ARKit
@@ -42,8 +43,8 @@ class InventoryController: ObservableObject {
     
     #endif
 
-    
-    
+
+
     
 
     public func resetAR() {
@@ -55,6 +56,7 @@ class InventoryController: ObservableObject {
         #endif
         self.arLocalizationStatus = .capturing
         self.itemToAdd = nil
+        self.finding = nil
     }
     
     /// <#Description#>
@@ -146,6 +148,7 @@ class InventoryController: ObservableObject {
         self.arSheetMode = mode
         self.isShowingSheet = true
     }
+    
     
     
 }
