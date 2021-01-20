@@ -182,6 +182,8 @@ final class Renderer {
         pointCloudUniforms.cameraIntrinsicsInversed = cameraIntrinsicsInversed
     }
     
+    
+    /// Gathers points without requiring a view to display the buffer.
     func gatherPoints() {
         guard let device = MTLCreateSystemDefaultDevice() else {
             print("Metal is not supported on this device")

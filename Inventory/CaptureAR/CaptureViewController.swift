@@ -14,6 +14,7 @@ import MetalKit
 import ARKit
 
 
+/// Augmented Reality view that captures point clouds using depth data.
 class CaptureViewController: UIViewController, ARSessionDelegate {
     private let session = ARSession()
     private var renderer: Renderer!
@@ -89,6 +90,8 @@ class CaptureViewController: UIViewController, ARSessionDelegate {
     }
 
     
+    /// Get all of the points the renderer has collected.
+    /// - Returns: A collection of point cloud points
     func getPoints() -> [PointCloudVertex] {
         return renderer.getPoints()
     }

@@ -31,6 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             
+            // create model of augmented reality state
             let viewModel = InventoryViewModel()
             
             window.rootViewController = UIHostingController(rootView: contentView.environmentObject(viewModel))

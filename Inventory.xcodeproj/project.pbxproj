@@ -308,17 +308,17 @@
 		D53A3E18239B112A006EC344 /* Inventory */ = {
 			isa = PBXGroup;
 			children = (
-				D5D681E525B52E88002C8D0F /* Sounds */,
 				D5EBA6F52469069F008020F9 /* Inventory.entitlements */,
 				D53A3E19239B112A006EC344 /* AppDelegate.swift */,
 				D53A3E1B239B112A006EC344 /* SceneDelegate.swift */,
-				D561FF1625A7BB3900C6D5F6 /* CameraPoseLocalizer */,
+				D561FF1625A7BB3900C6D5F6 /* CameraPoseFinder */,
 				D5B761B125165FAA00BFCF42 /* CaptureAR */,
 				D5B761B025165E7C00BFCF42 /* ViewAR */,
 				D549C7972498796700873FFC /* Models */,
 				D549C79824987A2C00873FFC /* Views */,
-				D5EBA6F324690009008020F9 /* Colors.xcassets */,
+				D5D681E525B52E88002C8D0F /* Sounds */,
 				D53A3E22239B112D006EC344 /* Assets.xcassets */,
+				D5EBA6F324690009008020F9 /* Colors.xcassets */,
 				D53A3E27239B112D006EC344 /* LaunchScreen.storyboard */,
 				D53A3E2A239B112D006EC344 /* Info.plist */,
 				D53A3E24239B112D006EC344 /* Preview Content */,
@@ -414,20 +414,16 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		D561FF1625A7BB3900C6D5F6 /* CameraPoseLocalizer */ = {
+		D561FF1625A7BB3900C6D5F6 /* CameraPoseFinder */ = {
 			isa = PBXGroup;
 			children = (
-				D5A03DF72592CA74004E0B7C /* CameraPoseFinder */,
+				D5D681FD25B6A752002C8D0F /* GoICP */,
 				D561FF1725A7BB7C00C6D5F6 /* CameraPoseLocalizer.swift */,
-				D53448C325ABFD8600033351 /* CameraPoseFinder_Wrapper.mm */,
-				D53448C225ABFC4900033351 /* jly_main.hpp */,
-				D53448C825ABFE0000033351 /* CameraPoseFinder_Wrapper.h */,
-				D5DCA3BC25B22D8D00EE3470 /* GoICPPose.swift */,
 			);
-			path = CameraPoseLocalizer;
+			path = CameraPoseFinder;
 			sourceTree = "<group>";
 		};
-		D5A03DF72592CA74004E0B7C /* CameraPoseFinder */ = {
+		D5A03DF72592CA74004E0B7C /* src */ = {
 			isa = PBXGroup;
 			children = (
 				D5A03E012592CA74004E0B7C /* jly_main.cpp */,
@@ -449,7 +445,7 @@
 				D5A03E132592CA74004E0B7C /* nanoflann.hpp */,
 				D5433A8725ACE282002A9600 /* point_3d.h */,
 			);
-			path = CameraPoseFinder;
+			path = src;
 			sourceTree = "<group>";
 		};
 		D5A0819F257187AE0053BC5E /* SheetViews */ = {
@@ -492,6 +488,18 @@
 				D5D681E625B52EA2002C8D0F /* Blow.aiff */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		D5D681FD25B6A752002C8D0F /* GoICP */ = {
+			isa = PBXGroup;
+			children = (
+				D5A03DF72592CA74004E0B7C /* src */,
+				D53448C325ABFD8600033351 /* CameraPoseFinder_Wrapper.mm */,
+				D53448C225ABFC4900033351 /* jly_main.hpp */,
+				D53448C825ABFE0000033351 /* CameraPoseFinder_Wrapper.h */,
+				D5DCA3BC25B22D8D00EE3470 /* GoICPPose.swift */,
+			);
+			path = GoICP;
 			sourceTree = "<group>";
 		};
 		D5DCA3B125B2283E00EE3470 /* TestData */ = {

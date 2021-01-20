@@ -13,30 +13,44 @@ import Foundation
 import ARKit
 #endif
 
+
+/// Represents the state of the app's augmented reality properties. Inventory
+/// largely follows the MVVM design pattern. The ViewAR view controller
+/// dynamically reacts to changes in the published properties using Combine
+/// to ensure consistent information with the rest of the app. SwiftUI views in the main
+/// ContextView also update with changes to this state object that is stored in the environment.
 class InventoryViewModel: ObservableObject {
+    // controls if the swiftui sheet is presented
     @Published public var isShowingSheet: Bool = false
+    // determines what type of sheet is presented
     @Published public var arSheetMode: ARSheet = .addItemView
+    // the space that has been detected by the camera pose localizer
     @Published public var space: Space? = nil
+    // the ar mode that enables certain ui elements to be shown
     @Published public var arViewMode: ARViewMode = .none
+    // informs the user about the status of the localization
     @Published public var arLocalizationStatus: LocalizationStatus = .capturing
+    // the findable object that the ar view will display in the scene
     @Published public var finding: Findable? = nil
     
-    
+    // unlocks ui elements once the arView has been localized
     public var arHasSpace: Bool {return self.space != nil}
     
+    // the item that an instance will inherit from in the addInstance mode
     private var itemToAdd: Item?
     
-    
+    // the position of the item instance to be added to the space
     private var itemPosition: simd_float3?
     
     #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
     
+    // the delegate of the ar view controller
     public var arCoordinator: ARCoordinator?
+    // the delegate of the point cloud capture view controller
     public var arCaptureCoordinator: ARCaptureCoordinator?
     
     #endif
-    
-    private var spaceFile: URL?
+    // the point cloud collected in the 'mapSpace' ar view mode
     private var pointCloud: [PointCloudVertex]?
 
 

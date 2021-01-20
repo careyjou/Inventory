@@ -14,7 +14,7 @@ struct PointCloudView: UIViewRepresentable {
     @ObservedObject var space: Space
     @ObservedObject var data: SpacePointCloudAppData
     @Binding var findable: Findable?
-    
+    @Environment(\.colorScheme) var colorScheme
     @State var scene: SCNScene = SCNScene()
     
     
@@ -28,8 +28,7 @@ struct PointCloudView: UIViewRepresentable {
         view.autoenablesDefaultLighting = true
         view.allowsCameraControl = true
         
-        
-        
+                
         return view
     }
     
@@ -58,6 +57,10 @@ struct PointCloudView: UIViewRepresentable {
         column3.z = transform.z
         
         let sphere = SCNSphere(radius: 0.05)
+        
+        sphere.firstMaterial?.diffuse.contents = colorScheme == .light ? UIColor(.gray) : UIColor(.white)
+        sphere.firstMaterial?.lightingModel = .constant
+        
         let node = SCNNode()
         node.name = "ball"
         node.geometry = sphere

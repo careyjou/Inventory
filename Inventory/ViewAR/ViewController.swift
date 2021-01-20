@@ -17,14 +17,22 @@ import Combine
 import ARKit
 
 
+/// Augmented reality view for displaying the position of items in a localized space.
 class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDelegate {
     @IBOutlet var arView: ARView!
+    // where the space's point cloud's world origin maps to in this view
     private var cameraPose: SpacePoseResult?
+    // world origin of the space's point cloud
     private var spaceAnchor: AnchorEntity?
+    // sphere to be displayed
     private var itemPosition: ModelEntity?
     
     weak open var delegate: ARCoordinator?
+    
+    // used for discretely capturing a query point cloud to be localized
     private var renderer: Renderer!
+    
+    // determines if more points will be captured
     private var isFindingCameraPose: Bool = false
     private var locationManager = CLLocationManager()
     
@@ -80,6 +88,8 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         
         
         self.getLocation()
+        
+        // to follow the MVVM pattern, changes to the findable and arMode will trigger functions to be called
         self.bindFindable()
         self.bindARViewMode()
         
