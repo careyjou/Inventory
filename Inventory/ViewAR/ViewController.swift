@@ -71,19 +71,18 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         // Set the view to use the default device
         
         
-        
         let mtkView = MTKView()
         
-            mtkView.device = device
-            
-            view.backgroundColor = UIColor.clear
-            // we need this to enable depth test
-            mtkView.depthStencilPixelFormat = .depth32Float
-            view.contentScaleFactor = 1
-            
-            // Configure the renderer to draw to the view
-            renderer = Renderer(session: arView.session, metalDevice: device, renderDestination: mtkView)
-            renderer.drawRectResized(size: view.bounds.size)
+        mtkView.device = device
+        
+        view.backgroundColor = UIColor.clear
+        // we need this to enable depth test
+        mtkView.depthStencilPixelFormat = .depth32Float
+        view.contentScaleFactor = 1
+        
+        // Configure the renderer to draw to the view
+        renderer = Renderer(session: arView.session, metalDevice: device, renderDestination: mtkView)
+        renderer.drawRectResized(size: view.bounds.size)
         
         
         
@@ -102,7 +101,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         // enable the scene depth frame-semantic.
         let configuration = ARWorldTrackingConfiguration()
         configuration.frameSemantics = .sceneDepth
-
+        
         // Run the view's session
         arView.session.run(configuration)
         
@@ -117,11 +116,16 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     }
     
     
+    
+    /// Gather points or localize if applicable.
+    /// - Parameters:
+    ///   - session: augmented reality session
+    ///   - didUpdate: current augmented reality view
     func session(_ session: ARSession, didUpdate: ARFrame) {
         if (cameraPose?.space == nil && (renderer.numPoints() < 20000)) {
             renderer.gatherPoints()
         }
-        else if (!self.isFindingCameraPose && cameraPose?.space == nil && renderer.numPoints() >= 20000) {
+        else if (!self.isFindingCameraPose && !isLocalized() && renderer.numPoints() >= 20000) {
             let queryPoints = renderer.getPoints()
             self.isFindingCameraPose = true
             guard let cameraPoseLocalizer = CameraPoseLocalizer() else {
@@ -131,7 +135,8 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
             print("Started Registration")
             
             self.sendLocalizationStatus(status: .localizing)
-
+            
+            // localization should not be run on the main thread because it would freeze the ui and interfere with the ARKit's SLAM
             DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                 if let result = cameraPoseLocalizer.getCameraPose(queryPointCloud: PointCloud(pointCloud: queryPoints), location: self?.locationManager.location, poseFinder: GoICPPose()) {
                     DispatchQueue.main.async {
@@ -142,7 +147,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
                             self?.animateItemPosition(findable: finding)
                         }
                     }
-                
+                    
                 }
                 else {
                     DispatchQueue.main.async {
@@ -150,7 +155,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
                     }
                 }
             }
- 
+            
             
         }
         
@@ -167,7 +172,10 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         
     }
     
-    public func setCameraPose(pose: SpacePoseResult) {
+    
+    /// Update the view model with the camera pose.
+    /// - Parameter pose: camera pose in space
+    private func setCameraPose(pose: SpacePoseResult) {
         self.setSpaceAnchor(spacePosition: pose.pose)
         self.cameraPose = pose
         self.isFindingCameraPose = false
@@ -176,6 +184,8 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     }
     
     
+    /// Add an AR anchor with the pose from the camera pose result.
+    /// - Parameter spacePosition: pose of the reference point cloud in this AR scene
     private func setSpaceAnchor(spacePosition: simd_float4x4) {
         let anchor = AnchorEntity(.world(transform: spacePosition))
         self.spaceAnchor = anchor
@@ -186,15 +196,22 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     }
     
     
-    private func hasSpace() -> Bool {
-        return self.cameraPose?.space != nil
+    /// Has the real world been matched to a camera pose?
+    /// - Returns: does this ar scene have a camera pose
+    private func isLocalized() -> Bool {
+        return self.cameraPose != nil
     }
     
     
+    /// Get the camera pose's space if the world has been localized.
+    /// - Returns: space the real world has been matched to
     private func getSpace() -> Space? {
         return self.cameraPose?.space
     }
     
+    
+    /// <#Description#>
+    /// - Returns: <#description#>
     public func getItemPosition() -> simd_float3? {
         let frame = arView.session.currentFrame!
         
@@ -205,7 +222,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         }
         
         let relativePosition = pose.inverse * camera
-         
+        
         return simd_float3(x: Float(relativePosition.columns.3.x), y: Float(relativePosition.columns.3.y), z: Float(relativePosition.columns.3.z))
         
         
@@ -221,22 +238,22 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         }
         
         /*
-        let column0 = simd_float4(x: 1, y: 0, z: 0, w: 0)
-        let column1 = simd_float4(x: 0, y: 1, z: 0, w: 0)
-        let column2 = simd_float4(x: 0, y: 0, z: 1, w: 0)
-        var column3 = simd_float4(x: 0, y: 0, z: 0, w: 1)
-        
-        column3.x = position.x
-        column3.y = position.y
-        column3.z = position.z
-        
-        let transform = simd_float4x4(columns: (column0, column1, column2, column3))
-        */
+         let column0 = simd_float4(x: 1, y: 0, z: 0, w: 0)
+         let column1 = simd_float4(x: 0, y: 1, z: 0, w: 0)
+         let column2 = simd_float4(x: 0, y: 0, z: 1, w: 0)
+         var column3 = simd_float4(x: 0, y: 0, z: 0, w: 1)
+         
+         column3.x = position.x
+         column3.y = position.y
+         column3.z = position.z
+         
+         let transform = simd_float4x4(columns: (column0, column1, column2, column3))
+         */
         
         
         let brightWhite = UnlitMaterial(color: .white)
-                               
-                               
+        
+        
         let fixedItemPosition = ModelEntity(mesh: .generateSphere(radius: 0.05), materials: [brightWhite])
         
         
@@ -272,18 +289,18 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: {[weak self] toFind in
                 if let find = toFind {
-                        self?.viewModel?.arViewMode = .findItem
-                        self?.setFinding(toFind: find)
+                    self?.viewModel?.arViewMode = .findItem
+                    self?.setFinding(toFind: find)
                     
                 }
-        }).store(in: &disposables)
+            }).store(in: &disposables)
     }
     
     private func bindARViewMode() {
         self.viewModel?.$arViewMode
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: {[weak self] arMode in
-                    if arMode != .findItem && arMode != .none {
+                if arMode != .findItem && arMode != .none {
                     self?.viewModel?.finding = nil
                     self?.removeSpheres()
                 }

@@ -31,8 +31,15 @@
 		D554C280259103D500C8A97C /* ItemPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D554C27F259103D500C8A97C /* ItemPreview.swift */; };
 		D554C2852591513700C8A97C /* ItemInstanceHierarchy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D554C2842591513700C8A97C /* ItemInstanceHierarchy.swift */; };
 		D558775724DA080B0068756D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D558775624DA080B0068756D /* Utils.swift */; };
+		D5592B6F25C3A4C700E00A39 /* TeaserPlusPlus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5592B6E25C3A4C700E00A39 /* TeaserPlusPlus.swift */; };
 		D561FF1825A7BB7C00C6D5F6 /* CameraPoseLocalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D561FF1725A7BB7C00C6D5F6 /* CameraPoseLocalizer.swift */; };
 		D561FF2325A8B9A000C6D5F6 /* LocationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D561FF2225A8B9A000C6D5F6 /* LocationExtension.swift */; };
+		D5635C9C25C3C9D600CD30DE /* fpfh.cc in Sources */ = {isa = PBXBuildFile; fileRef = D5635C8B25C3C9D600CD30DE /* fpfh.cc */; };
+		D5635C9D25C3C9D600CD30DE /* ply_io.cc in Sources */ = {isa = PBXBuildFile; fileRef = D5635C8C25C3C9D600CD30DE /* ply_io.cc */; };
+		D5635C9E25C3C9D600CD30DE /* graph.cc in Sources */ = {isa = PBXBuildFile; fileRef = D5635C8D25C3C9D600CD30DE /* graph.cc */; };
+		D5635C9F25C3C9D600CD30DE /* registration.cc in Sources */ = {isa = PBXBuildFile; fileRef = D5635C9925C3C9D600CD30DE /* registration.cc */; };
+		D5635CA025C3C9D600CD30DE /* certification.cc in Sources */ = {isa = PBXBuildFile; fileRef = D5635C9A25C3C9D600CD30DE /* certification.cc */; };
+		D5635CA125C3C9D600CD30DE /* matcher.cc in Sources */ = {isa = PBXBuildFile; fileRef = D5635C9B25C3C9D600CD30DE /* matcher.cc */; };
 		D572309F24F1A90A00F38450 /* ModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D572309E24F1A90A00F38450 /* ModelView.swift */; };
 		D574730F2590233100160E2D /* Inventory.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D574730D2590233100160E2D /* Inventory.xcdatamodeld */; };
 		D574732325902C9E00160E2D /* PositionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574732225902C9E00160E2D /* PositionExtension.swift */; };
@@ -160,8 +167,25 @@
 		D554C27F259103D500C8A97C /* ItemPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPreview.swift; sourceTree = "<group>"; };
 		D554C2842591513700C8A97C /* ItemInstanceHierarchy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInstanceHierarchy.swift; sourceTree = "<group>"; };
 		D558775624DA080B0068756D /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		D5592B6E25C3A4C700E00A39 /* TeaserPlusPlus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeaserPlusPlus.swift; sourceTree = "<group>"; };
 		D561FF1725A7BB7C00C6D5F6 /* CameraPoseLocalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPoseLocalizer.swift; sourceTree = "<group>"; };
 		D561FF2225A8B9A000C6D5F6 /* LocationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationExtension.swift; sourceTree = "<group>"; };
+		D5635C8B25C3C9D600CD30DE /* fpfh.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fpfh.cc; sourceTree = "<group>"; };
+		D5635C8C25C3C9D600CD30DE /* ply_io.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ply_io.cc; sourceTree = "<group>"; };
+		D5635C8D25C3C9D600CD30DE /* graph.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = graph.cc; sourceTree = "<group>"; };
+		D5635C8F25C3C9D600CD30DE /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
+		D5635C9025C3C9D600CD30DE /* matcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matcher.h; sourceTree = "<group>"; };
+		D5635C9125C3C9D600CD30DE /* certification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = certification.h; sourceTree = "<group>"; };
+		D5635C9225C3C9D600CD30DE /* registration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = registration.h; sourceTree = "<group>"; };
+		D5635C9325C3C9D600CD30DE /* ply_io.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ply_io.h; sourceTree = "<group>"; };
+		D5635C9425C3C9D600CD30DE /* graph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graph.h; sourceTree = "<group>"; };
+		D5635C9525C3C9D600CD30DE /* macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macros.h; sourceTree = "<group>"; };
+		D5635C9625C3C9D600CD30DE /* fpfh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fpfh.h; sourceTree = "<group>"; };
+		D5635C9725C3C9D600CD30DE /* linalg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = linalg.h; sourceTree = "<group>"; };
+		D5635C9825C3C9D600CD30DE /* geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geometry.h; sourceTree = "<group>"; };
+		D5635C9925C3C9D600CD30DE /* registration.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = registration.cc; sourceTree = "<group>"; };
+		D5635C9A25C3C9D600CD30DE /* certification.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = certification.cc; sourceTree = "<group>"; };
+		D5635C9B25C3C9D600CD30DE /* matcher.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = matcher.cc; sourceTree = "<group>"; };
 		D572309E24F1A90A00F38450 /* ModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelView.swift; sourceTree = "<group>"; };
 		D574730E2590233100160E2D /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		D574732225902C9E00160E2D /* PositionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionExtension.swift; sourceTree = "<group>"; };
@@ -216,7 +240,7 @@
 		D5DCA3C725B23AF300EE3470 /* couch-2.ply */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "couch-2.ply"; sourceTree = "<group>"; };
 		D5DCA3C825B23AF300EE3470 /* couch-1.ply */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "couch-1.ply"; sourceTree = "<group>"; };
 		D5DD7DAE25167499009572A9 /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
-		D5DD7DB325167507009572A9 /* SceneDepthPointCloud-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SceneDepthPointCloud-Bridging-Header.h"; sourceTree = "<group>"; };
+		D5DD7DB325167507009572A9 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		D5DD7DB425167508009572A9 /* ShaderTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderTypes.h; sourceTree = "<group>"; };
 		D5DD7DB525167508009572A9 /* MetalBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalBuffer.swift; sourceTree = "<group>"; };
 		D5DD7DB625167508009572A9 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
@@ -311,6 +335,7 @@
 				D5EBA6F52469069F008020F9 /* Inventory.entitlements */,
 				D53A3E19239B112A006EC344 /* AppDelegate.swift */,
 				D53A3E1B239B112A006EC344 /* SceneDelegate.swift */,
+				D5DD7DB325167507009572A9 /* Bridging-Header.h */,
 				D561FF1625A7BB3900C6D5F6 /* CameraPoseFinder */,
 				D5B761B125165FAA00BFCF42 /* CaptureAR */,
 				D5B761B025165E7C00BFCF42 /* ViewAR */,
@@ -414,13 +439,54 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		D5592B6D25C3A4AE00E00A39 /* TeaserPlusPlus */ = {
+			isa = PBXGroup;
+			children = (
+				D5635C8A25C3C9D600CD30DE /* src */,
+				D5592B6E25C3A4C700E00A39 /* TeaserPlusPlus.swift */,
+			);
+			path = TeaserPlusPlus;
+			sourceTree = "<group>";
+		};
 		D561FF1625A7BB3900C6D5F6 /* CameraPoseFinder */ = {
 			isa = PBXGroup;
 			children = (
+				D5592B6D25C3A4AE00E00A39 /* TeaserPlusPlus */,
 				D5D681FD25B6A752002C8D0F /* GoICP */,
 				D561FF1725A7BB7C00C6D5F6 /* CameraPoseLocalizer.swift */,
 			);
 			path = CameraPoseFinder;
+			sourceTree = "<group>";
+		};
+		D5635C8A25C3C9D600CD30DE /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D5635C8B25C3C9D600CD30DE /* fpfh.cc */,
+				D5635C8C25C3C9D600CD30DE /* ply_io.cc */,
+				D5635C8D25C3C9D600CD30DE /* graph.cc */,
+				D5635C8E25C3C9D600CD30DE /* teaser */,
+				D5635C9925C3C9D600CD30DE /* registration.cc */,
+				D5635C9A25C3C9D600CD30DE /* certification.cc */,
+				D5635C9B25C3C9D600CD30DE /* matcher.cc */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		D5635C8E25C3C9D600CD30DE /* teaser */ = {
+			isa = PBXGroup;
+			children = (
+				D5635C8F25C3C9D600CD30DE /* utils.h */,
+				D5635C9025C3C9D600CD30DE /* matcher.h */,
+				D5635C9125C3C9D600CD30DE /* certification.h */,
+				D5635C9225C3C9D600CD30DE /* registration.h */,
+				D5635C9325C3C9D600CD30DE /* ply_io.h */,
+				D5635C9425C3C9D600CD30DE /* graph.h */,
+				D5635C9525C3C9D600CD30DE /* macros.h */,
+				D5635C9625C3C9D600CD30DE /* fpfh.h */,
+				D5635C9725C3C9D600CD30DE /* linalg.h */,
+				D5635C9825C3C9D600CD30DE /* geometry.h */,
+			);
+			path = teaser;
 			sourceTree = "<group>";
 		};
 		D5A03DF72592CA74004E0B7C /* src */ = {
@@ -473,7 +539,6 @@
 				D5DD7DAE25167499009572A9 /* Renderer.swift */,
 				D5DD7DB725167508009572A9 /* Helpers.swift */,
 				D5DD7DB525167508009572A9 /* MetalBuffer.swift */,
-				D5DD7DB325167507009572A9 /* SceneDepthPointCloud-Bridging-Header.h */,
 				D5DD7DB625167508009572A9 /* Shaders.metal */,
 				D5DD7DB425167508009572A9 /* ShaderTypes.h */,
 				D5B761B2251660C800BFCF42 /* ARCaptureWrapper.swift */,
@@ -665,11 +730,14 @@
 				D5A08198257178120053BC5E /* SheetView.swift in Sources */,
 				D5EBA6FA24691013008020F9 /* AddItemView.swift in Sources */,
 				D549C79C2499703700873FFC /* SpacePreview.swift in Sources */,
+				D5635C9F25C3C9D600CD30DE /* registration.cc in Sources */,
 				D5D86CB124A503BB0068A833 /* SpaceView.swift in Sources */,
+				D5635CA125C3C9D600CD30DE /* matcher.cc in Sources */,
 				D59A38A0245E7FB400306CF3 /* ItemDetail.swift in Sources */,
 				D53448C425ABFD8600033351 /* CameraPoseFinder_Wrapper.mm in Sources */,
 				D574730F2590233100160E2D /* Inventory.xcdatamodeld in Sources */,
 				D57473312590777900160E2D /* CloudExtension.swift in Sources */,
+				D5635CA025C3C9D600CD30DE /* certification.cc in Sources */,
 				D5EBA6EC24689821008020F9 /* Buttons.swift in Sources */,
 				D5B761B3251660C800BFCF42 /* ARCaptureWrapper.swift in Sources */,
 				D5B761B82516633700BFCF42 /* CaptureViewController.swift in Sources */,
@@ -680,9 +748,11 @@
 				D547954F25AB9DE900523D44 /* LocationManager.swift in Sources */,
 				D5DD7DAF25167499009572A9 /* Renderer.swift in Sources */,
 				D58D138C2471FA9800521F3E /* AddSpaceView.swift in Sources */,
+				D5592B6F25C3A4C700E00A39 /* TeaserPlusPlus.swift in Sources */,
 				D5A03E252592CA74004E0B7C /* matrix.cpp in Sources */,
 				D5D86CAD24A3DFA60068A833 /* InventoryViewModel.swift in Sources */,
 				D5A03E1E2592CA74004E0B7C /* jly_goicp.cpp in Sources */,
+				D5635C9E25C3C9D600CD30DE /* graph.cc in Sources */,
 				D5D86CAB24A3CA4B0068A833 /* InventoryNavigation.swift in Sources */,
 				D59A38A4245E856300306CF3 /* SpaceExtension.swift in Sources */,
 				D5C790E42472EBD3000B0EC2 /* ARViewMode.swift in Sources */,
@@ -691,6 +761,7 @@
 				D5AE7F0D24A6EA7000D175D2 /* UserPreview.swift in Sources */,
 				D51E632D24A82756000D97DD /* SpacePointCloudAppData.swift in Sources */,
 				D51F0EC025941C08005AC360 /* ItemInstancePreview.swift in Sources */,
+				D5635C9C25C3C9D600CD30DE /* fpfh.cc in Sources */,
 				D5504DC824C5170C007BF1A5 /* ItemInstanceExtension.swift in Sources */,
 				D5E7446724A67870004803EE /* SuggestedItemsList.swift in Sources */,
 				D53A3E21239B112A006EC344 /* ContentView.swift in Sources */,
@@ -700,6 +771,7 @@
 				D59A38A2245E803100306CF3 /* ItemExtension.swift in Sources */,
 				D5DCA3BD25B22D8D00EE3470 /* GoICPPose.swift in Sources */,
 				D554C280259103D500C8A97C /* ItemPreview.swift in Sources */,
+				D5635C9D25C3C9D600CD30DE /* ply_io.cc in Sources */,
 				D5D86CAF24A502C00068A833 /* ItemView.swift in Sources */,
 				D58D13862471B7F400521F3E /* NavigationViewMode.swift in Sources */,
 				D575C358247B06D8003BAC16 /* ViewController.swift in Sources */,
@@ -844,7 +916,7 @@
 				SDKROOT = iphoneos;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "Inventory/CaptureAR/SceneDepthPointCloud-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Inventory/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -901,7 +973,7 @@
 				SDKROOT = iphoneos;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OBJC_BRIDGING_HEADER = "Inventory/CaptureAR/SceneDepthPointCloud-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Inventory/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -917,6 +989,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Inventory/Preview Content\"";
 				DEVELOPMENT_TEAM = R4NGB6G36L;
 				ENABLE_PREVIEWS = YES;
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					/opt/homebrew/include,
+					"${inherited}",
+				);
 				INFOPLIST_FILE = Inventory/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -941,6 +1017,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Inventory/Preview Content\"";
 				DEVELOPMENT_TEAM = R4NGB6G36L;
 				ENABLE_PREVIEWS = YES;
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					/opt/homebrew/include,
+					"${inherited}",
+				);
 				INFOPLIST_FILE = Inventory/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
