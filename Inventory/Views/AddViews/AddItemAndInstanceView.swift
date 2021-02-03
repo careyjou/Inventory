@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 import CoreData
 
-struct AddItemView: View {
+struct AddItemAndInstanceView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var viewModel: InventoryViewModel

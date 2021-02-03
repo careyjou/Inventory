@@ -30,7 +30,7 @@ struct ContentView: View {
                 .sheet(isPresented: $viewModel.isShowingSheet) {
                     switch viewModel.arSheetMode {
                     case .addItemView:
-                        AddItemView()
+                        AddItemAndInstanceView()
                     case .addSpaceView:
                         AddSpaceView()
                     case .itemSelector:

@@ -17,7 +17,7 @@ struct ItemDetail: View {
     @ObservedObject var item: Item
     
     @State private var isShowingEditView = false
-
+    @State private var isShowingNestedAddView = false
 
     
     

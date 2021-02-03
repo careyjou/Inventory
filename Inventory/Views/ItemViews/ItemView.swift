@@ -31,6 +31,7 @@ struct ItemView: View {
                         .padding(.horizontal, 5)
                         .zIndex(1)
                     
+                    
                 }
                 .sheet(isPresented: $isShowingPositionFreeAddItemView) {
                     PositionFreeAddItemView()
@@ -48,7 +49,7 @@ struct ItemView: View {
                         }
                         .buttonStyle(CircleButton())
                         .contextMenu{
-                                Button(action: {}) {
+                            Button(action: {self.isShowingPositionFreeAddItemView = true}) {
                                     Label("Create Item Without Position", systemImage: "location.slash.fill")
                                 }
                             #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))

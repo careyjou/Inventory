@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D5104963252ACAE200F820A1 /* PointCloudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5104962252ACAE200F820A1 /* PointCloudView.swift */; };
+		D512418725CA59DD0070B632 /* NestedAddItemInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D512418625CA59DD0070B632 /* NestedAddItemInstanceView.swift */; };
 		D51E632D24A82756000D97DD /* SpacePointCloudAppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E632C24A82756000D97DD /* SpacePointCloudAppData.swift */; };
 		D51F0EC025941C08005AC360 /* ItemInstancePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51F0EBF25941C08005AC360 /* ItemInstancePreview.swift */; };
 		D529B4D925B3BFA10086A444 /* Findable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D529B4D825B3BFA10086A444 /* Findable.swift */; };
@@ -93,7 +94,7 @@
 		D5EBA6F22468ED29008020F9 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EBA6F12468ED29008020F9 /* TextView.swift */; };
 		D5EBA6F424690009008020F9 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5EBA6F324690009008020F9 /* Colors.xcassets */; };
 		D5EBA6F8246906A8008020F9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5EBA6F7246906A8008020F9 /* CloudKit.framework */; };
-		D5EBA6FA24691013008020F9 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EBA6F924691013008020F9 /* AddItemView.swift */; };
+		D5EBA6FA24691013008020F9 /* AddItemAndInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EBA6F924691013008020F9 /* AddItemAndInstanceView.swift */; };
 		D5F9D14524C4E22F00677EFD /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F9D14424C4E22F00677EFD /* AboutView.swift */; };
 /* End PBXBuildFile section */
 
@@ -129,6 +130,7 @@
 
 /* Begin PBXFileReference section */
 		D5104962252ACAE200F820A1 /* PointCloudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointCloudView.swift; sourceTree = "<group>"; };
+		D512418625CA59DD0070B632 /* NestedAddItemInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedAddItemInstanceView.swift; sourceTree = "<group>"; };
 		D51E632C24A82756000D97DD /* SpacePointCloudAppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacePointCloudAppData.swift; sourceTree = "<group>"; };
 		D51F0EBF25941C08005AC360 /* ItemInstancePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInstancePreview.swift; sourceTree = "<group>"; };
 		D529B4D825B3BFA10086A444 /* Findable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Findable.swift; sourceTree = "<group>"; };
@@ -234,7 +236,7 @@
 		D5EBA6F324690009008020F9 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		D5EBA6F52469069F008020F9 /* Inventory.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Inventory.entitlements; sourceTree = "<group>"; };
 		D5EBA6F7246906A8008020F9 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		D5EBA6F924691013008020F9 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
+		D5EBA6F924691013008020F9 /* AddItemAndInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemAndInstanceView.swift; sourceTree = "<group>"; };
 		D5F9D14424C4E22F00677EFD /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -359,6 +361,42 @@
 			path = InventoryUITests;
 			sourceTree = "<group>";
 		};
+		D54035B125CA56D700E04753 /* SpaceViews */ = {
+			isa = PBXGroup;
+			children = (
+				D5D86CB024A503BB0068A833 /* SpaceView.swift */,
+				D549C79B2499703700873FFC /* SpacePreview.swift */,
+				D5104962252ACAE200F820A1 /* PointCloudView.swift */,
+				D5D86CA624A3C5710068A833 /* SpaceList.swift */,
+				D5A081B12571C21E0053BC5E /* SpaceItemList.swift */,
+				D5A3EC98248CA35400F8C1B8 /* Space3D.swift */,
+			);
+			path = SpaceViews;
+			sourceTree = "<group>";
+		};
+		D54035B225CA570E00E04753 /* AddViews */ = {
+			isa = PBXGroup;
+			children = (
+				D58D138B2471FA9800521F3E /* AddSpaceView.swift */,
+				D5EBA6F924691013008020F9 /* AddItemAndInstanceView.swift */,
+				D529B4DD25B3CA3B0086A444 /* PositionFreeAddItemView.swift */,
+				D512418625CA59DD0070B632 /* NestedAddItemInstanceView.swift */,
+			);
+			path = AddViews;
+			sourceTree = "<group>";
+		};
+		D54035B325CA577200E04753 /* ItemViews */ = {
+			isa = PBXGroup;
+			children = (
+				D5D86CAE24A502C00068A833 /* ItemView.swift */,
+				D572309E24F1A90A00F38450 /* ModelView.swift */,
+				D51F0EBF25941C08005AC360 /* ItemInstancePreview.swift */,
+				D554C27F259103D500C8A97C /* ItemPreview.swift */,
+				D5D86CA824A3C5F00068A833 /* ItemList.swift */,
+			);
+			path = ItemViews;
+			sourceTree = "<group>";
+		};
 		D549C7972498796700873FFC /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -392,27 +430,16 @@
 				D5D86CAA24A3CA4B0068A833 /* InventoryNavigation.swift */,
 				D5E7446624A67870004803EE /* SuggestedItemsList.swift */,
 				D5E7446824A67DA0004803EE /* SuggestedSpaces.swift */,
-				D5D86CAE24A502C00068A833 /* ItemView.swift */,
-				D5D86CB024A503BB0068A833 /* SpaceView.swift */,
-				D5D86CA624A3C5710068A833 /* SpaceList.swift */,
-				D5D86CA824A3C5F00068A833 /* ItemList.swift */,
+				D54035B325CA577200E04753 /* ItemViews */,
+				D54035B125CA56D700E04753 /* SpaceViews */,
+				D54035B225CA570E00E04753 /* AddViews */,
 				D549C7952498789900873FFC /* InfoView.swift */,
 				D5EBA6F12468ED29008020F9 /* TextView.swift */,
-				D58D138B2471FA9800521F3E /* AddSpaceView.swift */,
-				D5EBA6F924691013008020F9 /* AddItemView.swift */,
 				D5A3EC96248C282500F8C1B8 /* SeachBar.swift */,
 				D58D138D2471FEB300521F3E /* ImagePicker.swift */,
 				D5EBA6EB24689821008020F9 /* Buttons.swift */,
-				D549C79B2499703700873FFC /* SpacePreview.swift */,
 				D5AE7F0C24A6EA7000D175D2 /* UserPreview.swift */,
 				D5F9D14424C4E22F00677EFD /* AboutView.swift */,
-				D572309E24F1A90A00F38450 /* ModelView.swift */,
-				D5104962252ACAE200F820A1 /* PointCloudView.swift */,
-				D5A3EC98248CA35400F8C1B8 /* Space3D.swift */,
-				D5A081B12571C21E0053BC5E /* SpaceItemList.swift */,
-				D554C27F259103D500C8A97C /* ItemPreview.swift */,
-				D51F0EBF25941C08005AC360 /* ItemInstancePreview.swift */,
-				D529B4DD25B3CA3B0086A444 /* PositionFreeAddItemView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -674,7 +701,7 @@
 			files = (
 				D5A03E1C2592CA74004E0B7C /* jly_main.cpp in Sources */,
 				D5A08198257178120053BC5E /* SheetView.swift in Sources */,
-				D5EBA6FA24691013008020F9 /* AddItemView.swift in Sources */,
+				D5EBA6FA24691013008020F9 /* AddItemAndInstanceView.swift in Sources */,
 				D549C79C2499703700873FFC /* SpacePreview.swift in Sources */,
 				D5D86CB124A503BB0068A833 /* SpaceView.swift in Sources */,
 				D59A38A0245E7FB400306CF3 /* ItemDetail.swift in Sources */,
@@ -730,6 +757,7 @@
 				D5DD7DB825167508009572A9 /* MetalBuffer.swift in Sources */,
 				D5A3EC97248C282500F8C1B8 /* SeachBar.swift in Sources */,
 				D529B4DE25B3CA3B0086A444 /* PositionFreeAddItemView.swift in Sources */,
+				D512418725CA59DD0070B632 /* NestedAddItemInstanceView.swift in Sources */,
 				D5D10C41254F3C6300448EFE /* PointCloud.swift in Sources */,
 				D5F9D14524C4E22F00677EFD /* AboutView.swift in Sources */,
 				D5A03E222592CA74004E0B7C /* StringTokenizer.cpp in Sources */,
