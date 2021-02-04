@@ -39,6 +39,9 @@ class InventoryViewModel: ObservableObject {
     // the item that an instance will inherit from in the addInstance mode
     private var itemToAdd: Item?
     
+    // the item instance that is getting a new position in the reposition mode
+    private var repositioning: ItemInstance?
+    
     // the position of the item instance to be added to the space
     private var itemPosition: simd_float3?
     
@@ -62,6 +65,7 @@ class InventoryViewModel: ObservableObject {
         self.arLocalizationStatus = .capturing
         self.itemToAdd = nil
         self.finding = nil
+        self.repositioning = nil
     }
     
     /// <#Description#>
@@ -79,10 +83,14 @@ class InventoryViewModel: ObservableObject {
     }
     
     public func showReposition(instance: ItemInstance) {
-        self.finding = instance
+        self.repositioning = instance
         withAnimation{self.arViewMode = .repositionInstance}
     }
   
+    public func showAddInstance(item: Item) {
+        self.itemToAdd = item
+        withAnimation{self.arViewMode = .addInstance}
+    }
 
     
     public func setLocalizationStatus(status: LocalizationStatus) {
@@ -113,19 +121,46 @@ class InventoryViewModel: ObservableObject {
 
     
     public func repositionInstance() {
-        // Get new position
-        self.itemPosition = self.arCoordinator?.getItemPosition()
+        // Get new position and space
+        guard let itemPosition = self.arCoordinator?.getItemPosition(),
+              let repositionSpace = self.space,
+              let moc = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext,
+              let toReposition = self.repositioning else {
+            return
+        }
         
-        // Get new space
-       
+        // Add position to the space
+        let position = Position(moc: moc, position: itemPosition, space: repositionSpace)
         
+        // Set item instance's position
+        _ = toReposition.setPosition(position: position)
         
-        //Add item to new space
-        
+        try? moc.save()
         
         // End AR
         self.AROff()
     
+    }
+    
+    public func addInstance() {
+        guard let toAdd = self.itemToAdd,
+              let itemPosition = self.arCoordinator?.getItemPosition(),
+              let toAddSpace = self.space,
+              let moc = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext else {
+            return
+        }
+        
+        // Add position to the space
+        let position = Position(moc: moc, position: itemPosition, space: toAddSpace)
+        
+        // create item instance with the position
+        _ = ItemInstance(moc: moc, item: toAdd, position: position, quantity: 1)
+        
+        try? moc.save()
+        
+        // End AR
+        self.AROff()
+        
     }
     
     private func setPointCloud() {

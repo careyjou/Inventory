@@ -154,6 +154,7 @@ extension ItemInstance {
     /// - Parameter vector: <#vector description#>
     public func setPosition(position: Position) -> ItemInstance {
         self.position = position
+        self.parent = nil
         self.lastModified = Date()
         
         return self

@@ -115,6 +115,13 @@ struct ContentView: View {
                         }
                         .buttonStyle(LargeTransparentRoundedButton(isSelected: true))
                     }
+                    
+                    if (self.viewModel.arViewMode == .addInstance) {
+                        Button(action: {self.viewModel.addInstance()}) {
+                            Text("Add Instance")
+                        }
+                        .buttonStyle(LargeTransparentRoundedButton(isSelected: false))
+                    }
                     #endif
                     
                     

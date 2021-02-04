@@ -25,6 +25,7 @@ struct ItemInstancePreview: View {
                         Text(Image(systemName: "chevron.right")).foregroundColor(.secondary)
                         Text(spaceName)
                             .font(.body)
+                            .foregroundColor(.secondary)
                         }
                     }
                     
