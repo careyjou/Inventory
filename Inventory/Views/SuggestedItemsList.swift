@@ -20,7 +20,7 @@ struct SuggestedItemsList: View {
         return VStack{
             ForEach(suggestedItems, id: \.self) { instance in
             NavigationLink(destination: ItemInstanceDetail(instance: instance)) {
-                ItemInstancePreview(instance: instance)
+                ItemInstancePreview(instance: instance, isDetailed: false)
                 
             }
             .buttonStyle(NavigationButton())

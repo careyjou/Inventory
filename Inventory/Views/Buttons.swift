@@ -120,12 +120,15 @@ public struct NavigationButton: ButtonStyle {
     @State var backgroundColor: Color = Color(.clear)
     @State var isRounded: Bool = true
     @State var isPadded: Bool = true
+    @State var isSpaced: Bool = true
     
     public func makeBody(configuration: Self.Configuration) -> some View {
         HStack{
             configuration.label
                 .padding(.horizontal, 10)
+            if (isSpaced) {
             Spacer()
+            }
         }
         .contentShape(Rectangle())
         .frame(maxWidth: 700)

@@ -24,6 +24,15 @@ extension ItemInstance {
         self.quantity = Int64(quantity)
     }
     
+    convenience init(moc: NSManagedObjectContext, item: Item, parentInstance: ItemInstance, quantity: Int) {
+        self.init(context: moc)
+        self.id = UUID()
+        self.lastModified = Date()
+        self.item = item
+        self.parent = parentInstance
+        self.quantity = Int64(quantity)
+    }
+    
     public func getName() -> String? {
         return self.item?.name
     }
@@ -60,10 +69,14 @@ extension ItemInstance {
     }
     
     public func setParent(instance: ItemInstance) -> ItemInstance {
+        guard (instance != self) else {
+            return self
+        }
         guard !self.getSubItems().contains(instance) else {
             return self
         }
         self.parent = instance
+        self.position = nil
         return self
     }
     

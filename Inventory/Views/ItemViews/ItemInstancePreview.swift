@@ -10,12 +10,31 @@ import SwiftUI
 
 struct ItemInstancePreview: View {
     @ObservedObject var instance: ItemInstance
+    var isDetailed: Bool
     
     var body: some View {
         if let name = instance.item?.name {
+            if isDetailed {
+                HStack{
+                    Text(name)
+                        .font(.body)
+                        .fontWeight(.regular)
+                    Spacer()
+                    if let spaceName = instance.getSpace()?.getName() {
+                        HStack{
+                        Text(Image(systemName: "chevron.right")).foregroundColor(.secondary)
+                        Text(spaceName)
+                            .font(.body)
+                        }
+                    }
+                    
+                }
+            }
+            else {
         Text(name)
             .font(.body)
             .fontWeight(.regular)
+        }
         }
     }
 }

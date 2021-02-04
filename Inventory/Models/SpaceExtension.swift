@@ -73,17 +73,20 @@ extension Space {
     }
     
     public func getAllItemInstances() -> [ItemInstance] {
-        var allItems: [ItemInstance] = []
+        var allItems = Set<ItemInstance>()
         
         if let positions = self.positions {
             for position in positions {
                 if let pos = (position as? Position) {
-                allItems.append(contentsOf: pos.getItemInstances())
+                    let positionInstances = pos.getItemInstances()
+                    for instance in positionInstances {
+                    allItems.insert(instance)
+                    }
                 }
             }
         }
         
-        return allItems
+        return Array(allItems)
     }
     
     public func getMostRecentMovedDate() -> Date {

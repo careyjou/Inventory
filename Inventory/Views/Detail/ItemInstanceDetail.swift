@@ -16,7 +16,7 @@ struct ItemInstanceDetail: View {
     @EnvironmentObject var controller: InventoryViewModel
     @State private var isShowingEditView = false
     @State private var isShowing3DView = false
-    
+    @State private var isShowingNestedReposition = false
 
     
     func name() -> String {
@@ -70,7 +70,7 @@ struct ItemInstanceDetail: View {
                     }
                     .font(Font.system(.subheadline).bold())
                     .buttonStyle(RoundedButton(textColor: .primary, cornerRadius: 10))
-                    .sheet(isPresented: $isShowingEditView) {
+                    .sheet(isPresented: ($isShowingEditView)) {
                         ItemInstanceEditView(instance: instance, isShowingEditView: self.$isShowingEditView)
                     }
                     .padding(.trailing, 10)
@@ -171,17 +171,16 @@ struct ItemInstanceDetail: View {
                     }
                 }
                 
-
-                
-                
                 HStack{
                     Spacer()
                 }
                 
                 
-                
             }
             .padding(.top)
+            .sheet(isPresented: $isShowingNestedReposition) {
+                NestedRepositionItemInstanceView(instance: instance)
+            }
         
     
     }
@@ -204,7 +203,7 @@ struct ItemInstanceDetail: View {
                         }
                         }
                         #endif
-                        Button(action: {}) {
+                        Button(action: {self.isShowingNestedReposition = true}) {
                             Label("Place in Existing Item", systemImage: "bag.fill")
                         }
                     } label: {

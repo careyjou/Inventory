@@ -42,6 +42,7 @@ struct ItemDetail: View {
                 .sheet(isPresented: $isShowingEditView) {
                     ItemEditView(item: item, isShowingEditView: self.$isShowingEditView)
                 }
+                
                 Spacer()
                                     
             }
@@ -74,12 +75,14 @@ struct ItemDetail: View {
                     HStack{
                         Spacer()
                     }
+            
                     
                 
-                self.itemInstancesGrid(item: item)
+                self.itemInstances(item: item)
                 
                 }
                .padding(.top)
+            
 
             }
     
@@ -89,7 +92,7 @@ struct ItemDetail: View {
             Spacer()
             HStack(){
                 Menu{
-                    Button(action: {}) {
+                    Button(action: {self.isShowingNestedAddView = true}) {
                         Label("Add to Existing Item", systemImage: "bag.fill")
                     }
                     if (ARWorldTrackingConfiguration.supportsFrameSemantics(.sceneDepth)) {
@@ -105,6 +108,7 @@ struct ItemDetail: View {
                     .buttonStyle(CircleButton())
                     .accessibility(label: Text("Add Instance"))
                 }
+                
 
                 Spacer()
                 #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
@@ -136,6 +140,9 @@ struct ItemDetail: View {
                 VStack {
                     self.options().frame(maxWidth: 700).padding(.top, 10)
                     self.content().frame(maxWidth: 700)
+                        .sheet(isPresented: $isShowingNestedAddView) {
+                            NestedAddNewItemInstanceView(item: item)
+                        }
                     HStack{
                         Spacer()
                     }
@@ -152,49 +159,41 @@ struct ItemDetail: View {
         
     
     
-    private func itemInstancesGrid(item: Item) -> some View {
+    private func itemInstances(item: Item) -> some View {
         let instances: [ItemInstance] = item.getInstances()
         
-        let layout = [
-            GridItem(.adaptive(minimum: 150, maximum: 300))
-        ]
+
         
         return
-            LazyVGrid(columns: layout) {
             ForEach(instances, id: \.self) { instance in
         
                 NavigationLink(destination: ItemInstanceDetail(instance: instance)) {
                     if (instance.getSpace() != nil) {
-            HStack{
-                VStack(alignment: .leading){
-                    if let name = instance.getSpace()?.name {
-                        Text(name)
-                    }
-                    Text(String(instance.getQuantity()) + Utils.singularPluralLanguage(int: instance.getQuantity(), singular: " item", plural: " items"))
-                        .font(Font.system(.body))
-                }
-                Spacer()
-            }
-                    }
-                    
-                    else {
                         HStack{
-                            VStack(alignment: .leading) {
-                                Text("Some Instance")
+                                if let name = instance.getSpace()?.name {
+                                    Text(name)
+                                }
+                            Spacer()
                                 Text(String(instance.getQuantity()) + Utils.singularPluralLanguage(int: instance.getQuantity(), singular: " item", plural: " items"))
                                     .font(Font.system(.body))
-                            }
-                            Spacer()
+                                    .foregroundColor(.secondary)
                         }
+                    }
+                    else {
+                            HStack {
+                                Text("Some Instance")
+                                Spacer()
+                                Text(String(instance.getQuantity()) + Utils.singularPluralLanguage(int: instance.getQuantity(), singular: " item", plural: " items"))
+                                    .font(Font.system(.body))
+                                    .foregroundColor(.secondary)
+                            }
                         
                         }
                     
         }
-        .buttonStyle(RoundedButton(textColor: .primary, cornerRadius: 10))
-        .padding(5)
+        .buttonStyle(NavigationButton())
     }
             .padding(.horizontal)
-    }
     }
     
     
