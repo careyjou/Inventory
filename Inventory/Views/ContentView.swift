@@ -27,6 +27,7 @@ struct ContentView: View {
         return ZStack {
             InventoryNavigation()
                 .zIndex(0)
+                .disabled(self.viewModel.arViewMode != .none)
                 .sheet(isPresented: $viewModel.isShowingSheet) {
                     switch viewModel.arSheetMode {
                     case .addItemView:
@@ -41,7 +42,6 @@ struct ContentView: View {
                         #endif
                     }
                 }
-                .disabled(self.viewModel.arViewMode != .none && (self.viewModel.arSheetMode != .addItemView) && self.viewModel.arSheetMode != .itemSelector)
             
             
             

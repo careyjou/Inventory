@@ -229,6 +229,7 @@
 		D5DD7DC425167AC5009572A9 /* Capture.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Capture.storyboard; sourceTree = "<group>"; };
 		D5E3D64E25B14727000806F9 /* GoICPTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoICPTest.swift; sourceTree = "<group>"; };
 		D5E5BFC825CB799500DD5639 /* NestedRepositionItemInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedRepositionItemInstanceView.swift; sourceTree = "<group>"; };
+		D5E5BFD025D1A10B00DD5639 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D5E7446624A67870004803EE /* SuggestedItemsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedItemsList.swift; sourceTree = "<group>"; };
 		D5E7446824A67DA0004803EE /* SuggestedSpaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedSpaces.swift; sourceTree = "<group>"; };
 		D5E7DAA824849E590079A5ED /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
@@ -293,6 +294,7 @@
 		D53A3E0D239B112A006EC344 = {
 			isa = PBXGroup;
 			children = (
+				D5E5BFD025D1A10B00DD5639 /* README.md */,
 				D53A3E18239B112A006EC344 /* Inventory */,
 				D53A3E32239B112D006EC344 /* InventoryTests */,
 				D53A3E3D239B112D006EC344 /* InventoryUITests */,
