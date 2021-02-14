@@ -11,6 +11,9 @@ import CoreData
 
 extension Cloud {
     
+    
+    /// Create an identifiable Cloud with the managed context.
+    /// - Parameter moc: Core Data context
     convenience init(moc: NSManagedObjectContext) {
         self.init(context: moc)
         self.id = UUID()
@@ -18,6 +21,8 @@ extension Cloud {
     }
     
     
+    /// Set the Cloud's pointcloud to a JSON encoded PointCloud
+    /// - Parameter pointCloud: JSON encoded PointCloud
     public func setPointCloud(pointCloud: Data?) {
         self.pointCloud = pointCloud
     }

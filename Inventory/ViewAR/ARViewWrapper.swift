@@ -14,6 +14,7 @@ import CoreData
 import ARKit
 
 
+/// Wraps the augmented reality inventory viewer for use in SwiftUI.
 final class ARViewWrapper: UIViewControllerRepresentable {
     init(viewModel: InventoryViewModel) {
         self.viewModel = viewModel
@@ -21,33 +22,41 @@ final class ARViewWrapper: UIViewControllerRepresentable {
     
     var viewModel: InventoryViewModel
     
+    /// called implicitly to connect the delegate
     func makeCoordinator() -> ARCoordinator {
         let coordinator = Coordinator(self)
         viewModel.arCoordinator = coordinator
         return coordinator
         
     }
-
-  public func makeUIViewController(context: UIViewControllerRepresentableContext<ARViewWrapper>) -> ViewController {
     
-    //Load the storyboard
-    let loadedStoryboard = UIStoryboard(name: "Main", bundle: nil)
     
-    //Load the ViewController
-    let arView = loadedStoryboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-    let coordinator = context.coordinator
-    arView.delegate = coordinator
-    arView.viewModel = self.viewModel
-    coordinator.child = arView
+    /// Loads the storyboard and connects it to the ar view controller.
+    /// - Parameter context: swiftui view wrapper
+    /// - Returns: UIKit augmented reality view controller
+    public func makeUIViewController(context: UIViewControllerRepresentableContext<ARViewWrapper>) -> ViewController {
+        
+        //Load the storyboard
+        let loadedStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        //Load the ViewController
+        let arView = loadedStoryboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+        let coordinator = context.coordinator
+        arView.delegate = coordinator
+        arView.viewModel = self.viewModel
+        coordinator.child = arView
+        
+        return arView
+        
+    }
     
-    return arView
-    
-  }
-  
-  public func updateUIViewController(_ uiViewController: ViewController, context: UIViewControllerRepresentableContext<ARViewWrapper>) {
-  }
+    /// Nothing needs to be updated from the context because the ar view controller implements MVVM with combine.
+    public func updateUIViewController(_ uiViewController: ViewController, context: UIViewControllerRepresentableContext<ARViewWrapper>) {
+    }
 }
 
+
+/// Bridge to the augmented reality view of the real world.
 class ARCoordinator: NSObject, UINavigationControllerDelegate {
     var parent: ARViewWrapper?
     weak var child: ViewController?
@@ -57,6 +66,8 @@ class ARCoordinator: NSObject, UINavigationControllerDelegate {
     }
     
     
+    /// Gets the position of the device relative to the space's world origin.
+    /// - Returns: Relative device position with six degrees of freedom
     public func getItemPosition() -> simd_float3? {
         if let child = self.child {
             return child.getItemPosition()

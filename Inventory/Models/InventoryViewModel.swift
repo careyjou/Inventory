@@ -59,7 +59,7 @@ class InventoryViewModel: ObservableObject {
 
 
     
-
+    /// Sets ar state to default values.
     public func resetAR() {
         self.space = nil
         self.arLocalizationStatus = .capturing
@@ -68,31 +68,42 @@ class InventoryViewModel: ObservableObject {
         self.repositioning = nil
     }
     
-    /// <#Description#>
+    /// Return to the inventory navigation view.
     public func AROff() {
         withAnimation {self.arViewMode = .none}
     }
     
+    
+    /// Show ar view where items can be placed.
     public func showGeneralView() {
         withAnimation{self.arViewMode = .general}
     }
     
     
+    /// Show the space capture view.
     public func showMapSpaceView() {
         withAnimation{self.arViewMode = .mapSpace}
     }
     
+    
+    /// Show the ar view with reposition ability.
+    /// - Parameter instance: ItemInstance to receive a new position
     public func showReposition(instance: ItemInstance) {
         self.repositioning = instance
         withAnimation{self.arViewMode = .repositionInstance}
     }
   
+    
+    /// Show the ar view with the ability to add an instance of the given item at a position.
+    /// - Parameter item: Item that will have a new instance linked to it
     public func showAddInstance(item: Item) {
         self.itemToAdd = item
         withAnimation{self.arViewMode = .addInstance}
     }
 
     
+    /// Show the given localization status of the abstract localization system in the user interface.
+    /// - Parameter status: The state to be shown
     public func setLocalizationStatus(status: LocalizationStatus) {
         self.arLocalizationStatus = status
     }
@@ -101,25 +112,37 @@ class InventoryViewModel: ObservableObject {
 
     
     #if !(targetEnvironment(macCatalyst) || targetEnvironment(simulator))
+    
+    /// Get the space the real world has been matched to if the localization was successful.
+    /// - Returns: Localized Space
     public func getSpace() -> Space? {
         return self.space
     }
     
+    
+    /// Update the view model with the space the real world has been matched to.
+    /// - Parameter space: Localized Space from abstract localization system
     public func setSpace(space: Space) {
         self.space = space
     }
     
+    
+    /// Display a sheet to add a new item instance to the space.
     public func placeItem() {
         self.itemPosition = self.arCoordinator?.getItemPosition()
         self.setSheet(mode: .addItemView)
     }
     
+    
+    /// Show the ar view with the goal of displaying the position of the findable in the localized space.
+    /// - Parameter finding: Findable to query the position of in the space
     public func showFind(finding: Findable) {
         self.finding = finding
         withAnimation{self.arViewMode = .findItem}
     }
 
     
+    /// Change the to reposition item instance's position with a new position in this space.
     public func repositionInstance() {
         // Get new position and space
         guard let itemPosition = self.arCoordinator?.getItemPosition(),
@@ -142,6 +165,8 @@ class InventoryViewModel: ObservableObject {
     
     }
     
+    
+    /// Add an ItemInstance to the to add Item with the current position in the localized space.
     public func addInstance() {
         guard let toAdd = self.itemToAdd,
               let itemPosition = self.arCoordinator?.getItemPosition(),
@@ -163,6 +188,8 @@ class InventoryViewModel: ObservableObject {
         
     }
     
+    
+    /// Get the point cloud from the capture view for the add space sheet.
     private func setPointCloud() {
         let coordinator = self.arCaptureCoordinator
         let points = coordinator?.getPoints()
@@ -172,7 +199,7 @@ class InventoryViewModel: ObservableObject {
     }
     
    
-    
+    /// End the space capture view and show the add space sheet.
     public func saveSpace() {
         self.setPointCloud()
         self.AROff()
@@ -181,16 +208,24 @@ class InventoryViewModel: ObservableObject {
    
     #endif
 
-  
+    
+    /// Directly display the desired sheet above the user interface.
+    /// - Parameter mode: Type of sheet to be modally displayed
     public func setSheet(mode: ARSheet) {
         self.arSheetMode = mode
         self.isShowingSheet = true
     }
     
+    
+    /// Get the saved position of the device relative to the localized space's world origin.
+    /// - Returns: The x y and z positions in meters if they exist
     public func getItemPosition() -> simd_float3? {
         return self.itemPosition
     }
     
+    
+    /// Get the saved point cloud vertices from the capture view.
+    /// - Returns: The array of points representing a point cloud
     public func getPointCloud() -> [PointCloudVertex]? {
         return self.pointCloud
     }
@@ -198,6 +233,8 @@ class InventoryViewModel: ObservableObject {
     
 }
 
+
+/// Possible sheets that can be displayed modally above the ar view and navigation.
 enum ARSheet: Equatable {
     case addSpaceView
     case addItemView

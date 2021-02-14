@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+/// A globally optimal algorithm for registering point clouds with six degrees of freedom.
 class GoICPPose: CameraPoseFinder {
     
     public func cameraPose(source: PointCloud, destination: PointCloud) -> CameraPoseResult? {
@@ -75,11 +77,19 @@ class GoICPPose: CameraPoseFinder {
         return ScaledPointCloudsResult(scaledQueryPointCloud: scaledQueryPointCloud, scaledReferencePointCloud: scaledReferencePointCloud, scaleFactor: scaleFactor)
     }
 
+    
+    /// Helper function to scale each point cloud by the required scale factor to fit within the unit cube.
+    /// - Parameters:
+    ///   - cloud: All point cloud vertices
+    ///   - scaleFactor: constant to linearly scale the x, y, z components by
+    /// - Returns: An array of POINT3D, the type that the internal go-icp algorithm uses to represent points.
     private func scaleCloud(cloud: PointCloud, scaleFactor: Float) -> [POINT3D] {
         let points = cloud.getPointCloud()
         return points.map({POINT3D(x: $0.x * scaleFactor, y: $0.y * scaleFactor, z: $0.z * scaleFactor)})
     }
     
+    
+    /// Internal type so the scale factor is saved for when the inverse scale needs to be applied to the pose result.
     struct ScaledPointCloudsResult {
         let scaledQueryPointCloud: [POINT3D]
         let scaledReferencePointCloud: [POINT3D]

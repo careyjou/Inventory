@@ -109,6 +109,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         UIApplication.shared.isIdleTimerDisabled = true
     }
     
+    /// Starts gathering location data so the localization algorithm can improve its search.
     @IBAction func getLocation() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
@@ -162,16 +163,6 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     }
     
     
-    func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
-        
-    }
-    
-    
-    
-    func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
-        
-    }
-    
     
     /// Update the view model with the camera pose.
     /// - Parameter pose: camera pose in space
@@ -210,8 +201,8 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     }
     
     
-    /// <#Description#>
-    /// - Returns: <#description#>
+    /// Get the device's camera pose in the relative to the space's world origin if there is a camera pose result.
+    /// - Returns: The device's camera pose with six degrees of freedom
     public func getItemPosition() -> simd_float3? {
         let frame = arView.session.currentFrame!
         
@@ -229,12 +220,14 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     }
     
     
+    /// Adds a sphere to the scene where the given findable is located and begins playing spatial audio.
+    /// - Parameter findable: A type that can provide a position if provided with a space
     public func animateItemPosition(findable: Findable) {
         self.removeSpheres()
         
         guard let space = self.getSpace(),
               let position = findable.getTransform(space: space) else {
-            return
+            return // cannot animate if we do not have a recognized space and position of the item
         }
         
         /*
@@ -259,6 +252,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         
         fixedItemPosition.move(to: Transform(translation: position), relativeTo: .none)
         
+        // add entity so realitykit will render it
         spaceAnchor?.addChild(fixedItemPosition)
         
         self.itemPosition = fixedItemPosition
@@ -268,22 +262,32 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
             return
         }
         
+        // play spatial audio
+        
         let audioController = fixedItemPosition.prepareAudio(beaconSound)
         audioController.play()
         
         
     }
     
+    
+    /// Show the position of the findable in the real world.
+    /// - Parameter toFind: type we can query the position of in a space
     public func setFinding(toFind: Findable) {
         self.animateItemPosition(findable: toFind)
     }
     
+    
+    /// Stops showing the position and spatial audio of the findable.
     public func removeSpheres() {
         self.itemPosition?.removeFromParent()
         
         self.itemPosition = nil
     }
     
+    
+    /// Sets functions to be run when changes are made to the findable binding
+    /// so the position will be shown instantaneously.
     private func bindFindable() {
         self.viewModel?.$finding
             .receive(on: DispatchQueue.main)
@@ -296,6 +300,9 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
             }).store(in: &disposables)
     }
     
+    
+    /// Sets functions to be run when the ar view mode changes so that the item that
+    /// is being searched for is hidden.
     private func bindARViewMode() {
         self.viewModel?.$arViewMode
             .receive(on: DispatchQueue.main)
@@ -308,6 +315,9 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
             .store(in: &disposables)
     }
     
+    
+    /// Notify the view model of what the localization status is so that the user is informed.
+    /// - Parameter status: Current state of the abstract localization system
     private func sendLocalizationStatus(status: LocalizationStatus) {
         self.viewModel?.setLocalizationStatus(status: status)
     }

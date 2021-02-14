@@ -11,6 +11,12 @@ import CoreData
 
 extension Position {
     
+    
+    /// Create an identifiable position with the context, position (in meters), and space.
+    /// - Parameters:
+    ///   - moc: Core Data context
+    ///   - position: x,y,z position (in meters)
+    ///   - space: Space the position is within
     convenience init(moc: NSManagedObjectContext, position: simd_float3, space: Space) {
         self.init(context: moc)
         self.id = UUID()
@@ -20,10 +26,16 @@ extension Position {
         self.space = space
     }
     
+    
+    /// Returns the space this position is within.
+    /// - Returns: parent Space
     public func getSpace() -> Space? {
         return self.space
     }
     
+    
+    /// <#Description#>
+    /// - Returns: <#description#>
     public func getItemInstances() -> [ItemInstance] {
         var allInstances = [ItemInstance]()
         if let instance = self.item {
