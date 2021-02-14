@@ -34,31 +34,22 @@ extension Position {
     }
     
     
-    /// <#Description#>
-    /// - Returns: <#description#>
+    /// Get all ItemInstances that are located at this position.
+    /// - Returns: All ItemInstances that are within the heirarchy attached to the position
     public func getItemInstances() -> [ItemInstance] {
         var allInstances = [ItemInstance]()
         if let instance = self.item {
                     allInstances.append(instance)
+                    // get all items within this item
                     allInstances.append(contentsOf: instance.getSubItems())
         }
         return allInstances
     }
     
-    public func setPosition(position: simd_float3) -> Position {
-        self.x = position.x
-        self.y = position.y
-        self.z = position.z
-        
-        return self
-    }
     
-    public func setSpace(space: Space) -> Position {
-        self.space = space
-        
-        return self
-    }
     
+    /// Get the the x, y, z transformations from the space's world origin.
+    /// - Returns: floating point position (in meters)
     public func getTransform() -> simd_float3 {
         return simd_float3(x: self.x, y: self.y, z: self.z)
     }

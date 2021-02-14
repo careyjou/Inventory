@@ -15,6 +15,11 @@ import ARKit
 
 
 extension Item {
+    
+    /// Create an identifiable Item with a context and description of the item.
+    /// - Parameters:
+    ///   - moc: CoreData context
+    ///   - name: brief item description
     convenience init(moc: NSManagedObjectContext, name: String) {
         self.init(context: moc)
         self.id = UUID()
@@ -22,12 +27,15 @@ extension Item {
         self.createdAt = Date()
     }
     
+    
+    /// Get the description of this Item.
+    /// - Returns: Item descriptor
     public func getName() -> String? {
         return self.name
     }
     
-    /// <#Description#>
-    /// - Parameter newName: <#newName description#>
+    /// Modify this Item to have a new description of the item
+    /// - Parameter newName: New item descriptor
     public func setName(newName: String) -> Item {
         self.name = newName
         
@@ -36,6 +44,8 @@ extension Item {
     
 
     
+    /// Is this item placed within any spaces?
+    /// - Returns: true if there is an item instance in a space, false otherwise
     public func hasSpace() -> Bool {
         if let itemInstances = self.instances {
             for instance in itemInstances {
@@ -50,6 +60,8 @@ extension Item {
         
         
     
+    /// Get the total combined quantity of all instances of this item.
+    /// - Returns: Total quantity
     public func getQuantity() -> Int {
         var quantity = 0
         if let itemInstances = self.instances {
@@ -60,10 +72,9 @@ extension Item {
         return quantity
     }
     
+    /// When was any of this items last modified. Used for sorting items.
+    /// - Returns: The most recent time when any instance of this item was moved
     public func getLastModified() -> Date {
-        if (self.instances == nil) {
-            return Date()
-        }
         var lastModified: Date? = nil
         if let itemInstances = self.instances {
             var dates = itemInstances.compactMap({($0 as? ItemInstance)?.getLastModified()})
@@ -78,6 +89,8 @@ extension Item {
         }
     }
     
+    /// Get all of the spaces where instances of this item can be found within.
+    /// - Returns: All spaces that contain instances of this item
     public func getSpaces() -> [Space] {
         var spaces: [Space] = []
         
@@ -93,6 +106,8 @@ extension Item {
         
     }
     
+    /// Get all instances of this item
+    /// - Returns: all instances representing physical positions of this item
     public func getInstances() -> [ItemInstance] {
         var allInstances = [ItemInstance]()
         if let itemInstances = self.instances {
@@ -105,9 +120,12 @@ extension Item {
         return allInstances
     }
     
+    
+    /// Do any of this item's instances have a position in a space?
+    /// - Returns: True if any item has an z, y, z position, false otherwise
     public func hasPosition() -> Bool {
         let instances = self.getInstances()
-        let positions = instances.compactMap({$0.getPosition()})
+        let positions = instances.compactMap({$0.getTransform()})
         return !positions.isEmpty
     }
     

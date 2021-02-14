@@ -42,7 +42,7 @@ struct NestedRepositionItemInstanceView: View {
                         .padding(.top, 5)
                     
                     
-                    let sortedItems = items.sorted(by: {$0.getLastModified() > $1.getLastModified()}).filter({$0 != self.instance})
+                    let sortedItems = items.sorted(by: {($0.getLastModified() ?? Date()) > ($1.getLastModified() ?? Date())}).filter({$0 != self.instance})
                     
                     // Item Instance List
                     ForEach(sortedItems.filter({self.itemSearch.isEmpty ? true :

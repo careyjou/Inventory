@@ -18,7 +18,7 @@ struct SpaceItemList: View {
     var body: some View {
         var itemInstances = space.getAllItemInstances()
         
-        itemInstances.sort(by: {$0.getLastModified() > $1.getLastModified()})
+        itemInstances.sort(by: {($0.getLastModified() ?? Date()) > ($1.getLastModified() ?? Date())})
         
             return
                 ScrollView {

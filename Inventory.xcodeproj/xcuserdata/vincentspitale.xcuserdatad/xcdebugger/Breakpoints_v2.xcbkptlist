@@ -446,8 +446,8 @@
             filePath = "Inventory/Views/Detail/ItemInstanceDetail.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
             landmarkName = "overlay()"
             landmarkType = "7">
             <Locations>

@@ -132,9 +132,11 @@ struct ItemInstanceDetail: View {
                         .bold()
                         .padding()
                     Spacer()
-                    Text(formatter.string(from: instance.getLastModified()))
+                    if let date = instance.getLastModified() {
+                    Text(formatter.string(from: date))
                         .foregroundColor(Color.secondary)
                         .padding()
+                    }
                     
                 }.frame(maxWidth: 700)
                 

@@ -9,7 +9,8 @@
 import Foundation
 
 
-// Represents a stack of elements of type T
+/// Represents a stack of elements of type T.
+/// Used when position was dependent on a tree of images.
 public struct Stack<T> {
     fileprivate var array: [T] = []
     

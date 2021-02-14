@@ -154,7 +154,7 @@ struct SpaceDetail: View {
                 $0.getName()!.localizedCaseInsensitiveContains(self.itemSearch)
         }
         
-        items.sort(by: { $0.getLastModified() > $1.getLastModified() })
+        items.sort(by: { ($0.getLastModified() ?? Date()) > ($1.getLastModified() ?? Date()) })
         return VStack{ForEach(items, id: \.self) { item in
             NavigationLink(destination: ItemInstanceDetail(instance: item)) {
                 Text(item.getName() ?? "")
