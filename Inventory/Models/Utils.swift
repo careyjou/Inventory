@@ -10,10 +10,21 @@ import Foundation
 import SwiftUI
 
 public class Utils {
+    
+    /// Return the singular or plural string based on the given integer.
+    /// - Parameters:
+    ///   - int: Number to be described
+    ///   - singular: Singular language
+    ///   - plural: Plural language
+    /// - Returns: The correct language for the given number of objects.
     static func singularPluralLanguage(int: Int, singular: String, plural: String) -> String {
         return (int == 1) ? singular : plural
     }
     
+    /// Convert a point cloud to a ply file.
+    /// - Parameters:
+    ///   - points: Point cloud
+    ///   - url: File location
     static func plyFileFromPoints(points: [PointCloudVertex], url: URL) {
         let header: String = ["ply", "format ascii 1.0", "comment Created by Inventory", "element vertex \(points.count)", "property float x", "property float y", "property float z", "property uchar red", "property uchar green", "property uchar blue", "end_header"].joined(separator: "\n")
         
@@ -41,6 +52,11 @@ public class Utils {
         
     }
     
+    
+    /// Encode the given point cloud to a json file.
+    /// - Parameters:
+    ///   - points: Point cloud
+    ///   - url: File location
     static func JSONFromPoints(points: [PointCloudVertex], url: URL) {
         guard let data = try? JSONEncoder().encode(PointCloud(pointCloud: points)) else {
             return
@@ -53,6 +69,9 @@ public class Utils {
         }
     }
     
+    /// Convert json encoded point cloud to PointCloud.
+    /// - Parameter url: File location
+    /// - Returns: Decoded point cloud
     static func pointsFromJSON(url: URL) -> PointCloud? {
         guard let data = try? Data(contentsOf: url) else {
             return nil
@@ -60,6 +79,9 @@ public class Utils {
         return try? JSONDecoder().decode(PointCloud.self, from: data)
     }
     
+    /// Convert ply file to PointCloud.
+    /// - Parameter url: ply file location
+    /// - Returns: Translated point cloud
     static func pointsFromPLY(url: URL) -> PointCloud? {
         
         var n = 0
@@ -116,10 +138,18 @@ public class Utils {
         return PointCloud(pointCloud: pointCloud)
     }
     
+    
+    /// Converts the float color value to srgb compoenent.
+    /// - Parameter float: floating point color component
+    /// - Returns: srgb component
     static func getUchar(float: Float) -> UInt8 {
         return UInt8(min(floor(abs(float) * 255), 255))
     }
     
+    
+    /// Convert from srgb to to float color component
+    /// - Parameter uchar: srgb component
+    /// - Returns: floating point color component
     static func getFloat(uchar: UInt8) -> Float {
         return Float(uchar) / 255.0
     }

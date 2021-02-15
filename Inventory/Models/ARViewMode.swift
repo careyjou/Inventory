@@ -9,32 +9,21 @@
 import Foundation
 
 enum ARViewMode: Equatable {
+    // ar view is off
     case none
+    // can place items
     case general
+    // add instance of view model toAdd item
     case addInstance
+    // to set a new position for the view model's toreposition instance
+    // in the localized space
     case repositionInstance
+    // to find where a findable type is in a localized space
     case findItem
+    // mode to capture a point cloud of a space
     case mapSpace
    
-    public func buttonText() -> String {
-        switch self {
-        case .none:
-            return ""
-        case .general:
-            return ""
-        case .addInstance:
-            return "Place Instance"
-        case .repositionInstance:
-            return "Reposition Item"
-        case .findItem:
-            return ""
-        case .mapSpace:
-            return "Add Space"
-        }
-    }
-    
-   
-    
+        
 }
 
 enum LocalizationStatus: Equatable {
@@ -43,6 +32,8 @@ enum LocalizationStatus: Equatable {
     case foundSpace
     case errorLocalizing
     
+    /// Get the localization status description of this state.
+    /// - Returns: Status description
     public func statusText() -> String {
         switch self {
         case .capturing:

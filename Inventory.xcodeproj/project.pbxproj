@@ -40,7 +40,6 @@
 		D574732325902C9E00160E2D /* PositionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574732225902C9E00160E2D /* PositionExtension.swift */; };
 		D57473312590777900160E2D /* CloudExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57473302590777900160E2D /* CloudExtension.swift */; };
 		D575C358247B06D8003BAC16 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D575C357247B06D8003BAC16 /* ViewController.swift */; };
-		D58D13862471B7F400521F3E /* NavigationViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58D13852471B7F400521F3E /* NavigationViewMode.swift */; };
 		D58D13882471BB5700521F3E /* SpaceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58D13872471BB5700521F3E /* SpaceDetail.swift */; };
 		D58D138A2471DCC800521F3E /* SpaceEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58D13892471DCC800521F3E /* SpaceEditView.swift */; };
 		D58D138C2471FA9800521F3E /* AddSpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58D138B2471FA9800521F3E /* AddSpaceView.swift */; };
@@ -172,7 +171,6 @@
 		D574732225902C9E00160E2D /* PositionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionExtension.swift; sourceTree = "<group>"; };
 		D57473302590777900160E2D /* CloudExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudExtension.swift; sourceTree = "<group>"; };
 		D575C357247B06D8003BAC16 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D58D13852471B7F400521F3E /* NavigationViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewMode.swift; sourceTree = "<group>"; };
 		D58D13872471BB5700521F3E /* SpaceDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceDetail.swift; sourceTree = "<group>"; };
 		D58D13892471DCC800521F3E /* SpaceEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceEditView.swift; sourceTree = "<group>"; };
 		D58D138B2471FA9800521F3E /* AddSpaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSpaceView.swift; sourceTree = "<group>"; };
@@ -413,7 +411,6 @@
 				D59A38A3245E856300306CF3 /* SpaceExtension.swift */,
 				D561FF2225A8B9A000C6D5F6 /* LocationExtension.swift */,
 				D5E7DAA824849E590079A5ED /* Stack.swift */,
-				D58D13852471B7F400521F3E /* NavigationViewMode.swift */,
 				D5C790E32472EBD3000B0EC2 /* ARViewMode.swift */,
 				D51E632C24A82756000D97DD /* SpacePointCloudAppData.swift */,
 				D558775624DA080B0068756D /* Utils.swift */,
@@ -745,7 +742,6 @@
 				D5DCA3BD25B22D8D00EE3470 /* GoICPPose.swift in Sources */,
 				D554C280259103D500C8A97C /* ItemPreview.swift in Sources */,
 				D5D86CAF24A502C00068A833 /* ItemView.swift in Sources */,
-				D58D13862471B7F400521F3E /* NavigationViewMode.swift in Sources */,
 				D575C358247B06D8003BAC16 /* ViewController.swift in Sources */,
 				D5EBA6F22468ED29008020F9 /* TextView.swift in Sources */,
 				D5D86CA924A3C5F00068A833 /* ItemList.swift in Sources */,

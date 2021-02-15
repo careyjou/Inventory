@@ -10,6 +10,8 @@ import Foundation
 import SwiftUI
 import Combine
 
+
+/// Stores point cloud data for fast lookup using a cache.
 final public class SpacePointCloudAppData: ObservableObject {
     
     // key to PointCloud
@@ -22,6 +24,10 @@ final public class SpacePointCloudAppData: ObservableObject {
         self.pointClouds = cache
     }
     
+    
+    /// Get the point cloud associated to the given space if it has been loaded.
+    /// - Parameter space: Query space
+    /// - Returns: Pptional point cloud capture
     public func getPointCloud(space: Space) -> PointCloud? {
         if let id = space.getPointCloud()?.id {
             if !cloudQueue.contains(id) && (pointClouds.object(forKey: NSString(string: id.uuidString)) == nil) {
@@ -35,6 +41,12 @@ final public class SpacePointCloudAppData: ObservableObject {
         return nil
     }
     
+    
+    /// Add the captured point cloud to the space's cloud and add it to the cache.
+    /// - Parameters:
+    ///   - key: Lookup key
+    ///   - pointCloud: Point cloud data
+    ///   - cloud: Cloud object
     public func addPointCloud(key: UUID, pointCloud: PointCloud, cloud: Cloud) {
         self.addToCache(key: key, pointCloud: pointCloud)
         
@@ -48,6 +60,8 @@ final public class SpacePointCloudAppData: ObservableObject {
         
     }
     
+    /// Begin decoding the space of this space if it is not in the cache or queue.
+    /// - Parameter space: Space whose point cloud will be decoded
     public func addCloud(space: Space) {
         if let cloud = space.pointCloud,
            let id = cloud.id,
@@ -65,6 +79,11 @@ final public class SpacePointCloudAppData: ObservableObject {
         }
     }
     
+    
+    /// Add the point to the cache with the given lookup key which is the cloud id.
+    /// - Parameters:
+    ///   - key: lookup key
+    ///   - pointCloud: Point cloud data
     private func addToCache(key: UUID, pointCloud: PointCloud) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {

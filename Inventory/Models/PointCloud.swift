@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+/// Point clouds are a class to reduce the copying of data by passing a reference.
 public class PointCloud: Codable {
     
     private var pointCloud: [PointCloudVertex]
@@ -25,6 +27,8 @@ public class PointCloud: Codable {
 
 }
 
+/// Ensures point clouds are deleted if the device does not have enough memory
+/// for them in the cache.
 extension PointCloud: NSDiscardableContent {
     public func beginContentAccess() -> Bool {
         true

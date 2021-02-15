@@ -12,10 +12,10 @@ import CoreData
 
 extension Location {
     
-    /// <#Description#>
+    /// Create an identifiable Location with a managed context and location.
     /// - Parameters:
-    ///   - moc: <#moc description#>
-    ///   - location: <#location description#>
+    ///   - moc: CoreData context
+    ///   - location: Geographical location
     convenience init(moc: NSManagedObjectContext, location: CLLocation) {
         self.init(context: moc)
         self.id = UUID()
@@ -23,21 +23,13 @@ extension Location {
         self.longitude = Float(location.coordinate.longitude)
     }
     
-    /// <#Description#>
-    /// - Returns: <#description#>
+    /// Get a geographical location from this
+    /// - Returns: The geographical coordinates
     public func getLocation() -> CLLocation? {
         return CLLocation(latitude: CLLocationDegrees(self.latitude), longitude: CLLocationDegrees(self.longitude))
     }
     
-    /// <#Description#>
-    /// - Parameter location: <#location description#>
-    /// - Returns: <#description#>
-    public func setLocation(location: CLLocation) -> Location {
-        self.latitude = Float(location.coordinate.latitude)
-        self.longitude = Float(location.coordinate.longitude)
-        return self
-    }
-    
+
     
     
 }

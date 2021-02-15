@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+/// Inventory's data type for a 3D point with r, g, b components.
 public struct PointCloudVertex {
     let x: Float, y: Float, z: Float
     let r: Float, g: Float, b: Float
