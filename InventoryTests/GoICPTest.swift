@@ -44,11 +44,10 @@ class GoICPTest: XCTestCase {
         XCTAssertEqual(1, result.pose.columns.3.z, accuracy: 0.05)
     }
     
-    enum ParsingError: Error {
-        case couldNotLoad
-    }
+   
 
 }
 
-
-
+enum ParsingError: Error {
+    case couldNotLoad
+}
