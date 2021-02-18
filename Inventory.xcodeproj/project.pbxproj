@@ -61,6 +61,7 @@
 		D5A0F40325957D2D008E5A96 /* ItemTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A0F40225957D2D008E5A96 /* ItemTest.swift */; };
 		D5A3EC97248C282500F8C1B8 /* SeachBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A3EC96248C282500F8C1B8 /* SeachBar.swift */; };
 		D5A3EC99248CA35400F8C1B8 /* Space3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A3EC98248CA35400F8C1B8 /* Space3D.swift */; };
+		D5AB60F325DE07B000C12556 /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AB60F225DE07B000C12556 /* TestCoreDataStack.swift */; };
 		D5AE7F0D24A6EA7000D175D2 /* UserPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AE7F0C24A6EA7000D175D2 /* UserPreview.swift */; };
 		D5B761B3251660C800BFCF42 /* ARCaptureWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B761B2251660C800BFCF42 /* ARCaptureWrapper.swift */; };
 		D5B761B82516633700BFCF42 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B761B72516633700BFCF42 /* CaptureViewController.swift */; };
@@ -200,6 +201,7 @@
 		D5A0F40225957D2D008E5A96 /* ItemTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTest.swift; sourceTree = "<group>"; };
 		D5A3EC96248C282500F8C1B8 /* SeachBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeachBar.swift; sourceTree = "<group>"; };
 		D5A3EC98248CA35400F8C1B8 /* Space3D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Space3D.swift; sourceTree = "<group>"; };
+		D5AB60F225DE07B000C12556 /* TestCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
 		D5AE7F0C24A6EA7000D175D2 /* UserPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreview.swift; sourceTree = "<group>"; };
 		D5B761B2251660C800BFCF42 /* ARCaptureWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARCaptureWrapper.swift; sourceTree = "<group>"; };
 		D5B761B72516633700BFCF42 /* CaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 				D53A3E35239B112D006EC344 /* Info.plist */,
 				D5A0F40225957D2D008E5A96 /* ItemTest.swift */,
 				D5E3D64E25B14727000806F9 /* GoICPTest.swift */,
+				D5AB60F225DE07B000C12556 /* TestCoreDataStack.swift */,
 			);
 			path = InventoryTests;
 			sourceTree = "<group>";
@@ -779,6 +782,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5AB60F325DE07B000C12556 /* TestCoreDataStack.swift in Sources */,
 				D5A0F40325957D2D008E5A96 /* ItemTest.swift in Sources */,
 				D5E3D64F25B14727000806F9 /* GoICPTest.swift in Sources */,
 				D53A3E34239B112D006EC344 /* InventoryTests.swift in Sources */,

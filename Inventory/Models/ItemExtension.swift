@@ -75,7 +75,7 @@ extension Item {
     /// When was any of this items last modified. Used for sorting items.
     /// - Returns: The most recent time when any instance of this item was moved
     public func getLastModified() -> Date {
-        var lastModified: Date? = nil
+        var lastModified: Date? = self.createdAt
         if let itemInstances = self.instances {
             var dates = itemInstances.compactMap({($0 as? ItemInstance)?.getLastModified()})
             dates.sort()
