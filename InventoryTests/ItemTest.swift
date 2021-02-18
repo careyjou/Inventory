@@ -13,7 +13,7 @@ import CoreData
 class ItemTest: XCTestCase {
     
 
-    func testItemCreation() {
+    func testItemConstructor() {
         let item = Item(moc: TestCoreDataStack().persistentContainer.viewContext, name: "Hello")
         XCTAssert(item.name == "Hello")
         XCTAssert(item.createdAt != nil)
@@ -114,7 +114,7 @@ class ItemTest: XCTestCase {
         let itemInstance = ItemInstance(moc: container.viewContext, item: item, position: position, quantity: 2)
         try? container.viewContext.save()
         
-        // add another item instance to a poistion in a different space
+        // add another item instance to a position in a different space
         let secondSpace = Space(context: container.viewContext)
         try? container.viewContext.save()
         let secondPosition = Position(moc: container.viewContext, position: simd_float3(x: 1, y: 2, z: 1), space: secondSpace)

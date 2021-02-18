@@ -62,6 +62,7 @@
 		D5A3EC97248C282500F8C1B8 /* SeachBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A3EC96248C282500F8C1B8 /* SeachBar.swift */; };
 		D5A3EC99248CA35400F8C1B8 /* Space3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A3EC98248CA35400F8C1B8 /* Space3D.swift */; };
 		D5AB60F325DE07B000C12556 /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AB60F225DE07B000C12556 /* TestCoreDataStack.swift */; };
+		D5AB60F725DE25F600C12556 /* ItemInstanceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AB60F625DE25F600C12556 /* ItemInstanceTest.swift */; };
 		D5AE7F0D24A6EA7000D175D2 /* UserPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AE7F0C24A6EA7000D175D2 /* UserPreview.swift */; };
 		D5B761B3251660C800BFCF42 /* ARCaptureWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B761B2251660C800BFCF42 /* ARCaptureWrapper.swift */; };
 		D5B761B82516633700BFCF42 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B761B72516633700BFCF42 /* CaptureViewController.swift */; };
@@ -202,6 +203,7 @@
 		D5A3EC96248C282500F8C1B8 /* SeachBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeachBar.swift; sourceTree = "<group>"; };
 		D5A3EC98248CA35400F8C1B8 /* Space3D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Space3D.swift; sourceTree = "<group>"; };
 		D5AB60F225DE07B000C12556 /* TestCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
+		D5AB60F625DE25F600C12556 /* ItemInstanceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInstanceTest.swift; sourceTree = "<group>"; };
 		D5AE7F0C24A6EA7000D175D2 /* UserPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreview.swift; sourceTree = "<group>"; };
 		D5B761B2251660C800BFCF42 /* ARCaptureWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARCaptureWrapper.swift; sourceTree = "<group>"; };
 		D5B761B72516633700BFCF42 /* CaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				D53A3E33239B112D006EC344 /* InventoryTests.swift */,
 				D53A3E35239B112D006EC344 /* Info.plist */,
 				D5A0F40225957D2D008E5A96 /* ItemTest.swift */,
+				D5AB60F625DE25F600C12556 /* ItemInstanceTest.swift */,
 				D5E3D64E25B14727000806F9 /* GoICPTest.swift */,
 				D5AB60F225DE07B000C12556 /* TestCoreDataStack.swift */,
 			);
@@ -408,10 +411,10 @@
 			children = (
 				D5D86CAC24A3DFA60068A833 /* InventoryViewModel.swift */,
 				D57473302590777900160E2D /* CloudExtension.swift */,
-				D574732225902C9E00160E2D /* PositionExtension.swift */,
-				D5504DC724C5170C007BF1A5 /* ItemInstanceExtension.swift */,
-				D59A38A1245E803100306CF3 /* ItemExtension.swift */,
 				D59A38A3245E856300306CF3 /* SpaceExtension.swift */,
+				D574732225902C9E00160E2D /* PositionExtension.swift */,
+				D59A38A1245E803100306CF3 /* ItemExtension.swift */,
+				D5504DC724C5170C007BF1A5 /* ItemInstanceExtension.swift */,
 				D561FF2225A8B9A000C6D5F6 /* LocationExtension.swift */,
 				D5E7DAA824849E590079A5ED /* Stack.swift */,
 				D5C790E32472EBD3000B0EC2 /* ARViewMode.swift */,
@@ -783,6 +786,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5AB60F325DE07B000C12556 /* TestCoreDataStack.swift in Sources */,
+				D5AB60F725DE25F600C12556 /* ItemInstanceTest.swift in Sources */,
 				D5A0F40325957D2D008E5A96 /* ItemTest.swift in Sources */,
 				D5E3D64F25B14727000806F9 /* GoICPTest.swift in Sources */,
 				D53A3E34239B112D006EC344 /* InventoryTests.swift in Sources */,

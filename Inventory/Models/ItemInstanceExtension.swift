@@ -73,7 +73,7 @@ extension ItemInstance {
     /// Change this instance's quantity to reflect a new number of items at this Position.
     /// - Parameter newQuantity: The updated number of items
     public func setQuantity(newQuantity: Int) -> ItemInstance {
-        self.quantity = Int64(newQuantity)
+        self.quantity = Int64(max(newQuantity, 0))
         
         return self
     }
