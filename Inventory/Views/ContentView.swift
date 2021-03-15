@@ -22,7 +22,6 @@ struct ContentView: View {
     @FetchRequest(entity: Space.entity(), sortDescriptors: []) var spaces: FetchedResults<Space>
     
     var body: some View {
-        self.updateSpacePointClouds()
         
         return ZStack {
             InventoryNavigation()
@@ -76,20 +75,6 @@ struct ContentView: View {
         
     }
     
-    
-    private func updateSpacePointClouds() {
-        guard let data = (UIApplication.shared.delegate as? AppDelegate)?.data else {
-            return
-        }
-        
-        for space in spaces {
-            DispatchQueue.global(qos: .userInitiated).async {
-                data.addCloud(space: space)
-            }
-            
-        }
-        
-    }
     
     
     

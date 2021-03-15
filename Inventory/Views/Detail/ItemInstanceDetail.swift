@@ -218,9 +218,8 @@ struct ItemInstanceDetail: View {
                     }
                     Spacer()
                     
-                    if let space = instance.getSpace(),
-                    let data = (UIApplication.shared.delegate as? AppDelegate)?.data {
-                        NavigationLink(destination: Space3D(space: space, data: data, itemSelection: instance), isActive: $isShowing3DView) {
+                    if let space = instance.getSpace() {
+                        NavigationLink(destination: Space3D(space: space, itemSelection: instance), isActive: $isShowing3DView) {
                             EmptyView()
                         }
                     }

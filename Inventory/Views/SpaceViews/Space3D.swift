@@ -11,23 +11,22 @@ import SwiftUI
 struct Space3D: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var space: Space
-    @ObservedObject var data: SpacePointCloudAppData
     @State var isShowingItemSheet: Bool = false
     @State var itemSelection: Findable? = nil
     
     var body: some View {
         
         
-        return self.model(data: data)
+        return self.model()
     }
     
-    @ViewBuilder private func model(data: SpacePointCloudAppData) -> some View {
+    @ViewBuilder private func model() -> some View {
     
         
-        if (data.getPointCloud(space: space) != nil) {
+        
             ZStack{
                 GeometryReader { geometry in
-                    PointCloudView(space: space, data: data, findable: $itemSelection).aspectRatio(contentMode: .fill).edgesIgnoringSafeArea(.all)
+                    PointCloudView(space: space, findable: $itemSelection).aspectRatio(contentMode: .fill).edgesIgnoringSafeArea(.all)
                 .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height)
                 }
                 VStack{
@@ -64,7 +63,7 @@ struct Space3D: View {
                                 )
             
             
-        }
+        
         
         
     }

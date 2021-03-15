@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18147.2" systemVersion="20D91" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="Cloud" representedClassName="Cloud" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="pointCloud" optional="YES" attributeType="Binary"/>
+        <attribute name="pointCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="space" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Space" inverseName="pointCloud" inverseEntity="Space"/>
     </entity>
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
@@ -43,7 +44,7 @@
         <relationship name="positions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Position" inverseName="space" inverseEntity="Position"/>
     </entity>
     <elements>
-        <element name="Cloud" positionX="117.69921875" positionY="-81.0859375" width="128" height="74"/>
+        <element name="Cloud" positionX="117.69921875" positionY="-81.0859375" width="128" height="103"/>
         <element name="Item" positionX="-7.078125" positionY="118.15234375" width="128" height="103"/>
         <element name="ItemInstance" positionX="-317.87109375" positionY="410.6328125" width="128" height="134"/>
         <element name="Location" positionX="-551.7421875" positionY="245.32421875" width="128" height="103"/>

@@ -95,8 +95,8 @@ struct SpaceDetail: View {
                 HStack(){
                     Spacer()
                     
-                    if let data = (UIApplication.shared.delegate as? AppDelegate)?.data {
-                    NavigationLink(destination: Space3D(space: space, data: data))
+
+                    NavigationLink(destination: Space3D(space: space))
                     {
                         Image(systemName: "view.3d")
                     }.buttonStyle(CircleButton())
@@ -104,7 +104,6 @@ struct SpaceDetail: View {
                         Button(action: { self.sharePointCloud()}) {
                             Label("Export Cloud", systemImage: "square.and.arrow.up")
                         }
-                    }
                     }
                     
                 
@@ -181,9 +180,7 @@ struct SpaceDetail: View {
     }
     
     private func sharePointCloud() {
-        guard let data = (UIApplication.shared.delegate as? AppDelegate)?.data,
-              let cloud = data.getPointCloud(space: space)
-        else {
+        guard let cloud = space.getPointCloudData() else {
             return
         }
     

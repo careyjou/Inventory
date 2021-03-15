@@ -12,7 +12,6 @@ import SceneKit
 
 struct PointCloudView: UIViewRepresentable {
     @ObservedObject var space: Space
-    @ObservedObject var data: SpacePointCloudAppData
     @Binding var findable: Findable?
     @Environment(\.colorScheme) var colorScheme
     @State var scene: SCNScene = SCNScene()
@@ -74,18 +73,15 @@ struct PointCloudView: UIViewRepresentable {
     
     private func updateModel(scene: SCNScene) {
         
-        if let cloud = data.getPointCloud(space: space) {
+        
             DispatchQueue.main.async{
-                let points = cloud.getPointCloud()
+                if let (count, points) = space.getPointData() {
                 
-                let vertexData = NSData(
-                            bytes: points,
-                            length: MemoryLayout<PointCloudVertex>.size * points.count
-                        )
+                let vertexData = points
                         let positionSource = SCNGeometrySource(
                             data: vertexData as Data,
                             semantic: SCNGeometrySource.Semantic.vertex,
-                            vectorCount: points.count,
+                            vectorCount: count,
                             usesFloatComponents: true,
                             componentsPerVector: 3,
                             bytesPerComponent: MemoryLayout<Float>.size,
@@ -95,7 +91,7 @@ struct PointCloudView: UIViewRepresentable {
                         let colorSource = SCNGeometrySource(
                             data: vertexData as Data,
                             semantic: SCNGeometrySource.Semantic.color,
-                            vectorCount: points.count,
+                            vectorCount: count,
                             usesFloatComponents: true,
                             componentsPerVector: 3,
                             bytesPerComponent: MemoryLayout<Float>.size,
@@ -105,7 +101,7 @@ struct PointCloudView: UIViewRepresentable {
                         let elements = SCNGeometryElement(
                             data: nil,
                             primitiveType: .point,
-                            primitiveCount: points.count,
+                            primitiveCount: count,
                             bytesPerIndex: MemoryLayout<Int>.size
                         )
                 
@@ -136,7 +132,8 @@ struct PointCloudView: UIViewRepresentable {
                 
             
             }
-        }
+            }
+        
         
         
     }

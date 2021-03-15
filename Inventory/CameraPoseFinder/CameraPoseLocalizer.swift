@@ -13,7 +13,6 @@ import CoreData
 
 /// A system to query what the device's camera pose from the world origin is within one of many spaces.
 class CameraPoseLocalizer {
-    let data: SpacePointCloudAppData
     let moc: NSManagedObjectContext
     
     init?() {
@@ -23,7 +22,6 @@ class CameraPoseLocalizer {
               return nil
           }
         
-        self.data = appDelegate.data
         self.moc = appDelegate.persistentContainer.viewContext
     }
     
@@ -47,7 +45,7 @@ class CameraPoseLocalizer {
         }
         
         for space in spaces {
-            guard let referencePointCloud = data.getPointCloud(space: space),
+            guard let referencePointCloud = space.getPointCloudData(),
                   let cameraPose = poseFinder.cameraPose(source: referencePointCloud, destination: queryPointCloud) else {
                 continue
             }

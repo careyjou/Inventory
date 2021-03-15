@@ -67,18 +67,14 @@ struct AddSpaceView: View {
             _ = Space(moc: moc, name: self.name, pointCloud: cloud, location: location)
             
             
-            if let key = cloud.id{
-                let data = (UIApplication.shared.delegate as! AppDelegate).data
-                DispatchQueue.global(qos: .userInitiated).async {
-                data.addPointCloud(key: key, pointCloud: PointCloud(pointCloud: pointCloud), cloud: cloud)
+
+            let data = NSData(bytes: pointCloud, length: MemoryLayout<PointCloudVertex>.size * pointCloud.count) as Data
+            cloud.pointCloud = data
+            cloud.pointCount = Int64(pointCloud.count)
+                    
                 
-                    DispatchQueue.main.async {
-                        try? moc.save()
-                    }
-                
-                }
-                
-            }
+                    
+            try? moc.save()
             
         
             self.presentationMode.wrappedValue.dismiss()

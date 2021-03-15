@@ -55,7 +55,46 @@ extension Space {
     public func getPointCloud() -> Cloud? {
         return self.pointCloud
     }
-
+    
+    public func getPointCloudData() -> PointCloud? {
+        
+        guard let data = self.pointCloud?.pointCloud else {
+            return nil
+        }
+        let count = Int(self.pointCloud?.pointCount ?? 0)
+        
+        // TODO
+        
+        return nil
+        
+        /*
+        
+        var pointArray = [PointCloudVertex](repeating: PointCloudVertex(x: 0.0, y: 0.0, z: 0.0, r: 0.0, g: 0.0, b: 0.0), count: count)
+        
+        var temp = UnsafeMutableRawPointer.allocate(byteCount: MemoryLayout<PointCloudVertex>.size * count, alignment: MemoryLayout<PointCloudVertex>.alignment)
+        
+        
+        data.copyBytes(to: temp as UnsafeMutablePointer, count: count * MemoryLayout<PointCloudVertex>.size)
+        
+        data.withUnsafeMutableBytes { (tempBuffer: UnsafeMutableRawPointer) in
+            tempBuffer.bindMemory(to: PointCloudVertex.self, capacity: count)
+          }
+        
+        if let points = pointArray {
+            return PointCloud(pointCloud: points)
+        }
+        */
+    }
+    
+    public func getPointData() ->  (Int, Data)? {
+        guard let data = self.pointCloud?.pointCloud,
+              let count = self.pointCloud?.pointCount else {
+            return nil
+        }
+        
+        return (Int(count), data)
+    }
+    
     
     /// Get all types of items that are within this space
     /// - Returns: An unsorted sequence of all items accessible in this space

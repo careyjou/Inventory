@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		D5104963252ACAE200F820A1 /* PointCloudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5104962252ACAE200F820A1 /* PointCloudView.swift */; };
 		D512418725CA59DD0070B632 /* NestedAddNewItemInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D512418625CA59DD0070B632 /* NestedAddNewItemInstanceView.swift */; };
-		D51E632D24A82756000D97DD /* SpacePointCloudAppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E632C24A82756000D97DD /* SpacePointCloudAppData.swift */; };
 		D51F0EC025941C08005AC360 /* ItemInstancePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51F0EBF25941C08005AC360 /* ItemInstancePreview.swift */; };
 		D529B4D925B3BFA10086A444 /* Findable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D529B4D825B3BFA10086A444 /* Findable.swift */; };
 		D529B4DE25B3CA3B0086A444 /* PositionFreeAddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D529B4DD25B3CA3B0086A444 /* PositionFreeAddItemView.swift */; };
@@ -70,7 +69,6 @@
 		D5C225C72532B4DE00408735 /* PointCloudVertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C225C62532B4DE00408735 /* PointCloudVertex.swift */; };
 		D5C790E42472EBD3000B0EC2 /* ARViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C790E32472EBD3000B0EC2 /* ARViewMode.swift */; };
 		D5C790E624737294000B0EC2 /* ARViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C790E524737294000B0EC2 /* ARViewWrapper.swift */; };
-		D5D10C41254F3C6300448EFE /* PointCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D10C40254F3C6300448EFE /* PointCloud.swift */; };
 		D5D681E425B52E68002C8D0F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5D681E325B52E68002C8D0F /* AVFoundation.framework */; };
 		D5D681E725B52EA2002C8D0F /* Blow.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D5D681E625B52EA2002C8D0F /* Blow.aiff */; };
 		D5D86CA724A3C5710068A833 /* SpaceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D86CA624A3C5710068A833 /* SpaceList.swift */; };
@@ -99,6 +97,7 @@
 		D5EBA6F8246906A8008020F9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5EBA6F7246906A8008020F9 /* CloudKit.framework */; };
 		D5EBA6FA24691013008020F9 /* AddItemAndInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EBA6F924691013008020F9 /* AddItemAndInstanceView.swift */; };
 		D5F9D14524C4E22F00677EFD /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F9D14424C4E22F00677EFD /* AboutView.swift */; };
+		D5FAE72025FDDE8000F4C9BA /* PointCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FAE71F25FDDE8000F4C9BA /* PointCloud.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,7 +133,6 @@
 /* Begin PBXFileReference section */
 		D5104962252ACAE200F820A1 /* PointCloudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointCloudView.swift; sourceTree = "<group>"; };
 		D512418625CA59DD0070B632 /* NestedAddNewItemInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedAddNewItemInstanceView.swift; sourceTree = "<group>"; };
-		D51E632C24A82756000D97DD /* SpacePointCloudAppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacePointCloudAppData.swift; sourceTree = "<group>"; };
 		D51F0EBF25941C08005AC360 /* ItemInstancePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInstancePreview.swift; sourceTree = "<group>"; };
 		D529B4D825B3BFA10086A444 /* Findable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Findable.swift; sourceTree = "<group>"; };
 		D529B4DD25B3CA3B0086A444 /* PositionFreeAddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionFreeAddItemView.swift; sourceTree = "<group>"; };
@@ -212,7 +210,6 @@
 		D5C225C62532B4DE00408735 /* PointCloudVertex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointCloudVertex.swift; sourceTree = "<group>"; };
 		D5C790E32472EBD3000B0EC2 /* ARViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewMode.swift; sourceTree = "<group>"; };
 		D5C790E524737294000B0EC2 /* ARViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewWrapper.swift; sourceTree = "<group>"; };
-		D5D10C40254F3C6300448EFE /* PointCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointCloud.swift; sourceTree = "<group>"; };
 		D5D681E325B52E68002C8D0F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D5D681E625B52EA2002C8D0F /* Blow.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Blow.aiff; sourceTree = "<group>"; };
 		D5D86CA624A3C5710068A833 /* SpaceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceList.swift; sourceTree = "<group>"; };
@@ -245,6 +242,7 @@
 		D5EBA6F7246906A8008020F9 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		D5EBA6F924691013008020F9 /* AddItemAndInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemAndInstanceView.swift; sourceTree = "<group>"; };
 		D5F9D14424C4E22F00677EFD /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		D5FAE71F25FDDE8000F4C9BA /* PointCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointCloud.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -412,6 +410,7 @@
 		D549C7972498796700873FFC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D5FAE71F25FDDE8000F4C9BA /* PointCloud.swift */,
 				D5D86CAC24A3DFA60068A833 /* InventoryViewModel.swift */,
 				D59A38A3245E856300306CF3 /* SpaceExtension.swift */,
 				D57473302590777900160E2D /* CloudExtension.swift */,
@@ -421,10 +420,8 @@
 				D561FF2225A8B9A000C6D5F6 /* LocationExtension.swift */,
 				D5E7DAA824849E590079A5ED /* Stack.swift */,
 				D5C790E32472EBD3000B0EC2 /* ARViewMode.swift */,
-				D51E632C24A82756000D97DD /* SpacePointCloudAppData.swift */,
 				D558775624DA080B0068756D /* Utils.swift */,
 				D5C225C62532B4DE00408735 /* PointCloudVertex.swift */,
-				D5D10C40254F3C6300448EFE /* PointCloud.swift */,
 				D547954E25AB9DE900523D44 /* LocationManager.swift */,
 				D529B4D825B3BFA10086A444 /* Findable.swift */,
 			);
@@ -739,7 +736,6 @@
 				D549C7962498789900873FFC /* InfoView.swift in Sources */,
 				D53A3E1A239B112A006EC344 /* AppDelegate.swift in Sources */,
 				D5AE7F0D24A6EA7000D175D2 /* UserPreview.swift in Sources */,
-				D51E632D24A82756000D97DD /* SpacePointCloudAppData.swift in Sources */,
 				D51F0EC025941C08005AC360 /* ItemInstancePreview.swift in Sources */,
 				D5504DC824C5170C007BF1A5 /* ItemInstanceExtension.swift in Sources */,
 				D5E7446724A67870004803EE /* SuggestedItemsList.swift in Sources */,
@@ -751,6 +747,7 @@
 				D5DCA3BD25B22D8D00EE3470 /* GoICPPose.swift in Sources */,
 				D554C280259103D500C8A97C /* ItemPreview.swift in Sources */,
 				D5D86CAF24A502C00068A833 /* ItemView.swift in Sources */,
+				D5FAE72025FDDE8000F4C9BA /* PointCloud.swift in Sources */,
 				D575C358247B06D8003BAC16 /* ViewController.swift in Sources */,
 				D5EBA6F22468ED29008020F9 /* TextView.swift in Sources */,
 				D5D86CA924A3C5F00068A833 /* ItemList.swift in Sources */,
@@ -768,7 +765,6 @@
 				D5A3EC97248C282500F8C1B8 /* SeachBar.swift in Sources */,
 				D529B4DE25B3CA3B0086A444 /* PositionFreeAddItemView.swift in Sources */,
 				D512418725CA59DD0070B632 /* NestedAddNewItemInstanceView.swift in Sources */,
-				D5D10C41254F3C6300448EFE /* PointCloud.swift in Sources */,
 				D5F9D14524C4E22F00677EFD /* AboutView.swift in Sources */,
 				D5A03E222592CA74004E0B7C /* StringTokenizer.cpp in Sources */,
 				D5A03E212592CA74004E0B7C /* ConfigMap.cpp in Sources */,
